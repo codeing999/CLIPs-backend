@@ -6,7 +6,9 @@
   "scripts": {
     "db:init": "node ./src/db-init.js",
     "start:dev": "nodemon ./src/app.js",
-    "start": "pm2 ./src/app.js"
+    "start": "pm2 ./src/app.js",
+    "test": "NODE_ENV=test jest",
+    "test:clear": "jest --clearCache"
   },
   "repository": {
     "type": "git",
