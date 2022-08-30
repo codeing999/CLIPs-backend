@@ -1,6 +1,17 @@
 # CLIPs-backend
 
+## 스크립트
+
+```javascript
+ "scripts": {
+    "db:init": "node ./src/db-init.js", //db 초기화
+    "start:dev": "nodemon ./src/app.js",    //개발용 서버 켜기
+    "start": "pm2 ./src/app.js"     //배포용 서버 켜기. (지금은 pm2 없으므로 안먹힘)
+  },
+```
+
 ## Git 사용 전략
+
 ### 브런치 명명법
 
 - main
@@ -9,11 +20,13 @@
 
 아래는 필요에 따라 생성 후 submain에 합치고 나면 삭제.
 
-- feature/기능명
-- bugfix/기능명
-- module/모듈명
+- feature/기능명~컴포넌트명
+- bugfix/기능명-컴포넌트명
+- module/모듈-목적
+  - 단수의 경우라면 해당 모듈의 이름
+  - 복수의 경우라면 공통된 특징
 - refactor/기능명-컴포넌트명
-    
+  > 일단, 돌아가게 만들어놓은 코드를 여러 가지 이유로 같은 기능을 하되, 조금 더 좋은 방식으로 고치는 작업
 
 ### 2. 커밋 명명법
 
@@ -23,6 +36,7 @@
 - 파일의 에러를 수정했을 때 : fix 파일 - 에러 내용
 - 파일을 리팩토링(기능은 같으나 성능이나 구조를 개선) : enhance 파일
 - 파일을 지웠을 때 : delete 파일
+-
 
 ### 3. ISSUE 작성 규칙
 
