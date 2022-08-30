@@ -1,9 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-require("dotenv").config({ path: "../.env" });
-
-const { sequelize } = require("./sequelize/models");
+// require("dotenv").config("/src/.env"); //"../.env"
 
 const app = express();
 const port = 3000;
@@ -30,14 +28,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// sequelize
-//   .sync({ force: true })
-//   .then(() => {
-//     console.log("db connect seccess");
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
 const indexRouter = require("./layers/routers");
 app.use("/api", indexRouter);
 
