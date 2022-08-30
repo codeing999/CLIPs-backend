@@ -53,7 +53,8 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany(models.Promise, {
       as: "friend",
       through: "Friend",
-      targetKey: "promiseId",
+      foreignKey: "userId",
+      sourceKey: "userId",
     });
   };
   return User;
