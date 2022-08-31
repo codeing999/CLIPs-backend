@@ -2,6 +2,8 @@ const MainRepository = require("../repositories/main.repository");
 const request = require("request");
 const axios = require("axios");
 const { query } = require("express");
+const cheerio = require("cheerio");
+
 // const {
 //   ConfigurationServicePlaceholders,
 // } = require("aws-sdk/lib/config_service_placeholders");
@@ -59,7 +61,21 @@ module.exports = class MainService {
                 place_url: p.place_url, //왜 안되누..
             };})
             
-            
+
+            // axios({
+            //     // 크롤링을 원하는 페이지 URL
+            //     url: "https://place.map.kakao.com/799901555", //place_url,
+            //     method: 'GET',
+            // })
+            //     // 성공했을 경우
+            //     .then(response => {
+            //         console.log(response.data);
+            //     })
+            //     // 실패했을 경우
+            //     .catch(err => {
+            //         console.error(err);
+            //     });
+
         return responseImageData;
       } catch (err) {
         console.log(err);
