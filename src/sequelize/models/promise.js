@@ -61,8 +61,9 @@ module.exports = (sequelize, DataTypes) => {
     Promise.belongsToMany(models.User, {
       as: "promise",
       through: "Friend",
-      foreignKey: "userId",
-      sourceKey: "userId",
+      foreignKey: "promiseId",
+      sourceKey: "promiseId",
+      timestamps: false,
     });
   };
   return Promise;

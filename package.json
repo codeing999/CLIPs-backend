@@ -6,7 +6,9 @@
   "scripts": {
     "db:init": "node ./src/db-init.js",
     "start:dev": "nodemon ./src/app.js",
-    "start": "pm2 ./src/app.js"
+    "start": "pm2 ./src/app.js",
+    "test": "NODE_ENV=test jest",
+    "test:clear": "jest --clearCache"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.1204.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
