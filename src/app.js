@@ -1,9 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-require("dotenv").config({ path: "../.env" });
 
-const { sequelize } = require("./sequelize/models");
+// const { sequelize } = require("./sequelize/models");
 
 const app = express();
 const port = 3000;
