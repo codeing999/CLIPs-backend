@@ -36,9 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       penalty: DataTypes.STRING,
+      
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: -1
       },
     },
     {
