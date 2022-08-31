@@ -1,4 +1,4 @@
-# node_modules/
+node_modules/
 config.js
 config.json
 ./src/sequelize/config/config.json
