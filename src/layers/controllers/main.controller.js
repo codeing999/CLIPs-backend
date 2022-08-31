@@ -11,9 +11,7 @@ module.exports = class MainController {
     // return getAddressUrl;
 
     const getImageUrl = await this.mainService.getImage(keyword);
-
     const getAllUrl = {getAddressUrl,getImageUrl}
-    console.log("콘트롤!!!", getAllUrl)
     return getAllUrl
     
   };
