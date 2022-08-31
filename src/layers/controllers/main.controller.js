@@ -13,7 +13,7 @@ module.exports = class MainController {
     const getImageUrl = await this.mainService.getImage(keyword);
 
     const getAllUrl = {getAddressUrl,getImageUrl}
-    console.log("콘트롤", getAllUrl)
+    console.log("콘트롤!!!", getAllUrl)
     return getAllUrl
     
   };
