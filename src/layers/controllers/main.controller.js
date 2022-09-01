@@ -4,21 +4,10 @@ module.exports = class MainController {
 
   //메인페이지
   mainPage = async (req, res, next) => {
-    const {location, keyword} = req.body; //'강남구 삼성동'
+    const {location} = req.body; // 프론트로부터 구까지 받을 예정 
+    const getImageUrl = await this.mainService.getImage(location);
+    // const getAddressUrl = await this.mainService.getAddress(location);
 
-    //주소 x,y 값 받기
-    const getAddressUrl = await this.mainService.getAddress(location);
-    // return getAddressUrl;
-
-    const getImageUrl = await this.mainService.getImage(keyword);
-    const getAllUrl = {getAddressUrl,getImageUrl}
-    return getAllUrl
-    
+    return getImageUrl
   };
-
-//   const getUrl = await this.mainService.getRecommendation();
-// return res.send({
-//   status: mainPage.status, //x,y, radius 포함
-//   list: mainPage.list, //x,y,imageUrl, category, name
-// });
 };
