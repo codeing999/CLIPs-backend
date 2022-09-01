@@ -32,25 +32,22 @@ getImage = async (location) => {
         };
       });
 
-      console.log(`${location}의 좌표는`, responseAdressData[0].y,responseAdressData[0].x)
+      // console.log(`${location}의 좌표는`, responseAdressData[0].y,responseAdressData[0].x)
 
       const keywordlist = ["대형마트", "편의점", "어린이집, 유치원", '학교', "주차장", "주유소, 충전소", "지하철역", "은행", "문화시설", "중개업소", "공공기관", "관광명소", "숙박", "음식점", "카페", "병원", "약국"]
       const randomNumber = Math.floor(Math.random()*keywordlist.length);
       
       //받은 구 내 랜덤 카테고리 추천
-      try{
+      // try{
       const imageResponse = await axios({
         method: "get",
         url: "https://dapi.kakao.com/v2/local/search/keyword.json?radius=2000", 
         params: { query: `${keywordlist[randomNumber]}`, y:`${responseAdressData[0].y}`, x:`${responseAdressData[0].x}` }, 
         headers: {
           Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
-        }, //https://dapi.kakao.com/v2/local/search/address.json?radius=200&query=카테고리
+        }, 
       });
 
-      // if (imageResponse.data.meta.total_count === 0) {
-      //   return res.send({message:`${location}의 ${keywordlist[randomNumber]}가 존재하지 않습니다. 재검색해보세요`})
-      // } {
       const responseImageData = imageResponse.data.documents.map((p) => {
         return {
           x: p.x,
@@ -60,13 +57,19 @@ getImage = async (location) => {
           category: p.category_name,
           place_url: p.place_url,
         };
-      })
-
-      console.log(`${location}의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개.\n 자세한 내용(랜덤 1개)`, responseImageData[Math.floor(Math.random() * responseImageData.length)])
-    } 
-    
-    catch(err) {console.log(err)
-      return false}
+      }) 
+      console.log(`${location}의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개 \n 자세한 내용(랜덤 1개)`, responseImageData[Math.floor(Math.random() * responseImageData.length)])
+      if (imageResponse.data.meta.total_count === 0 || responseImageData == undefined) {
+        return {
+          success:false,
+          status: 400,
+          msg: `${location}의 ${keywordlist[randomNumber]}가 존재하지 않습니다. 재검색해보세요`
+        }
+      }
+      return responseImageData;
+  }catch (err) {
+    console.log(err);
+    return { success: false, msg: err.message }}}}
 
       // for (let i = 0; i < responseImageData.length; i++) {
       //   let crawlingData = responseImageData[i].place_url;
@@ -101,11 +104,3 @@ getImage = async (location) => {
       // }();
     
         // };
-        return responseAdressData;
-      return responseImageData;
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
-  };
-};
