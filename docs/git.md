@@ -6,10 +6,17 @@
 
   모든 팀원이 해당 깃헙주소를 클론한다.
 
-- vscode에서 원격 레포지토리를 만드고 싶다면, (이건 안해보긴함)
+- vscode 기존 프로젝트를 원격 레포지토리로 올리고 싶다면
+
+github에서 레포지토리를 만든 후(이때는 README.md 생성하지 않고 만들기. 만들면 충돌나서 안올라감) 아래 명령어 입력
 
 ```terminal
-git remote add origin https://github.com/IfUwanna/branchTest
+git init //현재 프로젝트를 git프로젝트로 만들기. .git 생성됨.
+git remote add origin 깃헙주소 //해당 깃헙레포지토리를 origin이라는 별칭으로하여 원격 저장소로 연결.
+git remote -v //원격저장소 목록 확인.
+git add .
+git commit -m '커밋 주석'
+git push origin main
 ```
 
 # 브랜치 만들기
@@ -18,7 +25,7 @@ git branch 브랜치명
 
 혹은
 
-git checkout 브랜치명
+git checkout -b 브랜치명
 
 차이점은 checkout으로 하면 그 브랜치로 바로 switch 까지 한다.
 
@@ -51,8 +58,18 @@ git branch -r //원격 브랜치들 확인
 git branch -a //모든 브랜치들 확인
 git branch -v //브랜치 버젼까지 확인
 git branch 브랜치명 //로컬에 브랜치 생성
+git checkout -b 브랜치명 //로컬에 해당 브랜치 생성 후 switch까지
 
 git reflog //branch 끼리 일치 여부 확인.
+```
+
+## 완료된 branch 삭제하고 새 브랜치 만들기
+
+```
+git checkout dev
+git branch -D 사용했던_브랜치 //삭제. -d도 동일.
+git checkout -b feature/기능
+git pull origin dev
 ```
 
 ## branch 이름 바꾸기
@@ -63,10 +80,18 @@ git branch -m OLD_BRANCH NEW_BRANCH
 원격 브랜치의 이름 변경은
 git push origin NEW_BRANCH //새 브랜치를 푸쉬
 git push origin --delete OLD_BRANCH //원격의 기존 브랜치 삭제
-git push origin :OLD_BRANCH //위와 같이 원격 브랜치 삭제하는 명령어. 둘 중 하나만 쓰면 된다.
+git push origin :OLD_BRANCH //위와 동일하게 원격 브랜치 삭제하는 명령어. 둘 중 하나만 쓰면 된다.
 
 혹은 브랜치 생성과 삭제를 동시에 할 수도 있다.
 git push origin :old_branch new_branch //기존 브랜치 삭제와 새 브랜치 푸쉬를 동시에 한다.
+```
+
+# push 옵션
+
+```
+git push -u (생략) : 다음 번 부터 지금 경로를 기본으로 삼아서 그냥 git push만 써도 지금 쓴 명령어를 수행함.
+git push --force 또는 -f (생략) : 강제 푸쉬
+git push --force-with-lease (생략) : 자신 이외의 사람이 브랜치에 기여하지 않은 경우에만 강제
 ```
 
 # 작업할 때 습관
