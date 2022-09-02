@@ -6,7 +6,7 @@ class PromiseService {
     }
 
     createPromise = async (title, date, x, y, penalty, userId) => {
-        const promise_id = abc
+        const promise_id = abcgit 
         try{
            
                 const response = await this.findFriend(friendlist)

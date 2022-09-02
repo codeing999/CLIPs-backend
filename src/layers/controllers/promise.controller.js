@@ -30,20 +30,6 @@ class PromiseController {
         } catch (err) {
             return res.status(400).send(err);
         }
-
-        // try {
-        //     await joi.object({
-        //         friendlist: joi.array(),
-        //     })
-        //         .validateAsync({ friendlist })
-
-        //     await this.promiseService.createParticipants(friendlist)
-
-        //     return res.status(200).send("약속이 등록되었습니다");
-        // } catch (err) {
-        //     return res.status(400).send(err);
-        // }
-
     };
 
 
