@@ -10,7 +10,7 @@ class PromiseController {
 
     createPromise = async (req, res) => {
         const { title, date, x, y, friendlist, penalty } = req.body;
-        const user_id = res.locals.userId;        
+        const userId = res.locals.userId;        
 
         try {
             await joi.object({
@@ -19,11 +19,12 @@ class PromiseController {
                 x: joi.number().required(), // 어떻게 넘겨주는지 다시 체크 필요
                 y: joi.number().required(),
                 penalty: joi.string(),
-                user_id: joi.number().required()
+                userId: joi.number().required(),
             })
-                .validateAsync({ title, date, x, y, penalty, user_id })
+                .validateAsync({ title, date, x, y, penalty, userId })
 
-            await this.promiseService.createPromise(title, date, x, y, penalty, user_id);
+            await this.promiseService.createPromise(title, date, x, y, penalty, userId);
+            await this.promiseService.createParticipants(friendlist);
 
             return res.status(200).send("약속 생성 완료")
         } catch (err) {
@@ -108,20 +109,20 @@ getPromiseDetail = async (req, res) => {
     // };
 
     deletePromise = async (req,res) => {
-        const user_id = res.locals.userId;
+        const userId = res.locals.userId;
         const {promiseId} = req.params;
 
         try {
             await joi.object({
-                user_id: joi.number().required(),
+                userId: joi.number().required(),
                 promiseId: joi.number().required()
             })
-            .validateAsync({ user_id, promiseId });
+            .validateAsync({ userId, promiseId });
         } catch (err) {
             return res.status(400)
         }
         try {
-            const result = await this.promiseService.deletePromise(user_id, promiseId);
+            const result = await this.promiseService.deletePromise(userId, promiseId);
             return res.status(200).json("약속이 삭제되었습니다");
 
         } catch (err) {

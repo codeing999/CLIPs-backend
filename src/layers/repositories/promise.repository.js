@@ -3,7 +3,7 @@ const sequelize = require("sequelize");
 
 class PromiseRepository {
 
-    createPromise = async (title, date, x, y,  penalty, user_id) => {
+    createPromise = async (title, date, x, y, penalty, userId) => {
         try{
             await Promise.create({
                 title,
@@ -11,7 +11,7 @@ class PromiseRepository {
                 x,
                 y,
                 penalty,
-                user_id
+                userId
             });
         } catch (err) {
             const error = new Error("FAILD_SQL");
@@ -20,8 +20,8 @@ class PromiseRepository {
         };
     };
 
-    createParticipants = async (friendlist) => {
-
+    createParticipants = async (friendlist) => {        
+        
         try {
             await Friend.create({
                 friendlist
@@ -77,7 +77,7 @@ class PromiseRepository {
         }
     };
 
-    deletePromise = async (user_id, promiseId) => {
+    deletePromise = async (userId, promiseId) => {
         try {
             return await Promise.destroy({
                 where: {promise_id : promiseId}
