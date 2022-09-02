@@ -10,10 +10,10 @@ class PromiseService {
         try{
            
                 const response = await this.findFriend(friendlist)
-            }
-        }
+            } catch (err) {}
+        
 
-        const result await this.promiseRepository.createPromise(
+        const result = await this.promiseRepository.createPromise(
             promise_id,
             title,
             date,
@@ -23,15 +23,22 @@ class PromiseService {
             userId,
             );
         
-            return '약속 생성';
-        };
+
         await this.createParticipants(abc, friendlist)
+    };
         
     createParticipants = async (friendlist) => {        
         
             await this.promiseRepository.createParticipants(response)
         
-        }     
+        } 
+
+    createParticipants = async (friendlist) => {        
+
+        await this.promiseRepository.createParticipants(
+            friendlist
+        );
+    }
 
     getAllPromise = async () => {
         const response = await this.promiseRepository.getAllPromise();
@@ -79,7 +86,6 @@ class PromiseService {
         } else return response;
 
     };
-
 };
 
 module.exports = PromiseService;

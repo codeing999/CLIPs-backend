@@ -2,7 +2,6 @@ const {User, Promise, Friend} = require("../../sequelize/models");
 const sequelize = require("sequelize");
 
 class PromiseRepository {
-
     createPromise = async (title, date, x, y, penalty, userId) => {
         try{
             await Promise.create({
@@ -19,9 +18,7 @@ class PromiseRepository {
             throw error
         };
     };
-
-    createParticipants = async (friendlist) => {        
-        
+    createParticipants = async (friendlist) => {      
         try {
             await Friend.create({
                 friendlist
