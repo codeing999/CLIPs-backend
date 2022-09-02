@@ -8,6 +8,7 @@ const development = {
   database: env.DB_DATABASE,
   host: env.DB_HOST,
   dialect: env.DB_DIALECT,
+  secretKey:env.secretKey
 };
 
 const production = {
