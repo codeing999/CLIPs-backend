@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="ko" class="os_mac"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>아담여인숙 | 카카오맵</title>
-    <meta property="og:title" content="아담여인숙">
+    <title>무인민원발급창구 강서구청 | 카카오맵</title>
+    <meta property="og:title" content="무인민원발급창구 강서구청">
 <meta property="og:site_name" content="카카오맵">
-<meta property="og:description" content="서울 관악구 관악로14길 6-4 (봉천동 855-9)">
+<meta property="og:description" content="서울 강서구 화곡로 302 (화곡동 980-16)">
 <meta property="og:type" content="website">
-<meta property="og:image" content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=489573%2C1105450&amp;service=placeweb">
-<meta property="og:url" content="https://place.map.kakao.com/24049655">
+<meta property="og:image" content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=466760%2C1125428&amp;service=placeweb">
+<meta property="og:url" content="https://place.map.kakao.com/1394895287">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="아담여인숙">
-<meta name="twitter:description" content="서울 관악구 관악로14길 6-4 (봉천동 855-9)">
-<meta name="twitter:image" content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=489573%2C1105450&amp;service=placeweb">
+<meta name="twitter:title" content="무인민원발급창구 강서구청">
+<meta name="twitter:description" content="서울 강서구 화곡로 302 (화곡동 980-16)">
+<meta name="twitter:image" content="http://map3.daum.net/staticmap/og?type=place&amp;srs=wcongnamul&amp;size=400x200&amp;m=466760%2C1125428&amp;service=placeweb">
     <link href="//t1.daumcdn.net/localimg/localimages/07/common/kakaomap_favicon.ico" rel="shortcut icon">
     
         
@@ -130,7 +130,7 @@ only screen and (min-resolution: 1.5dppx) {
     <div class="copyUrl"><div class="sns_copyurl">
     <a href="#none" class="link_copyurl">
     <span class="screen_out">현재페이지 URL복사</span>
-    <span class="txt_url">https://place.map.kakao.com/24049655</span>
+    <span class="txt_url">https://place.map.kakao.com/1394895287</span>
     <span class="txt_copy">URL복사</span>
     </a>
     </div></div>
@@ -142,17 +142,17 @@ only screen and (min-resolution: 1.5dppx) {
   </button>
   </div></div></div></div>
         </div>
-        <h2 class="tit_location" aria-hidden="true" data-logtarget="" data-logevent="name_bar,name">아담여인숙</h2>
+        <h2 class="tit_location" aria-hidden="true" data-logtarget="" data-logevent="name_bar,name">무인민원발급창구 강서구청</h2>
         <strong class="screen_out">상세정보 퀵메뉴</strong>
         <ul class="list_lnb">
             <li>
-                <a href="https://map.kakao.com?urlX=489573&amp;urlY=1105450&amp;urlLevel=3&amp;itemId=24049655&amp;q=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;srcid=24049655&amp;map_type=TYPE_MAP" target="_blank" class="link_lnb" data-logtarget="" data-logevent="name_bar,map">
+                <a href="https://map.kakao.com?urlX=466760&amp;urlY=1125428&amp;urlLevel=3&amp;itemId=1394895287&amp;q=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;srcid=1394895287&amp;map_type=TYPE_MAP" target="_blank" class="link_lnb" data-logtarget="" data-logevent="name_bar,map">
                     <span class="ico_comm ico_map">지도</span><!--  2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_map 요소 추가  -->
                 </a>
             </li>
             <!-- 2018-11-28 추가 : 로드뷰, 즐겨찾기 위치이동으로 인한 추가 -->
             <li>
-                <a href="https://map.kakao.com?srcid=24049655&amp;confirmid=24049655&amp;q=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;rv=on" target="_blank" class="link_lnb" data-roadview="" data-logtarget="" data-logevent="name_bar,roadview">
+                <a href="https://map.kakao.com?srcid=1394895287&amp;confirmid=1394895287&amp;q=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;rv=on" target="_blank" class="link_lnb" data-roadview="" data-logtarget="" data-logevent="name_bar,roadview">
                     <span class="ico_comm ico_roadview">로드뷰</span><!--  2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_roadview 요소 추가  -->
                 </a>
             </li>
@@ -169,7 +169,7 @@ only screen and (min-resolution: 1.5dppx) {
             </li>
             <!--// 2018-11-28 추가 : 공유하기 버튼 추가 -->
             <li>
-                <a href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,489573,1105450&amp;rt1=&amp;rt2=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;rtIds=,24049655" target="_blank" class="link_lnb" data-logtarget="" data-logevent="name_bar,route">
+                <a href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,466760,1125428&amp;rt1=&amp;rt2=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;rtIds=,1394895287" target="_blank" class="link_lnb" data-logtarget="" data-logevent="name_bar,route">
                     <span class="ico_comm ico_route">길찾기</span><!--  2018-11-28 추가 : 텍스트 감싸는 .ico_comm.ico_route 요소 추가  -->
                 </a>
             </li>
@@ -194,27 +194,20 @@ only screen and (min-resolution: 1.5dppx) {
     </div>
     <div class="place_details">
         <div class="inner_place">
-            <h2 class="tit_location">아담여인숙</h2>
+                <span class="color_g txt_elocation">Automatic Civil Document Terminal</span>
+            <h2 class="tit_location">무인민원발급창구 강서구청</h2>
             <div class="location_evaluation">
-                <span class="txt_location"><span class="screen_out">분류: </span>여관,모텔</span>
-                    <span class="ico_comm ico_dot"></span>
-                    <a href="#none" class="link_evaluation" data-cnt="0" data-target="comment" data-logtarget="" data-logevent="info_pannel,point">후기 <span class="color_b inactive">0<span class="screen_out">점</span></span>
-                        <span class="color_g">(0)<span class="screen_out">개 후기</span></span>
-                    </a>
-                    <span class="ico_comm ico_dot"></span>
-                    <a href="#none" class="link_evaluation" data-cnt="0" data-target="review" data-logtarget="" data-logevent="info_pannel,review">
-                        리뷰 <span class="color_b inactive">0<span class="screen_out">개</span></span>
-                    </a>
+                <span class="txt_location"><span class="screen_out">분류: </span>무인민원발급창구</span>
             </div>
             <strong class="screen_out">위치 정보 및 공유하기</strong>
             <ul class="list_place">
                 <li>
-                    <a href="https://map.kakao.com?urlX=489573&amp;urlY=1105450&amp;urlLevel=3&amp;itemId=24049655&amp;q=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;srcid=24049655&amp;map_type=TYPE_MAP" target="_blank" class="link_place" data-logtarget="" data-logevent="info_pannel,map_view"><span class="ico_comm ico_storemap"></span>지도</a></li>
+                    <a href="https://map.kakao.com?urlX=466760&amp;urlY=1125428&amp;urlLevel=3&amp;itemId=1394895287&amp;q=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;srcid=1394895287&amp;map_type=TYPE_MAP" target="_blank" class="link_place" data-logtarget="" data-logevent="info_pannel,map_view"><span class="ico_comm ico_storemap"></span>지도</a></li>
                 <li>
-                    <a href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,489573,1105450&amp;rt1=&amp;rt2=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;rtIds=,24049655" target="_blank" class="link_place" data-logtarget="" data-logevent="info_pannel,route"><span class="ico_comm ico_route"></span>길찾기</a>
+                    <a href="https://map.kakao.com?map_type=TYPE_MAP&amp;target=car&amp;rt=,,466760,1125428&amp;rt1=&amp;rt2=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;rtIds=,1394895287" target="_blank" class="link_place" data-logtarget="" data-logevent="info_pannel,route"><span class="ico_comm ico_route"></span>길찾기</a>
                 </li>
                 <li>
-                        <a href="https://map.kakao.com?srcid=24049655&amp;confirmid=24049655&amp;q=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;rv=on" class="link_place" target="_blank" data-logtarget="" data-logevent="info_pannel,roadview" data-roadview=""><span class="ico_comm ico_roadmap"></span>로드뷰</a>
+                        <a href="https://map.kakao.com?srcid=1394895287&amp;confirmid=1394895287&amp;q=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;rv=on" class="link_place" target="_blank" data-logtarget="" data-logevent="info_pannel,roadview" data-roadview=""><span class="ico_comm ico_roadmap"></span>로드뷰</a>
                 </li>
                 <li class="lst">
                     <a href="#none" class="link_place" data-logevent="info_pannel,share"><span class="ico_comm ico_share"></span>공유하기</a>
@@ -244,7 +237,7 @@ only screen and (min-resolution: 1.5dppx) {
     <div class="copyUrl"><div class="sns_copyurl">
     <a href="#none" class="link_copyurl">
     <span class="screen_out">현재페이지 URL복사</span>
-    <span class="txt_url">https://place.map.kakao.com/24049655</span>
+    <span class="txt_url">https://place.map.kakao.com/1394895287</span>
     <span class="txt_copy">URL복사</span>
     </a>
     </div></div>
@@ -286,77 +279,70 @@ only screen and (min-resolution: 1.5dppx) {
     <div class="placeinfo_default">
         <h4 class="tit_detail"><span class="ico_comm ico_address">위치</span></h4>
         <div class="location_detail">
-            <span class="txt_address">서울 관악구
-                관악로14길 6-4
-                 (우)08788</span>
-            <span class="txt_addrnum">지번<span class="bg_bar"></span>봉천동 855-9</span>
+            <span class="txt_address">서울 강서구
+                화곡로 302
+                 (우)07658</span>
+            <span class="txt_addrnum">지번<span class="bg_bar"></span>화곡동 980-16</span>
         </div>
     </div>
-    <span class="info_revise">업데이트 <span class="date_revise">2016.04.24.</span> <span class="bg_bar">|</span> <a href="#" class="link_fiy" data-fiytype="detail" data-logtarget="" data-logevent="main_info,FIY">틀린정보 신고</a></span>
-</div>
-</div>
-        <div data-viewid="ownerCertification" class="cont_banner" data-root="">
-    <div class="box_banner">
-            <a href="#none" class="link_banner">
-                <span class="ico_comm ico_owner"></span>이 장소의 사장님이라면, 내 매장을 직접 관리해보세요.
-            </a>
-    </div>
-</div>
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div data-viewid="commentRate" data-root="">
-  <div class="cont_grade">
-    <div class="rate_intro"> 
-      <a href="#none" class="link_profile">
-      </a>
-      <p class="desc_grade">이 장소의 후기를 남겨주세요.</p>
-      <div class="grade_rate">
-        <div class="grade_star size_l">
-          <span class="ico_star star_rate"> <span class="ico_star inner_star" style="width:0%"></span></span>
+        <div class="placeinfo_default">
+            <h4 class="tit_detail"><span class="ico_comm ico_operation">운영시간 안내</span></h4>
+            <div class="location_detail openhour_wrap"><!-- btn_more 클릭 했을 때 open_on 추가 -->
+                <div class="location_present">
+                            <div class="operation_caution no_padding">
+                                <strong class="screen_out">이용시 주의 사항</strong>
+                                <ul class="list_caution">
+                                    <li><span class="ico_comm ico_dot"></span>평일 00:00-24:00 / 휴일 00:00-24:00</li>
+                                    
+                                </ul>
+                            </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="placeinfo_default placeinfo_homepage">
+            <h4 class="tit_detail"><span class="ico_comm ico_homepage">홈 페이지</span></h4>
+            <div class="location_detail ">
+                <div class="location_present">
+                    <a href="http://www.gangseo.seoul.kr/new_portal/new_cybermin/sub2/sub2_1_2.jsp" target="_blank" class="link_homepage" data-logtarget="" data-logevent="main_info,website">www.gangseo.seoul.kr/new_portal/new_cybermin/sub2/sub2_1_2.jsp</a>
+                    
+                </div>
+            </div>
+        </div>
+    <span class="info_revise">업데이트 <span class="date_revise">2020.12.02.</span> <span class="bg_bar">|</span> <a href="#" class="link_fiy" data-fiytype="detail" data-logtarget="" data-logevent="main_info,FIY">틀린정보 신고</a></span>
 </div>
-        	<div data-viewid="comment" data-root="" class="cont_evaluation"></div>
-
-        <div class="cont_review" data-viewid="review" data-root="">
-    <div class="particular_head">
-        <h3 class="tit_subject">리뷰</h3>
-            <span class="color_g">이 장소의 리뷰를 첫 번째로 등록해주세요.</span>
-        <a href="#none" class="link_enroll" data-logtarget="" data-logevent="review,add_review">
-            <span class="ico_comm ico_enroll"></span>블로그 리뷰등록
-        </a>
-    </div>
 </div>
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         <div data-viewid="findway" data-root="" class="cont_findway">
     <h3 class="tit_subject">찾아가는 길</h3>
     <div class="findway_map">
         <h4 class="screen_out">지도 보기</h4>
-        <div class="view_map" id="map" style="overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute; left: 15px; top: 10px;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map3.daumcdn.net/map_2d/2205pfk/L4/980/439.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -211px; top: 83px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2205pfk/L4/980/440.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 45px; top: 83px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2205pfk/L4/980/441.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 301px; top: 83px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2205pfk/L4/980/442.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 557px; top: 83px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2205pfk/L4/981/439.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -211px; top: -173px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2205pfk/L4/981/440.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 45px; top: -173px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2205pfk/L4/981/441.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 301px; top: -173px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2205pfk/L4/981/442.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 557px; top: -173px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2205pfk/L4/982/439.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -211px; top: -429px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2205pfk/L4/982/440.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 45px; top: -429px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2205pfk/L4/982/441.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 301px; top: -429px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2205pfk/L4/982/442.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 557px; top: -429px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 638px; height: 258px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; left: -1291px; top: -526px; width: 3190px; height: 1290px;" viewBox="0 0 3190 1290"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -48px 0px 0px -17px; z-index: 999; left: 319px; top: 129px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 66px, 50px, 30px); top: 0px; left: -30px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 291px; top: 113px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 294px; top: 89px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 314px; top: 72px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 303px; top: 190px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 300px; top: 48px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 394px; top: 55px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 214px; top: 143px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; bottom: 0px; color: rgb(0, 0, 0); right: 0px;"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: right;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">100m</div></div><div style="margin: 0px 4px; float: right;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"></div></div><!-- 지도 영역 입니다. -->
+        <div class="view_map" id="map" style="overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute; left: 149px; top: -67px;"><div style="position: absolute; z-index: 0;"></div><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map2.daumcdn.net/map_2d/2205pfk/L5/497/210.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -256px; top: 248px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2205pfk/L5/497/211.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 0px; top: 248px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2205pfk/L5/497/212.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 256px; top: 248px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2205pfk/L5/497/213.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 512px; top: 248px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2205pfk/L5/498/210.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -256px; top: -8px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2205pfk/L5/498/211.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 0px; top: -8px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2205pfk/L5/498/212.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 256px; top: -8px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2205pfk/L5/498/213.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 512px; top: -8px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2205pfk/L5/499/210.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -256px; top: -264px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2205pfk/L5/499/211.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 0px; top: -264px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2205pfk/L5/499/212.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 256px; top: -264px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2205pfk/L5/499/213.png" alt="" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 512px; top: -264px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="width: 638px; height: 258px; position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; left: -1425px; top: -449px; width: 3190px; height: 1290px;" viewBox="0 0 3190 1290"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -48px 0px 0px -17px; z-index: 999; left: 160px; top: 194px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(0px, 66px, 50px, 30px); top: 0px; left: -30px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 175px; top: 207px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 186px; top: 178px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 130px; top: 209px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 174px; top: 145px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 182px; top: 147px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 197px; top: 234px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 216px; top: 202px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 202px; top: 233px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 120px; top: 237px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 168px; top: 134px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 220px; top: 199px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 162px; top: 131px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 176px; top: 257px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 203px; top: 142px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 175px; top: 262px; display: block;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div><div style="position: absolute; margin: -17px 0px 0px -15px; z-index: 0; left: 123px; top: 131px;"><img draggable="false" src="//t1.daumcdn.net/localimg/localimages/07/2018/pc/rtn/ico_findway.png" alt="" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(30px, 30px, 60px, 0px); top: -30px; left: 0px; width: 70px; height: 70px;"></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; bottom: 0px; color: rgb(0, 0, 0); right: 0px;"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: right;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 58px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">250m</div></div><div style="margin: 0px 4px; float: right;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"></div></div><!-- 지도 영역 입니다. -->
         <strong class="screen_out">지도 보기 탭 메뉴</strong>
         <ul class="tab_map">
             <li class="on"><a href="#none" class="link_tab link_mapview" data-logtarget="" data-logevent="waytogo,2D_view">지도뷰</a></li>
@@ -373,7 +359,7 @@ only screen and (min-resolution: 1.5dppx) {
                 <a href="#none" class="ico_comm ico_refresh" data-logtarget="" data-logevent="waytogo,refresh">새로고침</a>
             </div>
             <div class="bg_control bg_full">
-                <a href="https://map.kakao.com?urlX=489573&amp;urlY=1105450&amp;urlLevel=3&amp;itemId=24049655&amp;q=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&amp;map_type=TYPE_MAP" target="_blank" class="ico_comm ico_full" data-logtarget="" data-logevent="waytogo,largeview">전체화면</a>
+                <a href="https://map.kakao.com?urlX=466760&amp;urlY=1125428&amp;urlLevel=3&amp;itemId=1394895287&amp;q=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&amp;map_type=TYPE_MAP" target="_blank" class="ico_comm ico_full" data-logtarget="" data-logevent="waytogo,largeview">전체화면</a>
             </div>
         </div>
         <!-- 
@@ -382,218 +368,340 @@ only screen and (min-resolution: 1.5dppx) {
             <a href="#none" class="link_control" data-logtarget data-logevent="waytogo,zoomout"><span class="ico_comm ico_zoomout">축소하기</span></a>
             <a href="#none" class="link_control" data-logtarget data-logevent="waytogo,refresh"><span class="ico_comm ico_refresh">새로고침</span></a>
         </div>
-        <a href="https://map.kakao.com?urlX=489573&urlY=1105450&urlLevel=3&itemId=24049655&q=%EC%95%84%EB%8B%B4%EC%97%AC%EC%9D%B8%EC%88%99&map_type=TYPE_MAP" target="_blank" class="link_full" data-logtarget data-logevent="waytogo,largeview"><span class="ico_comm ico_full">전체화면</span></a>
+        <a href="https://map.kakao.com?urlX=466760&urlY=1125428&urlLevel=3&itemId=1394895287&q=%EB%AC%B4%EC%9D%B8%EB%AF%BC%EC%9B%90%EB%B0%9C%EA%B8%89%EC%B0%BD%EA%B5%AC%20%EA%B0%95%EC%84%9C%EA%B5%AC%EC%B2%AD&map_type=TYPE_MAP" target="_blank" class="link_full" data-logtarget data-logevent="waytogo,largeview"><span class="ico_comm ico_full">전체화면</span></a>
         -->
     </div>
-        <div class="station_wayout">
-            <h4 class="tit_findway">지하철역</h4>
-            <ul class="list_wayout">
-                    <li>
-                        <em class="txt_station"><a href="https://map.kakao.com?subwayId=SES0228" target="_blank" class="link_station" data-logtarget="" data-logevent="waytogo,subway">서울대입구역</a></em>
-                            <span class="ico_traffic seoul_line2_small">2호선</span><!-- 호선별 대체 텍스트 부탁 드립니다. -->
-                        <span class="bg_bar">|</span>
-                        <span class="txt_wayout"><span class="num_wayout">2</span>번 출구 <span class="num_wayout txt_walk">도보 4분</span></span>
-                    </li>
-                    <li>
-                        <em class="txt_station"><a href="https://map.kakao.com?subwayId=SES0227" target="_blank" class="link_station" data-logtarget="" data-logevent="waytogo,subway">낙성대역</a></em>
-                            <span class="ico_traffic seoul_line2_small">2호선</span><!-- 호선별 대체 텍스트 부탁 드립니다. -->
-                        <span class="bg_bar">|</span>
-                        <span class="txt_wayout"><span class="num_wayout">4</span>번 출구 <span class="num_wayout txt_walk">도보 17분</span></span>
-                    </li>
-                    <li>
-                        <em class="txt_station"><a href="https://map.kakao.com?subwayId=SES0229" target="_blank" class="link_station" data-logtarget="" data-logevent="waytogo,subway">봉천역</a></em>
-                            <span class="ico_traffic seoul_line2_small">2호선</span><!-- 호선별 대체 텍스트 부탁 드립니다. -->
-                        <span class="bg_bar">|</span>
-                        <span class="txt_wayout"><span class="num_wayout">1</span>번 출구 <span class="num_wayout txt_walk">도보 18분</span></span>
-                    </li>
-            </ul>
-        </div>
         <div class="station_ride check_list">
             <h4 class="tit_findway">버스정류장</h4>
                 <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
                     <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=11210551007" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">관악구청</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21139) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 65m</span>
+                        <a href="https://map.kakao.com?busStopId=BS116847" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서구청후문</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16910) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 84m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116847" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116846" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서아파트</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16912) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 125m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116846" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=11160611003" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">우장초등학교</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16141) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 132m</span>
                         </a>
                     </strong>
                     <ul class="list_ride">
                             <li>
                                 <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
                                 <div class="bus_ride">
-                                    <span class="num_ride">501<span class="bg_bar">|</span>750A<span class="bg_bar">|</span>750B</span>
-                                    <a href="https://map.kakao.com?busStopId=11210551007" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                    <span class="num_ride">604<span class="bg_bar">|</span>606<span class="bg_bar">|</span>650<span class="bg_bar">|</span>652<span class="bg_bar">|</span>673</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611003" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
                                 </div>
                             </li>
                             <li>
                                 <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
                                 <div class="bus_ride">
-                                    <span class="num_ride">5517<span class="bg_bar">|</span>5523<span class="bg_bar">|</span>5528<span class="bg_bar">|</span>6511<span class="bg_bar">|</span>6512<span class="bg_bar">|</span>6515</span>
-                                    <a href="https://map.kakao.com?busStopId=11210551007" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
-                    <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=BS457595" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">관악구청/서울대입구역</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21330) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 95m</span>
-                        </a>
-                    </strong>
-                    <ul class="list_ride">
-                            <li>
-                                <em class="ico_traffic bus_airport">공항</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">6003</span>
-                                    <a href="https://map.kakao.com?busStopId=BS457595" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <em class="ico_traffic bus_direct">직행</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">3500</span>
-                                    <a href="https://map.kakao.com?busStopId=BS457595" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
-                    <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=12210581014" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">서울대입구역</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21252) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 115m</span>
-                        </a>
-                    </strong>
-                    <ul class="list_ride">
-                            <li>
-                                <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">651</span>
-                                    <a href="https://map.kakao.com?busStopId=12210581014" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">5511<span class="bg_bar">|</span>5513<span class="bg_bar">|</span>5515<span class="bg_bar">|</span>5517<span class="bg_bar">|</span>5528<span class="bg_bar">|</span>6515</span>
-                                    <a href="https://map.kakao.com?busStopId=12210581014" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <em class="ico_traffic bus_direct">직행</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">3500<span class="bg_bar">|</span>8507</span>
-                                    <a href="https://map.kakao.com?busStopId=12210581014" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
-                    <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=11210581014" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">관악구청</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21130) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 125m</span>
-                        </a>
-                    </strong>
-                    <ul class="list_ride">
-                            <li>
-                                <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">501<span class="bg_bar">|</span>750A<span class="bg_bar">|</span>750B</span>
-                                    <a href="https://map.kakao.com?busStopId=11210581014" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">5511<span class="bg_bar">|</span>5513<span class="bg_bar">|</span>5515<span class="bg_bar">|</span>5528<span class="bg_bar">|</span>6511<span class="bg_bar">|</span>6515<span class="bg_bar">|</span>8541<span class="txt_bustype">(맞춤버스)(공휴일제외)</span></span>
-                                    <a href="https://map.kakao.com?busStopId=11210581014" target="_blank" class="btn_more" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <em class="ico_traffic bus_airport">공항</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">6003</span>
-                                    <a href="https://map.kakao.com?busStopId=11210581014" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
-                    <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=BS32151" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">서울대입구역</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21330) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 167m</span>
-                        </a>
-                    </strong>
-                    <ul class="list_ride">
-                            <li>
-                                <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">5511<span class="bg_bar">|</span>5513<span class="bg_bar">|</span>5515</span>
-                                    <a href="https://map.kakao.com?busStopId=BS32151" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
-                    <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=11210581022" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">봉천사거리</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21121) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 212m</span>
-                        </a>
-                    </strong>
-                    <ul class="list_ride">
-                            <li>
-                                <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">461<span class="bg_bar">|</span>641<span class="bg_bar">|</span>643<span class="bg_bar">|</span>650<span class="bg_bar">|</span>N15<span class="txt_bustype">(심야)</span><span class="bg_bar">|</span>N61<span class="txt_bustype">(심야)</span><span class="bg_bar">|</span>N75<span class="txt_bustype">(심야)</span></span>
-                                    <a href="https://map.kakao.com?busStopId=11210581022" target="_blank" class="btn_more" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
-                                <div class="bus_ride">
-                                    <span class="num_ride">5413<span class="bg_bar">|</span>5524<span class="bg_bar">|</span>5528<span class="bg_bar">|</span>5530<span class="bg_bar">|</span>6515<span class="bg_bar">|</span>8541<span class="txt_bustype">(맞춤버스)(공휴일제외)</span></span>
-                                    <a href="https://map.kakao.com?busStopId=11210581022" target="_blank" class="btn_more" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                    <span class="num_ride">5712<span class="bg_bar">|</span>6514<span class="bg_bar">|</span>6627<span class="bg_bar">|</span>6629<span class="bg_bar">|</span>6645</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611003" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
                                 </div>
                             </li>
                             <li>
                                 <em class="ico_traffic bus_normal">일반</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
                                 <div class="bus_ride">
-                                    <span class="num_ride">9-3</span>
-                                    <a href="https://map.kakao.com?busStopId=11210581022" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                    <span class="num_ride">70<span class="bg_bar">|</span>70-2<span class="bg_bar">|</span>70-3</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611003" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
                                 </div>
                             </li>
                     </ul>
                 </div>
                 <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
                     <strong class="tit_wayout">
-                        <a href="https://map.kakao.com?busStopId=11210551001" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
-                            <span class="txt_busstop">관악구청</span>
-                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(21185) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 213m</span>
+                        <a href="https://map.kakao.com?busStopId=11160611001" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서구청.한국건강관리협회</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16140) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 202m</span>
                         </a>
                     </strong>
                     <ul class="list_ride">
                             <li>
                                 <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
                                 <div class="bus_ride">
-                                    <span class="num_ride">651</span>
-                                    <a href="https://map.kakao.com?busStopId=11210551001" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                    <span class="num_ride">604<span class="bg_bar">|</span>606<span class="bg_bar">|</span>650<span class="bg_bar">|</span>652<span class="bg_bar">|</span>673</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611001" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
                                 </div>
                             </li>
                             <li>
                                 <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
                                 <div class="bus_ride">
-                                    <span class="num_ride">5517</span>
-                                    <a href="https://map.kakao.com?busStopId=11210551001" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                    <span class="num_ride">5712<span class="bg_bar">|</span>6514<span class="bg_bar">|</span>6627<span class="bg_bar">|</span>6629<span class="bg_bar">|</span>6645</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611001" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <em class="ico_traffic bus_normal">일반</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">70<span class="bg_bar">|</span>70-2<span class="bg_bar">|</span>70-3</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611001" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=11160611020" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서구청.한국건강관리협회</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16139) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 208m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">604<span class="bg_bar">|</span>606<span class="bg_bar">|</span>650<span class="bg_bar">|</span>652<span class="bg_bar">|</span>673</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611020" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">5712<span class="bg_bar">|</span>6514<span class="bg_bar">|</span>6627<span class="bg_bar">|</span>6629<span class="bg_bar">|</span>6642</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611020" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <em class="ico_traffic bus_normal">일반</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">70<span class="bg_bar">|</span>70-2<span class="bg_bar">|</span>70-3</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611020" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116575" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서대학교</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16516) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 220m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서01<span class="bg_bar">|</span>강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116575" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116581" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">백연공원</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16511) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 229m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서01<span class="bg_bar">|</span>강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116581" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116849" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서대학교</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16907) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 230m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서01<span class="bg_bar">|</span>강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116849" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=11160611005" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">우장초등학교</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16142) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 236m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_blue">간선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">604<span class="bg_bar">|</span>606<span class="bg_bar">|</span>650<span class="bg_bar">|</span>652<span class="bg_bar">|</span>673</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611005" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <em class="ico_traffic bus_green">지선</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">5712<span class="bg_bar">|</span>6514<span class="bg_bar">|</span>6627<span class="bg_bar">|</span>6629<span class="bg_bar">|</span>6642</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611005" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <em class="ico_traffic bus_normal">일반</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">70<span class="bg_bar">|</span>70-2<span class="bg_bar">|</span>70-3</span>
+                                    <a href="https://map.kakao.com?busStopId=11160611005" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116893" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서구청입구</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16960) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 241m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서05</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116893" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS451663" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">백연공원</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16908) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 245m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서01</span>
+                                    <a href="https://map.kakao.com?busStopId=BS451663" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116611" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">강서구청입구</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16557) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 252m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서05</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116611" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS115680" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">골목시장</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16521) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 261m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서01<span class="bg_bar">|</span>강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS115680" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116842" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">황제참치</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16915) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 269m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116842" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116852" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">골목시장</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16903) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 278m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서01<span class="bg_bar">|</span>강서02</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116852" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                <div class="ride_wayout"><!-- 지도에서 일치하는 정류장에 마우스 오버 했을 때 클래스 ride_on 추가 -->
+                    <strong class="tit_wayout">
+                        <a href="https://map.kakao.com?busStopId=BS116895" class="link_wayout" target="_blank" data-logtarget="" data-logevent="waytogo,busstop">
+                            <span class="txt_busstop">공영주차장</span>
+                            <span class="txt_number"><span class="screen_out">정류장 번호: </span>(16958) <span class="bg_bar">|</span> <span class="screen_out">거리: </span> 292m</span>
+                        </a>
+                    </strong>
+                    <ul class="list_ride">
+                            <li>
+                                <em class="ico_traffic bus_town">마을</em><!-- 버스 선별로 대체 텍스트 부탁 드립니다. -->
+                                <div class="bus_ride">
+                                    <span class="num_ride">강서05</span>
+                                    <a href="https://map.kakao.com?busStopId=BS116895" target="_blank" class="btn_more hide" data-logtarget="" data-logevent="waytogo,busstop_more"><span class="ico_comm ico_more">더보기</span></a>
                                 </div>
                             </li>
                     </ul>
                 </div>
         </div>
-        <p class="txt_caution"><span class="ico_comm ico_dot"></span>버스방면정보를 확인하세요</p>
 </div>
         <div id="photoList" class="map_layer hide"></div>
         <div id="roughMap" class="map_layer hide">
@@ -618,81 +726,9 @@ only screen and (min-resolution: 1.5dppx) {
         </div>
     </div>
 </div>
-        <div data-viewid="commentLayer" data-root="" class="evaluation_layer" style="display: none">
-  <div class="inner_layer">
-    <div class="layer_head"><strong class="tit_layer">아담여인숙</strong></div>
-      <div class="layer_body">
-        <form action="#">
-          <fieldset>
-            <legend class="screen_out">후기작성</legend>
-            <div class="group_rate">
-              <div class="grade_rate">
-                <div class="grade_star size_l">
-                  <span class="ico_star star_rate">
-                    <span class="ico_star inner_star" style="width:0%"></span>
-                  </span>
-                </div>
-              </div>
-              <span class="info_rate">
-                <span class="screen_out">선택한 별점</span>
-                <span class="num_rate">0</span>/<span class="screen_out">선택 가능한 총 별점</span><span class="num_limit">5</span>
-              </span>
-            </div>
-            <div class="group_like"> <strong class="tit_group">이 장소의 추천포인트는?<span class="txt_guide">(중복선택 가능)</span></strong>
-              <div class="box_like">
-                  <button type="button" class="btn_like" data-name="가격" data-id="13">
-                    <span class="txt_like">가격</span><span class="ico_comm ico_like2"></span>
-                  </button>
-                  <button type="button" class="btn_like" data-name="뷰" data-id="9">
-                    <span class="txt_like">뷰</span><span class="ico_comm ico_like2"></span>
-                  </button>
-                  <button type="button" class="btn_like" data-name="시설" data-id="15">
-                    <span class="txt_like">시설</span><span class="ico_comm ico_like2"></span>
-                  </button>
-                  <button type="button" class="btn_like" data-name="주차" data-id="4">
-                    <span class="txt_like">주차</span><span class="ico_comm ico_like2"></span>
-                  </button>
-                  <button type="button" class="btn_like" data-name="청결" data-id="6">
-                    <span class="txt_like">청결</span><span class="ico_comm ico_like2"></span>
-                  </button>
-              </div>
-            </div>
-            <div class="box_evaluation">
-              <div class="group_revisit">
-                <p class="desc_revisit">재방문 의사가 있습니까?</p>
-                <button type="button" class="btn_like"><span class="ico_comm ico_check2"></span><span class="txt_like">네</span></button>
-              </div>
-              <div class="group_review">
-                <label for="tfReview" class="screen_out">후기 작성</label>
-                <textarea id="tfReview" name="tf_review" class="tf_review" placeholder="작성내용은 마이페이지와 장소상세에 노출되며 매장주를 포함한 다른 사용자들이
-볼 수 있으니, 서로를 배려하는 마음을 담아 작성해 주세요."></textarea>
-              </div>
-              <div class="group_upload">
-                <span class="thumb_upload">
-                  <label for="imgUpload" class="lab_upload">사진 등록하기</label>
-                  <input type="file" id="imgUpload" name="imgUpload" class="inp_upload" accept="image/jpeg, image/png">
-                </span>
-              </div>
-              <div class="group_etc">
-                <a href="https://kakaomap.tistory.com/358" target="_blank" class="link_notice">후기 작성 시 주의사항</a>
-                <span class="num_letter">
-                  <span class="screen_out">등록한 글자수: </span><span class="txt_len">0</span><span class="num_total"> / 2000</span></span>
-                
-              </div>
-            </div>
-            <div class="group_btn">
-              <button type="reset" class="btn_reset">취소</button>
-              <button type="submit" class="btn_submit">등록</button>
-            </div>
-          </fieldset>
-        </form>
-      </div>
+        
     </div>
-  </div>
 </div>
-
-    </div>
-
 <hr class="hide">
 <div data-viewid="footer" data-root="" id="kakaoFoot" class="footer_mapdetail" role="contentinfo">
     <div class="inner_mapdetail">
@@ -732,14 +768,14 @@ only screen and (min-resolution: 1.5dppx) {
                 deployment: window.ENV === 'PROD' ? 'production' : 'dev'
             });
         } catch(e) {}
-        window.placeRestrictType = 'NONE'
+        window.placeRestrictType = 'GOV'
         window._cp = '';
     </script>
 
     
         
             <script type="text/javascript" src="//s1.daumcdn.net/svc/attach/U0301/cssjs/mm/1482483925476/Chart.min.js"></script>
-            <script type="text/javascript" src="//t1.daumcdn.net/kakaomapweb/place/jscss/pc.3c7dfd11.js"></script><iframe style="position:absolute;left:0;top:0;width:0;height:0;border:0" src="mapclick.html?_=1662126741624"></iframe>
+            <script type="text/javascript" src="//t1.daumcdn.net/kakaomapweb/place/jscss/pc.3c7dfd11.js"></script><iframe style="position:absolute;left:0;top:0;width:0;height:0;border:0" src="mapclick.html?_=1662144256151"></iframe>
         
     
     <!--

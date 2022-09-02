@@ -5,15 +5,13 @@ module.exports = class MainController {
   //메인페이지
   mainPage = async (req, res, next) => {
     try {
-      const { location } = req.body; // 프론트로부터 구까지 받을 예정
-
+      const { location } = req.body; 
       const getImageUrl = await this.mainService.getImage(location);
-      console.log(getImageUrl.crawlingUrllist);
 
-      return res.json({data:getImageUrl});
+      return res.json({ data: getImageUrl });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return res.json({ data : getImageUrl.responseImageData, msg:err.message })
     }
   };
-};
+}; 

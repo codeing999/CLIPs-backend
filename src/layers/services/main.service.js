@@ -6,7 +6,7 @@ const { query } = require("express");
 //크롤링
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
-const fs = require("fs");
+// const fs = require("fs");
 
 // const {
 //   ConfigurationServicePlaceholders,
@@ -19,13 +19,15 @@ module.exports = class MainService {
   getImage = async (location) => {
     //구까지 받은 location을 x,y 좌표로 변환하기
     let crawlingUrllist = [];
+
     try {
       const addressResponse = await axios({
         method: "get",
-        url: "https://dapi.kakao.com/v2/local/search/address.json?radius=200",
+        url: "https://dapi.kakao.com/v2/local/search/address.json?radius=500",
         params: { query: `${location}` }, //body값
         headers: {
           Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
+          // Authorization: process.env.secretKey,
         },
       });
       const responseAdressData = addressResponse.data.documents.map((p) => {
@@ -59,7 +61,7 @@ module.exports = class MainService {
       //랜덤 카테고리별 url 만들기, 나중에 kakaoAK 지우기
       const imageResponse = await axios({
         method: "get",
-        url: "https://dapi.kakao.com/v2/local/search/keyword.json?radius=200",
+        url: "https://dapi.kakao.com/v2/local/search/keyword.json?radius=500",
         params: {
           query: `${keywordlist[randomNumber]}`,
           y: `${responseAdressData[0].y}`,
@@ -67,40 +69,39 @@ module.exports = class MainService {
         },
         headers: {
           Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
+          // Authorization: process.env.secretKey,
         },
       });
-      //프론트로 보낼 response
-      const responseImageData = imageResponse.data.documents.map((p) => {
-        return {
-          x: p.x,
-          y: p.y,
-          place: p.place_name,
-          address: p.road_address_name,
-          category: p.category_name,
-          placeUrl: p.place_url,
-          imageUrl: null,
-        };
-      });
 
-      console.log(
-        `${location}의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개 \n 자세한 내용(랜덤 1개)`,
-        responseImageData[Math.floor(Math.random() * responseImageData.length)]
-      );
-
-      if (!responseImageData.length) {
-        throw new Error(
-          `${location}의 ${keywordlist[randomNumber]} 가 존재하지 않습니다. 재검색해보세요`
+      // (async () => {
+        const responseImageData = await Promise.all(
+          imageResponse.data.documents.map((p) => {
+            return {
+              x: p.x,
+              y: p.y,
+              place: p.place_name,
+              address: p.road_address_name,
+              phone: p.phone,
+              category: p.category_name,
+              placeUrl: p.place_url,
+              imageUrl: [],
+            };
+          })
         );
-      } else {
-        for (let i = 0; i < responseImageData.length; i++) {
-          let crawlingData = responseImageData[i].placeUrl;
 
-          //크롤링 시작
-          (async () => {
+        if (!responseImageData.length) {
+          throw new Error(
+            `${location}의 ${keywordlist[randomNumber]}이/가 존재하지 않습니다. 재검색해보세요`
+          );
+        } else {
+          for (let i = 0; i < responseImageData.length; i++) {
+            let crawlingData = responseImageData[i].placeUrl;
+
+            //crawling starts here
+            (async () => {
             const browser = await puppeteer.launch({
               headless: true,
             });
-
             const page = await browser.newPage();
             await page.setViewport({
               width: 1366,
@@ -112,41 +113,40 @@ module.exports = class MainService {
               .catch(() => console.log("Wait for my-selector timed out"));
 
             const content = await page.content();
-            // $에 cheerio를 로드한다.
+
             const $ = cheerio.load(content);
-            // 복사한 리스트의 Selector로 리스트를 모두 가져온다.
-            const lists = $(".link_photo");
-            //모든 리스트를 순환한다.
-            await fs.writeFile("./html.txt", $.html(), (err) => {
-              if (err) {
-                console.error(err);
-                return;
-              }
-            });
+            const arrImageUrl = $(".link_photo");
 
             let crawlingImageUrl = [];
-            let length = lists.length > 5 ? 5 : lists.length;
-            for (let i = 0; i < length; i++) {
-              crawlingImageUrl = lists[i].attribs.style.slice(22, -2);
+            let length = arrImageUrl.length > 5 ? 5 : arrImageUrl.length;
+            for (let j = 0; j < length; j++) {
+              console.log("imageurl here!!");
+
+              crawlingImageUrl = arrImageUrl[i].attribs.style.slice(22, -2);
+              if (crawlingImageUrl === undefined) {
+                throw new Error("No imageurl found.");
+              }
+
               console.log(
                 `${crawlingData}의 ${i + 1}번째 이미지 :`,
                 crawlingImageUrl
               );
               crawlingUrllist.push(crawlingImageUrl);
+
+              console.log("before push");
+              console.log(responseImageData);
+              responseImageData[i].imageUrl.push(crawlingImageUrl);
             }
             browser.close();
-
-            if (
-              imageResponse.data.meta.total_count === 0 ||
-              responseImageData == undefined
-            ) {
-              return false;
-            }
-            console.log("끝", crawlingUrllist);
-            return { responseImageData, crawlingUrllist };
-          })();
+            })();
+          }
         }
-      }
+        console.log(
+          `${location}의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개 \n 자세한 내용`,
+          responseImageData
+        );
+        return responseImageData;
+      // })
     } catch (err) {
       console.log(err);
       return { msg: err.message };
