@@ -1,26 +1,33 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const Bcrypt = require("../../modules/bcrypt");
 require("dotenv/config");
 
 const AuthRepository = require("../repositories/auth.repository");
 
 module.exports = class AuthService {
   authRepository = new AuthRepository();
+  bcrypt = new Bcrypt();
 
-  createUser = async (name, password, phone, image) => {
+  createUser = async (email, nickname, password, name, phone, image) => {
     try {
       const isExistUser = await this.authRepository.findUserByPhone(phone);
-      if (isExistUser)
+      if (isExistUser) {
         return { status: 400, message: "이미 가입한 전화번호 입니다." };
+      }
+
+      const hashedPassword = await this.bcrypt.bcryptPassword(password);
+
       const user = await this.authRepository.createUser(
+        email,
+        nickname,
+        hashedPassword,
         name,
-        password,
         phone,
         image
       );
       return { status: 201, message: "회원가입에 성공하였습니다." };
     } catch (err) {
-      //console.log(err);
+      console.log(err);
       return { status: 400, message: err.message };
     }
   };
