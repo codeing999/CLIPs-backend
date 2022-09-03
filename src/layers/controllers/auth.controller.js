@@ -1,22 +1,21 @@
 const joi = require("joi");
+const Validation = require("../../joi_storage");
 
 const AuthService = require("../services/auth.service");
 
 module.exports = class AuthController {
   authService = new AuthService();
-
+  validation = new Validation();
   signUp = async (req, res, next) => {
-    const { name, password, confirm, phone, image } = req.body;
+    const { email, nickname, password, confirm, name, phone, image } = req.body;
     try {
-      await joi
-        .object({
-          name: joi.string().required(),
-          password: joi.string().required(),
-          confirm: joi.string().required(),
-          phone: joi.string().required(),
-          image: joi.string(),
-        })
-        .validateAsync({ name, password, confirm, phone, image });
+      await this.validation.validateEmail(email);
+      await this.validation.validateNickname(nickname);
+      await this.validation.validatePassword(password);
+      await this.validation.validateConfirm(confirm);
+      await this.validation.validatePhone(phone);
+      await this.validation.validateImage(image);
+
       // 정규표현식 추가 예정
       if (password !== confirm) {
         return res
@@ -38,16 +37,22 @@ module.exports = class AuthController {
   };
 
   signIn = async (req, res, next) => {
-    const { phone, password } = req.body;
+    const { email, password } = req.body;
     try {
       await joi
         .object({
-          phone: joi.string().required(),
-          password: joi.string().required(),
+          email: joi.string().required().messages({
+            "string.base": "휴대폰 번호는 문자열이어야 합니다.",
+            "any.required": "휴대폰 번호를 입력해주세요.",
+          }),
+          password: joi.string().required().messages({
+            "string.base": "비밀번호는 문자열이어야 합니다.",
+            "any.required": "비밀 번호를 입력해주세요.",
+          }),
         })
-        .validateAsync({ phone, password });
+        .validateAsync({ email, password });
 
-      const result = await this.authService.signIn(phone, password);
+      const result = await this.authService.signIn(email, password);
       return res
         .status(result.status)
         .json({ message: result.message, accesstoken: result.accesstoken });
