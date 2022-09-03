@@ -1,7 +1,7 @@
 {
   "name": "clips-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "- CLIPs : 약속 장소 및 주변 맛집 추천 서비스",
   "main": "app.js",
   "scripts": {
     "db:init": "node ./src/db-init.js",
@@ -33,8 +33,9 @@
     "cheerio": "^1.0.0-rc.12",
     "chromedriver": "^104.0.0",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "fs": "^0.0.1-security",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
@@ -48,5 +49,8 @@
     "hooks": {
       "pre-commit": "prettier --write"
     }
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
