@@ -73,8 +73,8 @@ module.exports = class MainService {
         },
       });
 
-      // (async () => {
-        const responseImageData = await Promise.all(
+      return (async () => {
+        let responseImageData = await Promise.all(
           imageResponse.data.documents.map((p) => {
             return {
               x: p.x,
@@ -88,20 +88,25 @@ module.exports = class MainService {
             };
           })
         );
-
+        console.log("before:", responseImageData.length);
+        if (responseImageData.length > 5) {
+          responseImageData = responseImageData.slice(0, 5);
+          console.log("after:", responseImageData.length);
+        }
         if (!responseImageData.length) {
           throw new Error(
             `${location}의 ${keywordlist[randomNumber]}이/가 존재하지 않습니다. 재검색해보세요`
           );
         } else {
-          for (let i = 0; i < responseImageData.length; i++) {
+          //crawling starts here
+          //(async () => {
+          const browser = await puppeteer.launch({
+            headless: true,
+          });
+          const placeLength =
+            responseImageData.length > 5 ? 5 : responseImageData.length;
+          for (let i = 0; i < placeLength; i++) {
             let crawlingData = responseImageData[i].placeUrl;
-
-            //crawling starts here
-            (async () => {
-            const browser = await puppeteer.launch({
-              headless: true,
-            });
             const page = await browser.newPage();
             await page.setViewport({
               width: 1366,
@@ -109,7 +114,7 @@ module.exports = class MainService {
             });
             await page.goto(crawlingData);
             await page
-              .waitForSelector(".link_photo", { timeout: 10000 })
+              .waitForSelector(".link_photo", { timeout: 2000 })
               .catch(() => console.log("Wait for my-selector timed out"));
 
             const content = await page.content();
@@ -117,35 +122,35 @@ module.exports = class MainService {
             const $ = cheerio.load(content);
             const arrImageUrl = $(".link_photo");
 
-            let crawlingImageUrl = [];
             let length = arrImageUrl.length > 5 ? 5 : arrImageUrl.length;
             for (let j = 0; j < length; j++) {
+              let crawlingImageUrl = [];
               console.log("imageurl here!!");
 
-              crawlingImageUrl = arrImageUrl[i].attribs.style.slice(22, -2);
-              if (crawlingImageUrl === undefined) {
-                throw new Error("No imageurl found.");
+              if (arrImageUrl[j].attribs.style) {
+                crawlingImageUrl = arrImageUrl[j].attribs.style.slice(22, -2);
               }
 
               console.log(
-                `${crawlingData}의 ${i + 1}번째 이미지 :`,
+                `${crawlingData}의 ${j + 1}번째 이미지 :`,
                 crawlingImageUrl
               );
-              crawlingUrllist.push(crawlingImageUrl);
+              //crawlingUrllist.push(crawlingImageUrl);
 
               console.log("before push");
-              console.log(responseImageData);
+              //console.log(responseImageData);
               responseImageData[i].imageUrl.push(crawlingImageUrl);
             }
-            browser.close();
-            })();
           }
+          browser.close();
         }
         console.log(
           `${location}의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개 \n 자세한 내용`,
           responseImageData
         );
         return responseImageData;
+      })();
+
       // })
     } catch (err) {
       console.log(err);
