@@ -24,9 +24,9 @@ module.exports = class AuthService {
       return { status: 400, message: err.message };
     }
   };
-  signIn = async (phone, password) => {
+  signIn = async (email, password) => {
     try {
-      const user = await this.authRepository.findUserLogin(phone, password);
+      const user = await this.authRepository.findUserLogin(email, password);
       if (!user)
         return {
           status: 400,

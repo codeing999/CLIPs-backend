@@ -10,10 +10,10 @@ module.exports = class AuthRepository {
     });
     return user;
   };
-  findUserLogin = async (phone, password) => {
+  findUserLogin = async (email, password) => {
     const user = await User.findOne({
       where: {
-        phone: phone,
+        email: email,
         password: password,
       },
     });
