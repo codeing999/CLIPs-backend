@@ -54,8 +54,8 @@ module.exports = class AuthController {
     try {
       await joi
         .object({
-          email: getEmailJoi(),
-          password: getPasswordJoi(),
+          email: this.validation.getEmailJoi(),
+          password: this.validation.getPasswordJoi(),
         })
         .validateAsync({ email, password });
 
@@ -63,6 +63,39 @@ module.exports = class AuthController {
       return res
         .status(result.status)
         .json({ message: result.message, accesstoken: result.accesstoken });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ message: err.message });
+    }
+  };
+
+  checkEmail = async (req, res, next) => {
+    const { email } = req.body;
+    try {
+      await joi
+        .object({
+          email: this.validation.getEmailJoi(),
+        })
+        .validateAsync({ email });
+
+      const result = await this.authService.checkEmail(email);
+      return res.status(result.status).json({ message: result.message });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ message: err.message });
+    }
+  };
+  checkNickname = async (req, res, next) => {
+    const { nickname } = req.body;
+    try {
+      await joi
+        .object({
+          nickname: this.validation.getNicknameJoi(),
+        })
+        .validateAsync({ nickname });
+
+      const result = await this.authService.checkNickname(nickname);
+      return res.status(result.status).json({ message: result.message });
     } catch (err) {
       console.log(err);
       return res.status(400).json({ message: err.message });

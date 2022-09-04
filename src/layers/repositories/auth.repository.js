@@ -37,12 +37,4 @@ module.exports = class AuthRepository {
     });
     return user;
   };
-  findUserByPhone = async (phone) => {
-    const user = await User.findOne({
-      where: {
-        phone: phone,
-      },
-    });
-    return user;
-  };
 };

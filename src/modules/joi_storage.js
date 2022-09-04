@@ -1,7 +1,6 @@
 joi = require("joi");
 
 module.exports = class Validation {
-  /** @returns { } */
   getEmailJoi = () => {
     const emailRegExp =
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
@@ -9,7 +8,6 @@ module.exports = class Validation {
       "string.base": "Email은 문자열이어야 합니다.",
       "any.required": "Email을 입력해주세요.",
       "string.pattern.base": "Email이 형식에 맞지 않습니다.",
-      //"string.min": "Email은 최소 5글자여야 합니다.",
       "string.max": "Email은 최대 30글자여야 합니다.",
     });
   };
@@ -17,7 +15,6 @@ module.exports = class Validation {
     return joi.string().max(8).required().messages({
       "string.base": "닉네임은 문자열이어야 합니다.",
       "any.required": "닉네임을 입력해주세요.",
-      //"string.min": "닉네임은 최소 1글자여야 합니다.",
       "string.max": "닉네임은 최대 8글자여야 합니다.",
     });
   };
@@ -59,7 +56,6 @@ module.exports = class Validation {
     return joi.string().max(20).required().messages({
       "string.base": "이름은 문자열이어야 합니다.",
       "any.required": "이름을 입력해주세요.",
-      //"string.min": "이름은 최소 1글자여야 합니다.",
       "string.max": "이름은 최대 20글자여야 합니다.",
     });
   };
