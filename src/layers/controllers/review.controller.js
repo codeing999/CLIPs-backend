@@ -1,17 +1,19 @@
-const ReviewService = require("../services/review.service")
+const ReviewService = require("../services/review.service");
 module.exports = class ReviewController {
   reviewService = new ReviewService();
 
   //메인페이지
-  mainPage = async (req, res, next) => {
+  createReview = async (req, res, next) => {
+    const { promiseId } = req.params;
     try {
-      const { location } = req.body; 
-      const getImageUrl = await this.mainService.getImage(location);
+      const getImageUrl = await this.reviewService.createReview();
 
-      return res.json({ data: getImageUrl });
+      return res.json({ data: createReview});
     } catch (err) {
       console.log(err);
-      return res.json({ data : getImageUrl.responseImageData, msg:err.message })
+      return res.json({
+        msg: err.message,
+      });
     }
   };
-}
+};

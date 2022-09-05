@@ -1,4 +1,4 @@
-const MainRepository = require("../repositories/main.repository");
+// const MainRepository = require("../repositories/main.repository");
 const request = require("request");
 const axios = require("axios");
 const { query } = require("express");
@@ -13,7 +13,7 @@ const cheerio = require("cheerio");
 // } = require("aws-sdk/lib/config_service_placeholders");
 
 module.exports = class MainService {
-  mainRepository = new MainRepository();
+  // mainRepository = new MainRepository();
 
   //카테고리 랜덤으로 반환하여 place_url(추후에 imageUrl 크롤링 위한) 추출
   getImage = async (location) => {
@@ -41,15 +41,15 @@ module.exports = class MainService {
       const keywordlist = [
         "대형마트",
         "편의점",
-        "어린이집, 유치원",
+        // "어린이집, 유치원",
         "학교",
         "주차장",
-        "주유소, 충전소",
+        // "주유소, 충전소",
         "지하철역",
         "은행",
         "문화시설",
-        "중개업소",
-        "공공기관",
+        // "중개업소",
+        // "공공기관",
         "관광명소",
         "숙박",
         "음식점",
@@ -73,6 +73,7 @@ module.exports = class MainService {
         },
       });
 
+      //return을 통해 이 비동기 함수 안에서 정의된 responseImageData를 내보낸다!
       return (async () => {
         let responseImageData = await Promise.all(
           imageResponse.data.documents.map((p) => {
@@ -98,6 +99,7 @@ module.exports = class MainService {
             `${location}의 ${keywordlist[randomNumber]}이/가 존재하지 않습니다. 재검색해보세요`
           );
         } else {
+    
           //crawling starts here
           //(async () => {
           const browser = await puppeteer.launch({
@@ -114,11 +116,10 @@ module.exports = class MainService {
             });
             await page.goto(crawlingData);
             await page
-              .waitForSelector(".link_photo", { timeout: 2000 })
+              .waitForSelector(".link_photo", { timeout: 4000 })
               .catch(() => console.log("Wait for my-selector timed out"));
 
             const content = await page.content();
-
             const $ = cheerio.load(content);
             const arrImageUrl = $(".link_photo");
 
@@ -129,10 +130,13 @@ module.exports = class MainService {
 
               if (arrImageUrl[j].attribs.style) {
                 crawlingImageUrl = arrImageUrl[j].attribs.style.slice(22, -2);
+                console.log(arrImageUrl[j].attribs)
+              } else { 
+                break;
               }
 
               console.log(
-                `${crawlingData}의 ${j + 1}번째 이미지 :`,
+                `${crawlingData} 의 ${j + 1}번째 이미지 :`,
                 crawlingImageUrl
               );
               //crawlingUrllist.push(crawlingImageUrl);
@@ -145,7 +149,7 @@ module.exports = class MainService {
           browser.close();
         }
         console.log(
-          `${location}의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개 \n 자세한 내용`,
+          `${location} 의 ${keywordlist[randomNumber]}는 ${imageResponse.data.meta.total_count} 개 \n 자세한 내용`,
           responseImageData
         );
         return responseImageData;
