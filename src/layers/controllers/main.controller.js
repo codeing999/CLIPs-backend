@@ -14,4 +14,15 @@ module.exports = class MainController {
       return res.json({ msg: err.message });
     }
   };
+
+  imageUrl = async(req,res,next) => {
+    try{
+      const {placeUrl} = req.body;
+      const crawlingList = await this.mainService.crawlImage(placeUrl);
+      return res.json({data: crawlingList});
+    } catch(err){
+      console.log(err);
+      return res.json({msg:err.message});
+    }
+  }
 };
