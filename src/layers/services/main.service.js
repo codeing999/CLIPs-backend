@@ -6,7 +6,7 @@ const { query } = require("express");
 //크롤링
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
-// const fs = require("fs");
+const fs = require("fs");
 
 // const {
 //   ConfigurationServicePlaceholders,
@@ -39,23 +39,23 @@ module.exports = class MainService {
       });
       //받은 구 내 랜덤 카테고리 추천
       const keywordlist = [
-        "대형마트",
-        "편의점",
-        "어린이집, 유치원",
-        "학교",
-        "주차장",
-        "주유소, 충전소",
-        "지하철역",
-        "은행",
-        "문화시설",
-        "중개업소",
-        "공공기관",
-        "관광명소",
-        "숙박",
-        "음식점",
+        // "대형마트",
+        // "편의점",
+        // "어린이집, 유치원",
+        // "학교",
+        // "주차장",
+        // "주유소, 충전소",
+        // "지하철역",
+        // "은행",
+        // "문화시설",
+        // "중개업소",
+        // "공공기관",
+        // "관광명소",
+        // "숙박",
+        // "음식점",
         "카페",
-        "병원",
-        "약국",
+        //"병원",
+        //"약국",
       ];
       const randomNumber = Math.floor(Math.random() * keywordlist.length);
       //랜덤 카테고리별 url 만들기, 나중에 kakaoAK 지우기
@@ -114,13 +114,26 @@ module.exports = class MainService {
             });
             await page.goto(crawlingData);
             await page
-              .waitForSelector(".link_photo", { timeout: 2000 })
+              .waitForSelector(".link_photo", { timeout: 500 })
               .catch(() => console.log("Wait for my-selector timed out"));
 
             const content = await page.content();
 
             const $ = cheerio.load(content);
-            const arrImageUrl = $(".link_photo");
+            const rawArrImageUrl = $(".link_photo");
+
+            console.log(
+              "@@before",
+              //rawArrImageUrl,
+              rawArrImageUrl.length,
+              rawArrImageUrl[0]?.attribs?.style,
+              typeof rawArrImageUrl[0]?.attribs?.style
+            );
+            const arrImageUrl = rawArrImageUrl.filter((v) => {
+              return rawArrImageUrl[v].attribs.style;
+            });
+
+            console.log("@@after", arrImageUrl.length);
 
             let length = arrImageUrl.length > 5 ? 5 : arrImageUrl.length;
             for (let j = 0; j < length; j++) {
