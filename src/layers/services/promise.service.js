@@ -5,39 +5,44 @@ class PromiseService {
         this.promiseRepository = new PromiseRepository();
     }
 
-    createPromise = async (title, date, x, y, penalty, userId) => {
-        const promise_id = abcgit 
-        try{
-           
-                const response = await this.findFriend(friendlist)
-            } catch (err) {}
-        
+    createPromise = async (title, date, x, y, penalty, userId, friendlist) => {
+        // try {
+        let phone = ''
+        for (let i = 0; i <= friendlist.length - 1; i++) {
+            phone = friendlist[i].phone
+
+            const user = await this.findFriend(phone)
+        }
+
+        let randomId = performance.now().toString(36) + Math.random().toString(36).substring(2)
+        const promiseId = randomId.split(".")[1]
 
         const result = await this.promiseRepository.createPromise(
-            promise_id,
+            promiseId,
             title,
             date,
             x,
-            y,            
+            y,
             penalty,
             userId,
-            );
-        
-
-        await this.createParticipants(abc, friendlist)
-    };
-        
-    createParticipants = async (friendlist) => {        
-        
-            await this.promiseRepository.createParticipants(response)
-        
-        } 
-
-    createParticipants = async (friendlist) => {        
-
-        await this.promiseRepository.createParticipants(
-            friendlist
         );
+
+        let user = ''
+        for (let i = 0; i <= friendlist.length - 1; i++) {
+            phone = friendlist[i].phone
+            let friend = await this.findFriend(phone)
+            user = friend.dataValues.userId
+            console.log(friend.dataValues.userId)
+            const createdFriend = await this.createParticipants(promiseId, user)
+        }
+
+        return result;
+    };
+
+    createParticipants = async (promiseId, user) => {
+
+        await this.promiseRepository.createParticipants(promiseId, user)
+
     }
 
     getAllPromise = async () => {
@@ -51,12 +56,12 @@ class PromiseService {
         return response;
     }
 
-    findFriend = async (phone) => {       
-        
+    findFriend = async (phone) => {
+
         const result = await this.promiseRepository.findFriend(phone);
         return result
 
-    }    
+    }
 
     deletePromise = async (userId, promiseId) => {
 
@@ -66,10 +71,10 @@ class PromiseService {
         const isDeleted = await this.promiseRepository.deletePromise(userId, promiseId);
 
         return (isDeleted);
-    };   
+    };
 
-    checkPromiseCreator(response,userId) {
-        if(response.userId !== userId) {
+    checkPromiseCreator(response, userId) {
+        if (response.userId !== userId) {
             const error = new Error("UNAUTHORIZED_USER");
             error.code = 401;
             throw error;
@@ -79,7 +84,7 @@ class PromiseService {
     async checkPromiseExists(promiseId) {
 
         const response = await this.promiseRepository.getPromiseDetail(promiseId);
-        if (response.promiseId === null){
+        if (response.promiseId === null) {
             const error = new Error("약속이 존재하지 않습니다");
             error.code = 404;
             throw error

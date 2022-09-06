@@ -20,11 +20,12 @@ class PromiseController {
                 y: joi.number().required(),
                 penalty: joi.string(),
                 userId: joi.number().required(),
+                friendlist: joi.array()
             })
-                .validateAsync({ title, date, x, y, penalty, userId })
+                .validateAsync({ title, date, x, y, penalty, userId, friendlist })
 
-            await this.promiseService.createPromise(title, date, x, y, penalty, userId);
-            await this.promiseService.createParticipants(friendlist);
+            const result = await this.promiseService.createPromise(title, date, x, y, penalty, userId, friendlist);
+            // await this.promiseService.createParticipants(friendlist);
 
             return res.status(200).send("약속 생성 완료")
         } catch (err) {

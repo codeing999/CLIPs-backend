@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   Promise.init(
     {
       promiseId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING, //랜덤 생성을 위해 string으로 변경
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
+        // autoIncrement: true,
       },
       title: {
         type: DataTypes.STRING,

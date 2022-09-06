@@ -2,9 +2,10 @@ const {User, Promise, Friend} = require("../../sequelize/models");
 const sequelize = require("sequelize");
 
 class PromiseRepository {
-    createPromise = async (title, date, x, y, penalty, userId) => {
+    createPromise = async (promiseId, title, date, x, y, penalty, userId) => {
         try{
             await Promise.create({
+                promiseId,
                 title,
                 date,
                 x,
@@ -18,10 +19,12 @@ class PromiseRepository {
             throw error
         };
     };
-    createParticipants = async (friendlist) => {      
+
+    createParticipants = async (promiseId, user) => {      
         try {
             await Friend.create({
-                friendlist
+                promiseId, 
+                userId : user
             });
         } catch (err) {
             const error = new Error("FAILD_SQL");
@@ -63,12 +66,12 @@ class PromiseRepository {
     findFriend = async (phone) => {
         try {
             const response = await User.findOne({
-                attributes: ['phone', 'name'],
+                attributes: ['phone', 'name', 'userId'],
                 where : {phone: phone},
             });
             return response;
         } catch (err) {
-            const error = new Error("FAILD_SQL");
+            const error = new Error("친구가 존재하지 않습니다");
             error.code = 405;
             throw error
         }
