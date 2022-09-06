@@ -69,6 +69,7 @@ module.exports = (sequelize, DataTypes) => {
       through: "Friend",
       foreignKey: "userId",
       sourceKey: "userId",
+      modelName: "Friend",
     });
   };
   return User;

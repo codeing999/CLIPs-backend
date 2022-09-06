@@ -36,11 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       penalty: DataTypes.STRING,
-      
+
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
     },
     {
@@ -65,6 +65,7 @@ module.exports = (sequelize, DataTypes) => {
       through: "Friend",
       foreignKey: "promiseId",
       sourceKey: "promiseId",
+      modelName: "Friend",
       timestamps: false,
     });
   };
