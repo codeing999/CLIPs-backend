@@ -1,35 +1,42 @@
-const { User, Promise, friend } = require("../../sequelize/models");
+const db = require("../../sequelize/models");
+const { User, Promise } = require("../../sequelize/models");
 const sequelize = require("sequelize");
+
+const Friend = db.sequelize.models.Friend;
 
 class PromiseRepository {
   createPromise = async (promiseId, title, date, x, y, penalty, userId) => {
     try {
       await Promise.create({
-        promiseId,
+        promiseId: promiseId,
         title,
         date,
         x,
         y,
         penalty,
-        userId,
+        userId: userId,
       });
     } catch (err) {
-      const error = new Error("FAILD_SQL");
-      error.code = 405;
-      throw error;
+      console.log(err);
+      return err.message;
+      //   const error = new Error("FAILD_SQL");
+      //   error.code = 405;
+      //   throw error;
     }
   };
 
   createParticipants = async (promiseId, user) => {
     try {
-      await friend.create({
+      await Friend.create({
         promiseId,
         userId: user,
       });
     } catch (err) {
-      const error = new Error("FAILD_SQL");
-      error.code = 405;
-      throw error;
+      console.log(err);
+      return err.message;
+      //   const error = new Error("FAILD_SQL");
+      //   error.code = 405;
+      //   throw error;
     }
   };
 
