@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const env = process.env;
-// const AuthRepository = require("../layers/repositories/auth.repository");
-// const authRepository = new AuthRepository();
 
 module.exports = async (req, res, next) => {
   const { authorization } = req.headers;

@@ -1,6 +1,5 @@
 const joi = require("joi");
-const Validation = require("../../joi_storage");
-
+const Validation = require("../../modules/joi_storage");
 const AuthService = require("../services/auth.service");
 
 module.exports = class AuthController {
@@ -9,22 +8,36 @@ module.exports = class AuthController {
   signUp = async (req, res, next) => {
     const { email, nickname, password, confirm, name, phone, image } = req.body;
     try {
-      await this.validation.validateEmail(email);
-      await this.validation.validateNickname(nickname);
-      await this.validation.validatePassword(password);
-      await this.validation.validateConfirm(confirm);
-      await this.validation.validatePhone(phone);
-      await this.validation.validateImage(image);
+      await joi
+        .object({
+          email: this.validation.getEmailJoi(),
+          nickname: this.validation.getNicknameJoi(),
+          password: this.validation.getPasswordJoi(),
+          confirm: this.validation.getConfirmJoi(),
+          name: this.validation.getNameJoi(),
+          phone: this.validation.getPhoneJoi(),
+          image: this.validation.getImageJoi(),
+        })
+        .validateAsync({
+          email,
+          nickname,
+          password,
+          confirm,
+          name,
+          phone,
+          image,
+        });
 
-      // 정규표현식 추가 예정
       if (password !== confirm) {
         return res
           .status(400)
           .json({ message: "비밀번호와 비밀번호 확인이 일치하지 않습니다" });
       }
       const result = await this.authService.createUser(
-        name,
+        email,
+        nickname,
         password,
+        name,
         phone,
         image
       );
@@ -41,14 +54,8 @@ module.exports = class AuthController {
     try {
       await joi
         .object({
-          email: joi.string().required().messages({
-            "string.base": "휴대폰 번호는 문자열이어야 합니다.",
-            "any.required": "휴대폰 번호를 입력해주세요.",
-          }),
-          password: joi.string().required().messages({
-            "string.base": "비밀번호는 문자열이어야 합니다.",
-            "any.required": "비밀 번호를 입력해주세요.",
-          }),
+          email: this.validation.getEmailJoi(),
+          password: this.validation.getPasswordJoi(),
         })
         .validateAsync({ email, password });
 
@@ -56,6 +63,39 @@ module.exports = class AuthController {
       return res
         .status(result.status)
         .json({ message: result.message, accesstoken: result.accesstoken });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ message: err.message });
+    }
+  };
+
+  checkEmail = async (req, res, next) => {
+    const { email } = req.body;
+    try {
+      await joi
+        .object({
+          email: this.validation.getEmailJoi(),
+        })
+        .validateAsync({ email });
+
+      const result = await this.authService.checkEmail(email);
+      return res.status(result.status).json({ message: result.message });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ message: err.message });
+    }
+  };
+  checkNickname = async (req, res, next) => {
+    const { nickname } = req.body;
+    try {
+      await joi
+        .object({
+          nickname: this.validation.getNicknameJoi(),
+        })
+        .validateAsync({ nickname });
+
+      const result = await this.authService.checkNickname(nickname);
+      return res.status(result.status).json({ message: result.message });
     } catch (err) {
       console.log(err);
       return res.status(400).json({ message: err.message });
