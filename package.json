@@ -41,6 +41,7 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
+    "nth-check": "^2.1.1",
     "passport": "^0.6.0",
     "passport-kakao": "^1.0.1",
     "passport-local": "^1.0.0",

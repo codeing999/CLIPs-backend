@@ -21,8 +21,7 @@ module.exports = class MainService {
         url: "https://dapi.kakao.com/v2/local/search/address.json?radius=500",
         params: { query: `${location}` }, //body값
         headers: {
-          Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
-          // Authorization: process.env.secretKey,
+          Authorization: process.env.secretKey,
         },
       });
       const responseAdressData = addressResponse.data.documents.map((p) => {
@@ -63,8 +62,7 @@ module.exports = class MainService {
           x: `${responseAdressData[0].x}`,
         },
         headers: {
-          Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
-          // Authorization: process.env.secretKey,
+          Authorization: process.env.secretKey,
         },
       });
 

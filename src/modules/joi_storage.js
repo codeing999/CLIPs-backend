@@ -74,4 +74,11 @@ module.exports = class Validation {
       "string.base": "image URL은 문자열이어야 합니다.",
     });
   };
-};
+  getContentJoi =()=> {
+  return joi.string().min(10).max(800).messages({
+    "string.base": "후기는 문자열이어야 합니다.",
+    "string.min": "후기는 최소 10글자여야 합니다.",
+    "string.max": "후기는 최대 800글자를 넘을 수 없습니다.",
+  });
+  }
+}
