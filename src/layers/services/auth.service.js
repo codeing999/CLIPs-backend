@@ -53,7 +53,7 @@ module.exports = class AuthService {
           message: "존재하지 않는 정보입니다.",
         };
       }
-
+console.log(process.env.ACCESS_SECRET)
       const accesstoken = jwt.sign(
         {
           userId: user.userId,
