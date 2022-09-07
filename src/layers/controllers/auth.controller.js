@@ -1,4 +1,6 @@
 const joi = require("joi");
+const passport = require("passport");
+
 const Validation = require("../../modules/joi_storage");
 const AuthService = require("../services/auth.service");
 
@@ -50,6 +52,23 @@ module.exports = class AuthController {
   };
 
   signIn = async (req, res, next) => {
+    // passport.authenticate("local", (authError, user, info) => {
+    //   if (authError) {
+    //     console.error(authError);
+    //     return next(authError);
+    //   }
+    //   if (!user) {
+    //     return res.redirect(`/?loginError=${info.message}`);
+    //   }
+    //   return req.login(user, (loginError) => {
+    //     //serializeUser 호출
+    //     if (loginError) {
+    //       console.error(loginError);
+    //       return next(loginError);
+    //     }
+    //     return res.redirect("/"); //세션 쿠키를 부라우저로 보냄.
+    //   });
+    // })(req, res, next);
     const { email, password } = req.body;
     try {
       await joi

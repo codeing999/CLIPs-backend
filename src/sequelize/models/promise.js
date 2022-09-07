@@ -36,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       penalty: DataTypes.STRING,
-    
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -74,6 +73,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "promiseId",
       sourceKey: "promiseId",
       timestamps: false,
+    });
+    Promise.hasMany(models.Review, {
+      foreignKey: "promiseId",
+      sourceKey: "promiseId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
     });
   };
   return Promise;
