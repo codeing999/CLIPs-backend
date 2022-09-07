@@ -1,8 +1,7 @@
 const db = require("../../sequelize/models");
 const { User, Promise } = require("../../sequelize/models");
-const sequelize = require("sequelize");
-
 const Friend = db.sequelize.models.Friend;
+const sequelize = require("sequelize");
 
 class PromiseRepository {
   createPromise = async (promiseId, title, date, x, y, penalty, userId) => {
@@ -63,7 +62,7 @@ class PromiseRepository {
 
       return response.dataValues;
     } catch (err) {
-      const error = new Error("FAILD_SQL");
+      const error = new Error("약속이 존재하지 않습니다");
       error.code = 405;
       throw error;
     }
@@ -72,7 +71,7 @@ class PromiseRepository {
   findFriend = async (phone) => {
     try {
       const response = await User.findOne({
-        attributes: ["phone", "name", "userId"],
+        attributes: ["phone", "nickname","name", "userId"],
         where: { phone: phone },
       });
       return response;

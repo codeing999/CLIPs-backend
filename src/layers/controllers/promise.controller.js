@@ -1,10 +1,12 @@
 const PromiseService = require("../services/promise.service");
 const joi = require("joi");
 const promise = require("../../sequelize/models/promise");
+const Validation = require("../../modules/joi_storage");
 
 class PromiseController {
   constructor() {
     this.promiseService = new PromiseService();
+    this.validation = new Validation();
   }
 
   createPromise = async (req, res) => {
@@ -14,11 +16,11 @@ class PromiseController {
     try {
       await joi
         .object({
-          title: joi.string().required(),
-          date: joi.date().required(),
-          x: joi.number().required(), // 어떻게 넘겨주는지 다시 체크 필요
-          y: joi.number().required(),
-          penalty: joi.string(),
+          title:this.validation.getTitleJoi(),
+          date: this.validation.getDateJoi(),
+          x: this.validation.getXJoi(), // 어떻게 넘겨주는지 다시 체크 필요
+          y: this.validation.getYJoi(),
+          penalty: this.validation.getPenaltyJoi(),
           userId: joi.number().required(),
           friendList: joi.array(),
         })
@@ -33,41 +35,27 @@ class PromiseController {
         userId,
         friendList
       );
-      // await this.promiseService.createParticipants(friendlist);
 
       return res.status(200).send("약속 생성 완료");
     } catch (err) {
-      return res.status(400).send(err);
+      return res.status(400).json(err.message, err.code);
     }
-
-    // try {
-    //     await joi.object({
-    //         friendlist: joi.array(),
-    //     })
-    //         .validateAsync({ friendlist })
-
-    //     await this.promiseService.createParticipants(friendlist)
-
-    //     return res.status(200).send("약속이 등록되었습니다");
-    // } catch (err) {
-    //     return res.status(400).send(err);
-    // }
   };
 
   findFriend = async (req, res) => {
-    const { phone } = req.body;
+    const { friendList } = req.body;
 
     try {
       await joi
         .object({
-          phone: joi.string(),
+          friendList: joi.array().length(1),
         })
-        .validateAsync({ phone });
+        .validateAsync({ friendList });
 
-      const result = await this.promiseService.findFriend(phone);
+      const result = await this.promiseService.findFriend(friendList);
       return res.status(200).send(result);
     } catch (err) {
-      return res.status(400).send(err);
+      return res.status(400).json(err.message, err.code);
     }
   };
 
@@ -87,7 +75,7 @@ class PromiseController {
     try {
       await joi
         .object({
-          promiseId: joi.number().required(),
+          promiseId: joi.string().required(),
         })
         .validateAsync({ promiseId });
     } catch (err) {
@@ -122,7 +110,7 @@ class PromiseController {
       await joi
         .object({
           userId: joi.number().required(),
-          promiseId: joi.number().required(),
+          promiseId: joi.string().required(),
         })
         .validateAsync({ userId, promiseId });
     } catch (err) {
