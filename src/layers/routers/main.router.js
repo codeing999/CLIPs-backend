@@ -1,10 +1,10 @@
 const express = require("express");
-const router = express.Router();
+const mainRouter = express.Router();
 const MainController = require("../controllers/main.controller");
 const mainController = new MainController();
 
 // 메인페이지
-router.get("/", mainController.mainPage);
-router.get("/crawl", mainController.imageUrl);
+mainRouter.get("/", mainController.mainPage);
+mainRouter.get("/crawl", mainController.imageUrl);
 
-module.exports = router;
+module.exports = mainRouter;
