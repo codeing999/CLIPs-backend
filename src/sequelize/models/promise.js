@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       x: {
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: -1,
+        defaultValue: false
       },
     },
     {
