@@ -54,6 +54,26 @@ module.exports = class AuthService {
         };
       }
 
+      //세션 이미 있으면 제거 후 리프레쉬 토큰 발급 후 세션에 저장
+      const isExistSession = await this.userRepository.findSessionByUserId(
+        user.userId
+      );
+
+      if (isExistSession) {
+        await this.userRepository.deleteSession(isExistSession.sessionId);
+      }
+
+      const refreshToken = jwt.sign(
+        {
+          userId: user.userId,
+        },
+        process.env.REFRESH_SECRET_KEY,
+        { expiresIn: process.env.REFRESH_OPTION_EXPIRESIN }
+      );
+
+      await this.userRepository.createSession(user.userId, refreshToken);
+
+      //accesstoken 발급
       const accesstoken = jwt.sign(
         {
           userId: user.userId,

@@ -69,6 +69,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       sourceKey: "userId",
     });
+    User.hasOne(models.Session, {
+      foreignKey: "userId",
+      sourceKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+    });
   };
   return User;
 };
