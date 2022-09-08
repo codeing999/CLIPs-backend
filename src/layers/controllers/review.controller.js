@@ -10,7 +10,8 @@ module.exports = class ReviewController {
   createReview = async (req, res, next) => {
     const { promiseId } = req.params;
     const { content, image } = req.body;
-    const user_id = res.locals.userId;
+    const user_id = res.locals.userId; 
+    console.log(user_id)
 
     try {
       await joi
