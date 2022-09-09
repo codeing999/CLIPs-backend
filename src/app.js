@@ -39,6 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 //   });
 const indexRouter = require("./layers/routers");
 app.use("/api", indexRouter);
+app.use(express.static(__dirname));
 
 app.listen(port, () => {
   console.log(port, "진행해주세요.");

@@ -4,7 +4,7 @@ const authmiddleware = require("../middlewares/auth.middleware");
 module.exports = class ReviewService {
   reviewRepository = new ReviewRepository();
 
-  createReview = async ( content, image, promiseId) => {
+  createReview = async ( content, image, promiseId ) => {
     try {
       const createreviews = await this.reviewRepository.createReviewData(
         content,
@@ -14,8 +14,8 @@ module.exports = class ReviewService {
       return {
         status: 200,
         message: "후기가 생성되었습니다.",
-        data: createreviews,
-      };
+        data: createreviews
+      }
     } catch (err) {
       console.log(err);
       return { msg: err.message };

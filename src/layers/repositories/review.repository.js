@@ -3,30 +3,27 @@ const { ReviewImage } = require("../../sequelize/models");
 const sequelize = require("sequelize");
 
 module.exports = class ReviewRepository {
-  //새로운 리뷰 Promise table에 저장
-  createReviewData = async (content, image, promiseId, reviewId) => {
+  //새로운 리뷰를 Review와 ReviewImage table에 저장
+  createReviewData = async (content, image, promiseId) => {
     try {
       const createReviewData = await Review.create({
         content,
         promiseId,
-      });
-      const createReviewImageData = await ReviewImage.create({
-        image,
-        reviewId
-      });
-
-      console.log("repository", createReviewData, createReviewImageData);
-      return createReviewData, createReviewImageData;
+      }); 
+      let reviewId = createReviewData.dataValues.reviewId
+    
+      const createReviewImageData = await ReviewImage.create({image, reviewId});
+      return createReviewData, createReviewImageData
     } catch (err) {
-      console.log(err);
-      return { msg: err.message };
+        console.log(err);
+        return { msg: err.message };
+      }
     }
-  };
-
-  getReviewData = async ( promiseId , reviewId) => {
+   
+  getReviewData = async (promiseId, reviewId) => {
     try {
       const getReviewData = await Review.findAll({
-        where: { review_id: reviewId , promise_id:promiseId},
+        where: { review_id: reviewId, promise_id: promiseId },
       });
       return getReviewData;
     } catch (err) {
@@ -35,10 +32,12 @@ module.exports = class ReviewRepository {
     }
   };
 
-  updateReviewData = async (content, image,reviewId) => {
+  updateReviewData = async (content, image, reviewId) => {
     try {
-      const updateReviewData = await Review.update({content, image},
-        {where:{reviewId}})
+      const updateReviewData = await Review.update(
+        { content, image },
+        { where: { reviewId } }
+      );
       return updateReviewData;
     } catch (err) {
       console.log(err);

@@ -11,7 +11,6 @@ module.exports = class ReviewController {
     const { promiseId } = req.params;
     const { content, image } = req.body;
     const user_id = res.locals.userId; 
-    console.log(user_id)
 
     try {
       await joi

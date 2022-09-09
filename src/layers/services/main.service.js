@@ -55,7 +55,7 @@ module.exports = class MainService {
       //랜덤 카테고리별 url 만들기, 나중에 kakaoAK 지우기
       const imageResponse = await axios({
         method: "get",
-        url: "https://dapi.kakao.com/v2/local/search/keyword.json?radius=500",
+        url: "https://dapi.kakao.com/v2/local/search/keyword.json?radius=10000",
         params: {
           query: `${keywordlist[randomNumber]}`,
           y: `${responseAdressData[0].y}`,
