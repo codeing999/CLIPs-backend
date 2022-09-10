@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const passport = require("passport");
+const session = require("express-session");
+require("dotenv/config");
 
 const indexRouter = require("./layers/routers");
 const passportConfig = require("./passport");
@@ -30,7 +32,7 @@ const port = 3000;
 
 app.use(morgan("dev"));
 //app.use(cors(corsOptions));
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -42,6 +44,18 @@ app.use(express.urlencoded({ extended: true }));
 //   .catch((err) => {
 //     console.error(err);
 //   });
+
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+    },
+  })
+);
 
 //! express-session에 의존하므로 뒤에 위치해야 함
 app.use(passport.initialize()); // 요청 객체에 passport 설정을 심음

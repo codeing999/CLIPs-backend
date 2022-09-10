@@ -1,15 +1,17 @@
 const passport = require("passport");
-const Bcrypt = require("../modules/bcrypt");
-const User = require("../sequelize/models/user");
-
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
+const Validation = require("../modules/joiStorage");
+const { User } = require("../sequelize/models");
+const AuthService = require("../layers/services/auth.service");
 module.exports = () => {
   //? auth 라우터에서 /login 요청이 오면 local설정대로 이쪽이 실행되게 된다.
   passport.use(
     new LocalStrategy(
       {
         //* req.body 객체인자 하고 키값이 일치해야 한다.
-        uernaeField: "email",
-        passwordField: "password",
+        usernameField: "email", // req.body.email
+        passwordField: "password", // req.body.password
         /*
         session: true, // 세션에 저장 여부
         passReqToCallback: false, 
@@ -20,12 +22,30 @@ module.exports = () => {
       //* 콜백함수의  email과 password는 위에서 설정한 필드이다. 위에서 객체가 전송되면 콜백이 실행된다.
       async (email, password, done) => {
         try {
+          const validation = new Validation();
+          await joi
+            .object({
+              email: validation.getEmailJoi(),
+              password: validation.getPasswordJoi(),
+            })
+            .validateAsync({ email, password });
+
           // 가입된 회원인지 아닌지 확인
           const exUser = await User.findOne({ where: { email } });
           // 만일 가입된 회원이면
           if (exUser) {
             // 해시비번을 비교
-            const result = await Bcrypt.compare(password, exUser.password);
+            const result = await bcrypt.compare(password, exUser.password);
+            /*
+            if (result) {
+              const authService = new AuthService();
+              const signInResult = await authService.signIn(email, password);
+              done(null, {
+                status: signInResult.status,
+                message: signInResult.message,
+                accesstoken: signInResult.accesstoken,
+              });
+            */
             if (result) {
               done(null, exUser);
             } else {
