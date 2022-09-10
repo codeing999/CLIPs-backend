@@ -19,17 +19,26 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
       },
-      name: {
+      email: {
         type: DataTypes.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       phone: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
       image: {
@@ -59,6 +68,12 @@ module.exports = (sequelize, DataTypes) => {
       through: "Friend",
       foreignKey: "userId",
       sourceKey: "userId",
+    });
+    User.hasOne(models.Session, {
+      foreignKey: "userId",
+      sourceKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
     });
   };
   return User;

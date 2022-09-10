@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
       },
       x: {
@@ -36,11 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       penalty: DataTypes.STRING,
-      
+
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: -1
+        defaultValue: false
       },
     },
     {
@@ -66,6 +66,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "promiseId",
       sourceKey: "promiseId",
       timestamps: false,
+    });
+    Promise.hasMany(models.Review, {
+      foreignKey: "promiseId",
+      sourceKey: "promiseId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
     });
   };
   return Promise;
