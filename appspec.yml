@@ -1,0 +1,66 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/clips-backend
+    overwrite: yes
+#file_exists_behavior: OVERWRITE
+# permissions:
+#   - object:
+#     pattern:
+#     except:
+#     owner:
+#     group:
+#     mode:
+#     acls:
+#       -
+#     context:
+#       user:
+#       type:
+#       range:
+#     type:
+#       -
+hooks:
+  # During the ApplicationStop deployment lifecycle event, run the commands
+  #   in the script specified in "location" starting from the root of the
+  #   revision's file bundle.
+  # ApplicationStop:
+  #   - location:
+  #     timeout:
+  #     runas:
+  #   - location:
+  #     timeout:
+  #     runas:
+  # During the BeforeInstall deployment lifecycle event, run the commands
+  #   in the script specified in "location".
+  # BeforeInstall:
+  #   - location:
+  #     timeout:
+  #     runas:
+  #   - location:
+  #     timeout:
+  #     runas:
+  # During the AfterInstall deployment lifecycle event, run the commands
+  #   in the script specified in "location".
+  AfterInstall:
+    - location: scripts/after-deploy.sh
+      timeout: 300
+      runas: root
+# During the ApplicationStart deployment lifecycle event, run the commands
+#   in the script specified in "location".
+# ApplicationStart:
+#   - location:
+#     timeout:
+#     runas:
+#   - location:
+#     timeout:
+#     runas:
+# During the ValidateService deployment lifecycle event, run the commands
+#   in the script specified in "location".
+# ValidateService:
+#   - location:
+#     timeout:
+#     runas:
+#   - location:
+#     timeout:
+#     runas:

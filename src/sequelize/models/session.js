@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Session",
+      tableName: "Session",
+      timestamps: false,
+      pranoid: false,
+      underscored: true,
     }
   );
   Session.associate = function (models) {
