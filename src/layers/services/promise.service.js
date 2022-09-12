@@ -32,37 +32,11 @@ class PromiseService {
     return response;
   };
 
-  getPromiseDetail = async (promiseId) => {
-    await this.checkPromiseExists(promiseId);
-    const response = await this.promiseRepository.getPromiseDetail(promiseId);
-    return response;
-  };
+    getPromiseDetail = async (promiseId) => {
 
-  deletePromise = async (userId, promiseId) => {
-    const response = await this.checkPromiseExists(promiseId);
-    this.checkPromiseCreator(response, userId);
-
-    const isDeleted = await this.promiseRepository.deletePromise(
-      userId,
-      promiseId
-    );
-
-    return isDeleted;
-  };
-
-  findFriend = async (friendList) => {
-    let phone = "";
-    let user = "";
-    for (let i = 0; i <= friendList.length - 1; i++) {
-      phone = friendList[i].phone;
-      user = await this.promiseRepository.findFriend(phone);
-      if (user === null) {
-        const error = new Error("찾으시는 친구가 존재하지 않습니다.");
-        error.code = 404;
-        throw error;
-      }
-    } return user;
-  };
+        const response = await this.promiseRepository.getPromiseDetail(promiseId);
+        return response;
+    }
 
   generateRandomId() {
     let randomId = performance.now().toString(36) +

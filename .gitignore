@@ -1,5 +1,4 @@
 node_modules/
-config.js
 config.json
-src/sequelize/config/config.json
+.src/sequelize/config/cofig.json
 .env

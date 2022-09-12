@@ -1,4 +1,4 @@
-const { User } = require("../../sequelize/models");
+const { User, Session } = require("../../sequelize/models");
 
 module.exports = class AuthRepository {
   createUser = async (email, nickname, password, name, phone, image) => {
@@ -36,5 +36,38 @@ module.exports = class AuthRepository {
       },
     });
     return user;
+  };
+
+  findUserById = async (userId) => {
+    const user = await User.findOne({ where: { userId } });
+
+    return user;
+  };
+
+  //세션 관련
+  createSession = async (userId, token) => {
+    const session = await Session.create({ userId, token });
+
+    return session;
+  };
+
+  findSession = async (userId, token) => {
+    const session = await Session.findOne({
+      where: { userId, token },
+    });
+
+    return session;
+  };
+
+  findSessionByUserId = async (userId) => {
+    const session = await Session.findOne({ where: { userId } });
+
+    return session;
+  };
+
+  deleteSession = async (sessionId) => {
+    const success = await Session.destroy({ where: { sessionId } });
+
+    return success;
   };
 };

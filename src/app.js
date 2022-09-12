@@ -1,10 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+const passport = require("passport");
+const session = require("express-session");
+require("dotenv/config");
 
-// const { sequelize } = require("./sequelize/models");
+const indexRouter = require("./layers/routers");
+const passportConfig = require("./passport");
+
+// const { sequelize } = require("./sequelize/models"); //force 실행할때
 
 const app = express();
+passportConfig(); //패스포트 설정
 const port = 3000;
 
 // const whitelist = [
@@ -25,7 +32,7 @@ const port = 3000;
 
 app.use(morgan("dev"));
 //app.use(cors(corsOptions));
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -37,8 +44,26 @@ app.use(express.urlencoded({ extended: true }));
 //   .catch((err) => {
 //     console.error(err);
 //   });
-const indexRouter = require("./layers/routers");
+
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+    },
+  })
+);
+
+//! express-session에 의존하므로 뒤에 위치해야 함
+app.use(passport.initialize()); // 요청 객체에 passport 설정을 심음
+app.use(passport.session()); // req.session 객체에 passport정보를 추가 저장
+// passport.session()이 실행되면, 세션쿠키 정보를 바탕으로 해서 passport/index.js의 deserializeUser()가 실행하게 한다.
+
 app.use("/api", indexRouter);
+app.use(express.static(__dirname));
 
 app.listen(port, () => {
   console.log(port, "진행해주세요.");

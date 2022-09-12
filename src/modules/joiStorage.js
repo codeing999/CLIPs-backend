@@ -74,29 +74,4 @@ module.exports = class Validation {
       "string.base": "image URL은 문자열이어야 합니다.",
     });
   };
-  getTitleJoi = () => {
-    return joi.string().required().messages({
-      "any.required": "약속 이름을 입력해주세요.",
-    })
-  };
-  getDateJoi = () => {
-    return joi.date().required().messages({
-      "any.required": "약속 날짜를 입력해주세요.",
-    })
-  };
-  getXJoi = () => {
-    return joi.number().required().messages({
-      "any.required": "위치를 등록해주세요.",
-    })
-  };
-  getYJoi = () => {
-    return joi.number().required().messages({
-      "any.required": "위치를 등록해주세요.",
-    })
-  };
-  getPenaltyJoi = () => {
-    return joi.string().messages({
-      "string.base": "벌칙은 문자열이어야 합니다.",
-    })
-  };
 };
