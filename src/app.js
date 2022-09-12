@@ -68,6 +68,7 @@ app.use(passport.session()); // req.session 객체에 passport정보를 추가 �
 // passport.session()이 실행되면, 세션쿠키 정보를 바탕으로 해서 passport/index.js의 deserializeUser()가 실행하게 한다.
 
 app.use("/api", indexRouter);
+app.use(express.static(__dirname));
 
 app.listen(port, () => {
   console.log(port, "진행해주세요.");
