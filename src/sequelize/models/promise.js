@@ -36,11 +36,18 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       penalty: DataTypes.STRING,
-
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+      },
+      review: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {
