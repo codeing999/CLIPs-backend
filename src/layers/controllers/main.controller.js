@@ -1,5 +1,5 @@
 const MainService = require("../services/main.service");
-const SeperateCrawlingService = require('../services/seperatecrawling.service')
+const SeperateCrawlingService = require('../services/separatecrawling.service')
 
 module.exports = class MainController {
   mainService = new MainService();
@@ -31,12 +31,12 @@ module.exports = class MainController {
 };
 
 // module.exports = class MainController {
-//   seperateCrawlingService = new SeperateCrawlingService();
+//   separateCrawlingService = new SeparateCrawlingService();
 
 //   imageUrl = async(req,res,next) => {
 //     try{
 //       const {placeUrl} = req.body;
-//       const crawlingList = await this.seperateCrawlingService.crawlImage(placeUrl);
+//       const crawlingList = await this.separateCrawlingService.crawlImage(placeUrl);
 //       return res.json({data: crawlingList});
 //     } catch(err){
 //       console.log(err);
@@ -47,7 +47,7 @@ module.exports = class MainController {
 //   timeUrl = async(req, res, next) => {
 //     try{
 //       const {placeUrl} = req.body;
-//       const crawlingList = await this.seperateCrawlingService.crawlTimeData(placeUrl);
+//       const crawlingList = await this.separateCrawlingService.crawlTimeData(placeUrl);
 //       return res.json({data: crawlingList});
 //     } catch(err){
 //       console.log(err);
