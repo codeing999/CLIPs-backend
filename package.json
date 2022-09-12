@@ -6,7 +6,7 @@
   "scripts": {
     "db:init": "node ./src/db-init.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/app.js",
-    "start": "cross-env NODE_ENV=production pm2 ./src/app.js",
+    "start": "cross-env NODE_ENV=production pm2 restart ./src/app.js",
     "test": "cross-env NODE_ENV=test jest",
     "test:clear": "jest --clearCache"
   },
