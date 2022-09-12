@@ -1,5 +1,5 @@
 const joi = require("joi");
-const Validation = require("../../modules/joistorage");
+const Validation = require("../../modules/joiStorage");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
