@@ -12,17 +12,15 @@ module.exports = class MainService {
   // mainRepository = new MainRepository();
 
   //카테고리 랜덤으로 반환하여 place_url(추후에 imageUrl 크롤링 위한) 추출
-  getImage = async (location) => {
+  getList = async (location) => {
     //구까지 받은 location을 x,y 좌표로 변환하기
-
     try {
       const addressResponse = await axios({
         method: "get",
-        url: "https://dapi.kakao.com/v2/local/search/address.json?radius=500",
-        params: { query: `${location}` }, //body값
+        url: "https://dapi.kakao.com/v2/local/search/address.json",
+        params: { query: `${location}`, radius : 1500 }, //body값
         headers: {
-          Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
-          // Authorization: process.env.secretKey,
+          Authorization: process.env.secretKey,
         },
       });
       const responseAdressData = addressResponse.data.documents.map((p) => {
@@ -33,38 +31,34 @@ module.exports = class MainService {
         };
       });
       //받은 구 내 랜덤 카테고리 추천
-      const keywordlist = [
-        "대형마트",
-        "편의점",
-        "어린이집, 유치원",
-        "학교",
-        "주차장",
-        "주유소, 충전소",
-        "지하철역",
-        "은행",
-        "문화시설",
-        "중개업소",
-        "공공기관",
-        "관광명소",
-        "숙박",
-        "음식점",
-        "카페",
-        "병원",
-        "약국",
-      ];
-      const randomNumber = Math.floor(Math.random() * keywordlist.length);
-      //랜덤 카테고리별 url 만들기, 나중에 kakaoAK 지우기
+      const keywordlist = ["음식점", "카페", "운동장", "헬스장", "술집"];
+      let randomIndexArray = [];
+      for (let i = 0; i < keywordlist.length; i++) {
+        let randomWhile = Math.floor(Math.random() * keywordlist.length);
+        if (randomIndexArray.indexOf(randomWhile) === -1) {
+          randomIndexArray.push(randomWhile);
+        } else { i -- }
+      }
+      console.log(randomIndexArray); //[ 0, 4, 2, 1, 3 ]
+
+      let randomKeyword = '';
+      for (let j= 0; j < randomIndexArray.length; j ++ ) {
+        let randomKeyword = keywordlist[randomIndexArray[j]];
+        console.log(randomKeyword);
+      }
+      console.log(randomKeyword);
+
       const imageResponse = await axios({
         method: "get",
-        url: "https://dapi.kakao.com/v2/local/search/keyword.json?radius=500",
+        url: "https://dapi.kakao.com/v2/local/search/keyword.json",
         params: {
-          query: `${keywordlist[randomNumber]}`,
+          radius: 1500,
+          query: `${keywordlist[0]}`,
           y: `${responseAdressData[0].y}`,
           x: `${responseAdressData[0].x}`,
         },
         headers: {
-          Authorization: "KakaoAK 001eef018cff25d1b840b7e1044c7da5",
-          // Authorization: process.env.secretKey,
+          Authorization: process.env.secretKey,
         },
       });
 
@@ -78,21 +72,25 @@ module.exports = class MainService {
           place: p.place_name,
           address: p.road_address_name,
           phone: p.phone,
-          category: p.category_name,
+          category: randomKeyword,
           placeUrl: p.place_url,
         };
       });
       // );
-let responseImageDataAfter = [];
-      if (responseImageData.length > 5) {
-        responseImageDataAfter = responseImageData.slice(0, 5);
-      }
+
+      // let responseImageDataAfter = [];
+      // if (responseImageData.length > 1000) {
+      //   responseImageDataAfter = responseImageData.slice(0, 1000);
+      // }
       if (!responseImageData.length) {
         throw new Error(
-          `${location}의 ${keywordlist[randomNumber]}이/가 존재하지 않습니다. 재검색해보세요`
+          `${location}의 ${randomKeyword}이/가 존재하지 않습니다. 재검색해보세요`
         );
       } else {
-        return {msg: `${location}의 ${keywordlist[randomNumber]}이/가 ${responseImageDataAfter.length} 개 있습니다.`, data:responseImageDataAfter}
+        return {
+          msg: `${location}의 ${randomKeyword}이/가 ${responseImageData.length} 개 있습니다.`,
+          data: responseImageData,
+        };
       }
     } catch (err) {
       console.log(err);
@@ -101,69 +99,85 @@ let responseImageDataAfter = [];
   };
 
   //crawling starts here
-  crawlImage = async (placeUrl) => {
+  crawlData = async (placeUrl) => {
     let crawlingUrllist = [];
-    try{
-    const browser = await puppeteer.launch({
-      headless: true,
-    });
-    // const placeLength =
-    //   responseImageData.length > 5 ? 5 : responseImageData.length;
-    // for (let i = 0; i < placeLength; i++) {
-    //   let crawlingData = responseImageData[i].placeUrl;
-    const page = await browser.newPage();
-    await page.setViewport({
-      width: 1366,
-      height: 768,
-    });
-    await page.goto(placeUrl);
-    await page
-      .waitForSelector(".link_photo", { timeout: 1000 })
+    try {
+      const browser = await puppeteer.launch({
+        headless: true,
+      });
+      // const placeLength =
+      //   responseImageData.length > 5 ? 5 : responseImageData.length;
+      // for (let i = 0; i < placeLength; i++) {
+      //   let crawlingData = responseImageData[i].placeUrl;
+      const page = await browser.newPage();
+      await page.setViewport({
+        width: 1366,
+        height: 768,
+      });
+      await page.goto(placeUrl);
+      await page
+        .waitForSelector(".link_photo", { timeout: 1000 })
+        .catch(() => console.log("Wait for my-selector timed out"));
 
-      .catch(() => console.log("Wait for my-selector timed out"));
+      const content = await page.content();
+      const $ = cheerio.load(content);
+      const rawArrImageUrl = $(".link_photo");
 
-    const content = await page.content();
-    const $ = cheerio.load(content);
-    const rawArrImageUrl = $(".link_photo");
+      const arrImageUrl = rawArrImageUrl.filter((v) => {
+        return rawArrImageUrl[v].attribs.style;
+      });
 
-    // console.log(
-    //   "@@before",
-    //   rawArrImageUrl.length,
-    //   rawArrImageUrl[0]?.attribs?.style,
-    //   typeof rawArrImageUrl[0]?.attribs?.style
-    // );
-    const arrImageUrl = rawArrImageUrl.filter((v) => {
-      return rawArrImageUrl[v].attribs.style;
-    });
+      let length = arrImageUrl.length > 5 ? 5 : arrImageUrl.length;
+      for (let j = 0; j < length; j++) {
+        let crawlingImageUrl = [];
 
-    // console.log("@@after", arrImageUrl.length);
+        if (arrImageUrl[j].attribs.style) {
+          crawlingImageUrl = arrImageUrl[j].attribs.style.slice(22, -2);
+          // console.log(arrImageUrl[j].attribs);
+        } else {
+          break;
+        }
 
-    let length = arrImageUrl.length > 5 ? 5 : arrImageUrl.length;
-    for (let j = 0; j < length; j++) {
-      let crawlingImageUrl = [];
-      // console.log("imageurl here!!");
-
-      if (arrImageUrl[j].attribs.style) {
-        crawlingImageUrl = arrImageUrl[j].attribs.style.slice(22, -2);
-        // console.log(arrImageUrl[j].attribs);
-      } else {
-        break;
+        // console.log(`${placeUrl} 의 ${j + 1}번째 이미지 :`, crawlingImageUrl);
+        crawlingUrllist.push(crawlingImageUrl);
       }
 
-      console.log(`${placeUrl} 의 ${j + 1}번째 이미지 :`, crawlingImageUrl);
-      //crawlingUrllist.push(crawlingImageUrl);
-
-      // console.log("before push");
-      //console.log(responseImageData);
-      crawlingUrllist.push(crawlingImageUrl);
+      browser.close();
+      // return crawlingUrllist;
+    } catch (err) {
+      console.log(err);
+      return { msg: err.message };
     }
 
-    browser.close();
-    // console.log(crawlingUrllist);
-    return crawlingUrllist;
+    //opening hour crawling starts here
+    const rawArrDateUrl = [];
+    try {
+      const browser = await puppeteer.launch({
+        headless: true,
+      });
 
-    // })
-  }
-  catch(err){console.log(err) 
-    return { msg: err.message }};
-};}
+      const page = await browser.newPage();
+      await page.setViewport({
+        width: 1366,
+        height: 768,
+      });
+      await page.goto(placeUrl);
+      await page
+        .waitForSelector(".list_operation", { timeout: 1000 })
+        .catch(() => console.log("Wait for my-selector timed out"));
+      const content = await page.content();
+      const $ = cheerio.load(content);
+      const rawArrDateUrl = $(".time_operation").text().split("\n")[0]; //".txt_operation"
+      const rawArrTimeUrl = $(".time_operation").text().split("\n")[0];
+      console.log(`${placeUrl} 의 영업시간 :`, rawArrDateUrl, rawArrTimeUrl);
+      browser.close();
+
+      const crawlTimeData = { rawArrDateUrl, rawArrTimeUrl };
+      const allCrawlData = { crawlingUrllist, crawlTimeData };
+      return allCrawlData;
+    } catch (err) {
+      console.log(err);
+      return { msg: err.message };
+    }
+  };
+};

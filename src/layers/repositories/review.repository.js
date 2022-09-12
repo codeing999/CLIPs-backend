@@ -1,23 +1,30 @@
-const {Promise} = require("../../sequelize/models");
+const { Review } = require("../../sequelize/models");
+const { ReviewImage } = require("../../sequelize/models");
 const sequelize = require("sequelize");
 
 module.exports = class ReviewRepository {
-  //새로운 리뷰 Promise table에 저장
-  createReviewData = async (review, image) => {
+  //새로운 리뷰를 Review와 ReviewImage table에 저장
+  createReviewData = async (content, image, promiseId) => {
     try {
-      const createReviewData = await Promise.create({ review, image });
-      return createReviewData;
+      const createReviewData = await Review.create({
+        content,
+        promiseId
+      }); 
+      let reviewId = createReviewData.dataValues.reviewId
+ 
+      const createReviewImageData = await ReviewImage.bulkCreate([{image:reviewId}])
+      console.log("repo22", createReviewData)
+      return createReviewData, createReviewImageData
     } catch (err) {
-      console.log(err);
-      return { msg: err.message };
+        console.log(err);
+        return { msg: err.message };
+      }
     }
-  };
-
-  getReviewData = async (promiseId, user_id) => {
+   
+  getReviewData = async (promiseId, reviewId) => {
     try {
-      const getReviewData = await Promise.findAll({
-        order: ["data", "DESC"],
-        attributes: { promiseId, user_id },
+      const getReviewData = await Review.findAll({
+        where: { review_id: reviewId, promise_id: promiseId },
       });
       return getReviewData;
     } catch (err) {
@@ -26,24 +33,21 @@ module.exports = class ReviewRepository {
     }
   };
 
-  updateReviewData = async (promiseId, user_id) => {
+  updateReviewData = async (content, image, reviewId) => {
     try {
-      const updateReviewData = await Promise.update({
-        where: { promiseId: promiseId },
-      });
+      const updateReviewData = await Review.update(
+        { content, image },
+        { where: { reviewId } }
+      );
+      return updateReviewData;
     } catch (err) {
       console.log(err);
       return { msg: err.message };
     }
   };
-  deleteReviewData = async (promiseId, user_id) => {
-    try {
-      const updateReviewData = await Promise.destroy({
-        where: { promiseId: promiseId },
-      });
-    } catch (err) {
-      console.log(err);
-      return { msg: err.message };
-    }
+  deleteReviewData = async (reviewId) => {
+    await Review.destroy({
+      where: { review_id: reviewId },
+    });
   };
 };
