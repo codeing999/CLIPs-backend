@@ -8,11 +8,12 @@ module.exports = class ReviewRepository {
     try {
       const createReviewData = await Review.create({
         content,
-        promiseId,
+        promiseId
       }); 
       let reviewId = createReviewData.dataValues.reviewId
-    
-      const createReviewImageData = await ReviewImage.create({image, reviewId});
+ 
+      const createReviewImageData = await ReviewImage.bulkCreate([{image:reviewId}])
+      console.log("repo22", createReviewData)
       return createReviewData, createReviewImageData
     } catch (err) {
         console.log(err);
