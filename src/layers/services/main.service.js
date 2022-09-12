@@ -88,13 +88,13 @@ module.exports = class MainService {
         );
       } else {
         return {
-          msg: `${location}의 ${randomKeyword}이/가 ${responseImageData.length} 개 있습니다.`,
+          message: `${location}의 ${randomKeyword}이/가 ${responseImageData.length} 개 있습니다.`,
           data: responseImageData,
         };
       }
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
@@ -146,7 +146,7 @@ module.exports = class MainService {
       // return crawlingUrllist;
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
 
     //opening hour crawling starts here
@@ -177,7 +177,7 @@ module.exports = class MainService {
       return allCrawlData;
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 };

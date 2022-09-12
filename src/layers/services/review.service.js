@@ -11,24 +11,23 @@ module.exports = class ReviewService {
         image,
         promiseId
       );
-      return {
-        status: 200,
-        message: "후기가 생성되었습니다.",
-        data: createreviews
-      }
+      console.log("service", createreviews)
+      return createreviews
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
   getReview = async ( promiseId , reviewId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData( promiseId , reviewId);
+      console.log("service", getreviews)
       return getreviews;
+    
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
@@ -38,7 +37,7 @@ module.exports = class ReviewService {
       return true;
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
@@ -48,7 +47,7 @@ module.exports = class ReviewService {
       return true;
     }catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 };

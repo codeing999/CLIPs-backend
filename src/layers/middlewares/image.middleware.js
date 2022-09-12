@@ -7,7 +7,7 @@ const aws = require('aws-sdk');
 // aws.config.loadFromPath(__dirname + '/config/config.json');
 const multerS3 = require("multer-s3");
 const { func } = require("joi");
-const { fstat } = require("fs");
+// const { fstat } = require("fs");
 // const { extensions } = require("sequelize/types/utils/validator-extras");
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,

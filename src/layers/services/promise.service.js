@@ -5,8 +5,7 @@ class PromiseService {
         this.promiseRepository = new PromiseRepository();
     }
 
-    createPromise = async (title, date, x, y, penalty) => {
-
+    createPromise = async (title, date, x, y, penalty, user_id) => {
         await this.promiseRepository.createPromise(
             title,
             date,

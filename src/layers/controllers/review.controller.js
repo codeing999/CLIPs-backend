@@ -1,5 +1,6 @@
 const joi = require("joi");
-const Validation = require("../../modules/joi_storage");
+const Validation = require("../../modules/joiStorage");
+const { use } = require("../routers/review.router");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
@@ -10,18 +11,11 @@ module.exports = class ReviewController {
   createReview = async (req, res, next) => {
     const { promiseId } = req.params;
     const { content } = req.body;
-    const reviewImageUrl = req.files; //[{하나},{하나}] 
-    const image = reviewImageUrl.map(row=> row.location) // ['주소', '주소'] 
+    const reviewImageUrl = req.files; //[{하나},{하나}]
+    const image = reviewImageUrl.map((row) => row.location); //['주소', '주소']
+    const user_id = res.locals.userId;
 
-    // let image = '';
-    // for (let i= 0; i< reviewImageUrl.length; i++) {
-    //   if (i === reviewImageUrl.length) {image += images[i]}
-    //     else{image += images[i] + ","
-    //     }
-    // }
-    console.log(image)
-
-    const user_id = res.locals.userId; 
+    // console.log("controller", image, user_id, content)
 
     try {
       await joi
@@ -36,27 +30,29 @@ module.exports = class ReviewController {
         promiseId
       );
       return res.json({
-        msg: getReview.message,
+        data:getReview,
+        message: `게시글 ${promiseId}의 후기, 내용: ${content}, 링크 : ${image}` 
       });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
   //리뷰 조회
   getReview = async (req, res, next) => {
     const user_id = res.locals.user_id;
-    const { promiseId , reviewId} = req.params;
-
+    const { promiseId, reviewId } = req.params;
+    console.log("user_id", user_id);
     try {
-      const getReview = await this.reviewService.getReview( promiseId , reviewId);
+      const getReview = await this.reviewService.getReview(promiseId, reviewId);
       return res.json({
-        data: getReview
+        data: getReview,
+        message: `게시글 ${promiseId}에 달린 ${user_id}의 후기 ${reviewId}`,
       });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
@@ -66,9 +62,9 @@ module.exports = class ReviewController {
     const { promiseId, reviewId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files;
-    const image = reviewImageUrl.map(row=> row.location)
+    const image = reviewImageUrl.map((row) => row.location);
 
-    console.log("cont", image)
+    console.log("cont", image);
 
     try {
       await joi
@@ -83,7 +79,7 @@ module.exports = class ReviewController {
       });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
@@ -99,7 +95,7 @@ module.exports = class ReviewController {
       });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 };

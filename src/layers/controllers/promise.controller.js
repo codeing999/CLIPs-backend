@@ -22,11 +22,11 @@ class PromiseController {
                 user_id: joi.number().required()
             })
                 .validateAsync({ title, date, x, y, penalty, user_id })
-
             await this.promiseService.createPromise(title, date, x, y, penalty, user_id);
 
             return res.status(200).send("약속 생성 완료")
         } catch (err) {
+            // console.log(err)
             return res.status(400).send(err);
         }
 
