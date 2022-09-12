@@ -19,7 +19,7 @@ module.exports = class ReviewService {
     }
   };
 
-  getReview = async ( promiseId , reviewId) => {
+  getReview = async (promiseId , reviewId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData( promiseId , reviewId);
       console.log("service", getreviews)
@@ -41,9 +41,9 @@ module.exports = class ReviewService {
     }
   };
 
-  deleteReview = async (reviewId) => {
+  deleteReview = async (reviewId, image) => {
     try {
-      await this.reviewRepository.deleteReviewData(reviewId);
+      await this.reviewRepository.deleteReviewData(reviewId,image);
       return true;
     }catch (err) {
       console.log(err);

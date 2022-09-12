@@ -12,6 +12,7 @@ module.exports = class ReviewController {
     const { promiseId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files; //[{하나},{하나}]
+    console.log(reviewImageUrl)
     const image = reviewImageUrl.map((row) => row.location); //['주소', '주소']
     const user_id = res.locals.userId;
 
@@ -85,11 +86,13 @@ module.exports = class ReviewController {
 
   //리뷰 삭제
   deleteReview = async (req, res, next) => {
-    const user_id = res.locals.userId;
-    const { promiseId, reviewId } = req.params;
+    // const user_id = res.locals.userId;
+    const { reviewId } = req.params;
+    const image = req.file;
+    console.log("controller", req.file)
 
     try {
-      const deleteReview = await this.reviewService.deleteReview(reviewId);
+      const deleteReview = await this.reviewService.deleteReview(reviewId,image);
       return res.json({
         msg: "후기가 삭제되었습니다",
       });

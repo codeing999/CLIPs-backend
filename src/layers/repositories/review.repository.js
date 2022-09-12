@@ -41,18 +41,23 @@ module.exports = class ReviewRepository {
   updateReviewData = async (content, image, reviewId) => {
     try {
       const updateReviewData = await Review.update(
-        { content, image },
+        { content },
         { where: { reviewId } }
       );
+      const updateREviewImageData = await ReviewImage.destroy({ image}, {where:{reviewId}})
+
       return updateReviewData;
     } catch (err) {
       console.log(err);
       return { message: err.message };
     }
   };
-  deleteReviewData = async (reviewId) => {
-    await Review.destroy({
-      where: { review_id: reviewId },
-    });
+
+  deleteReviewData = async (reviewId, image) => {
+    try{
+    await ReviewImage.destroy({where:{reviewId}})
+  } catch(err) {
+    console.log(err)
+    {return { message: err.message }}
   }
-}
+}}

@@ -1,7 +1,7 @@
 const joi = require("joi");
 const passport = require("passport");
 
-const Validation = require("../../modules/joi_storage");
+const Validation = require("../../modules/joiStorage");
 const AuthService = require("../services/auth.service");
 
 module.exports = class AuthController {
