@@ -5,6 +5,5 @@ cd $REPOSITORY
 
 sudo npm ci
 
-sudo ls -al
-
-sudo pm2 restart ./src/app.js
+sudo npm start
+#sudo pm2 restart ./src/app.js
