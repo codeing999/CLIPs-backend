@@ -3,6 +3,11 @@ REPOSITORY=/home/ubuntu/clips-backend
 
 cd $REPOSITORY
 
-sudo npm clips
+echo npmci
 
-sudo pm2 restart ./src/app.js
+sudo npm ci
+
+echo npmstart
+
+sudo npm start
+#sudo pm2 restart ./src/app.js

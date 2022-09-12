@@ -45,7 +45,7 @@ hooks:
   AfterInstall:
     - location: scripts/after-deploy.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
 # During the ApplicationStart deployment lifecycle event, run the commands
 #   in the script specified in "location".
 # ApplicationStart:
