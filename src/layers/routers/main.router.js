@@ -1,10 +1,14 @@
 const express = require("express");
-const router = express.Router();
+const mainRouter = express.Router();
 const MainController = require("../controllers/main.controller");
 const mainController = new MainController();
 
 // 메인페이지
-// router.post("/main", mainController.mainPage);
-router.get("/", mainController.mainPage);
+mainRouter.post("/", mainController.mainPage);
+mainRouter.post("/crawlAll", mainController.crawlingData);
 
-module.exports = router;
+//크롤링 따로 할 때 
+// mainRouter.post("/crawl", mainController.imageUrl);
+// mainRouter.post("/crawlTime", mainController.timeUrl)
+
+module.exports = mainRouter;
