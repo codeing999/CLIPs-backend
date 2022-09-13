@@ -4,12 +4,14 @@ const axios = require("axios");
 const { query } = require("express");
 
 //크롤링
+
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
 const fs = require("fs");
 
 module.exports = class MainService {
   // mainRepository = new MainRepository();
+
 
   //카테고리 랜덤으로 반환하여 place_url(추후에 imageUrl 크롤링 위한) 추출
   getList = async (location) => {
@@ -22,6 +24,7 @@ module.exports = class MainService {
         headers: {
           Authorization: process.env.secretKey,
         },
+
       });
       const responseAdressData = addressResponse.data.documents.map((p) => {
         return {
