@@ -59,13 +59,13 @@ module.exports = class ReviewController {
 
   //리뷰 수정
   updateReview = async (req, res, next) => {
-    const user_id = res.locals.userId;
+    // const user_id = res.locals.userId;
     const { promiseId, reviewId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files;
     const image = reviewImageUrl.map((row) => row.location);
 
-    console.log("cont", image);
+    console.log("cont", content);
 
     try {
       await joi
@@ -74,6 +74,7 @@ module.exports = class ReviewController {
         })
         .validateAsync({ content });
 
+      // await this.reviewService.updateReview({content, image},{where :{reviewId}});
       await this.reviewService.updateReview(content, image, reviewId);
       return res.json({
         msg: "후기가 수정되었습니다",

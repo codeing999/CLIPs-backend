@@ -40,13 +40,23 @@ module.exports = class ReviewRepository {
 
   updateReviewData = async (content, image, reviewId) => {
     try {
+      const updateREviewImageData = await ReviewImage.destroy({where:{reviewId}})
+
       const updateReviewData = await Review.update(
         { content },
         { where: { reviewId } }
       );
-      const updateREviewImageData = await ReviewImage.destroy({ image}, {where:{reviewId}})
 
+      
+      let bulkUpateImages = [];
+      for (let i=0; i< image.length; i++ ) {
+        let bulkUpdateImagesUrl = {image: image[i], reviewId : reviewId};
+        bulkUpateImages.push(bulkUpdateImagesUrl)}
+        console.log(bulkUpateImages)
+
+      const createReviewImageData = await ReviewImage.bulkCreate(bulkUpateImages);
       return updateReviewData;
+
     } catch (err) {
       console.log(err);
       return { message: err.message };

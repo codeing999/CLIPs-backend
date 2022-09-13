@@ -53,7 +53,7 @@ const imageUploader = multer({
       cb(null, `${Date.now()}-${file.originalname}`);
     }, //filename 설정
     limits: { fileSize: 10 * 1024 * 1024 },//최대 10mb 까지 업로드 가능
-  }),
+  })
 }).array("image", 5)
 
 // module.exports = {upload};

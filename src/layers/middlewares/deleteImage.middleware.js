@@ -1,15 +1,15 @@
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const aws = require('aws-sdk');
+const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { ReviewImage } = require("../../sequelize/models");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_PRIVATE_KEY,
-  region:process.env.AWS_REGION,
-})
+  region: process.env.AWS_REGION,
+});
 
 //확장자 필터
 fileFilter = (req, file, cb) => {
@@ -26,30 +26,31 @@ fileFilter = (req, file, cb) => {
 };
 
 const deleteImage = async (req, res, next) => {
-    try{
-    const {reviewId} = req.params;
-    const {image} = await ReviewImage.findOne({ 
-        where: {reviewId}, 
-        attributes: ['image'],
-        raw:true
-    })
+  try {
+    const { reviewId } = req.params;
+    const { image } = await ReviewImage.findOne({
+      where: { reviewId },
+      attributes: ["image"],
+      raw: true,
+    });
     const params = {
-      Bucket: 'clips-s3-bucket',
-      Key: image.split('/')[3]
-    }
-    console.log(image.split('/')[3])
+      Bucket: "clips-s3-bucket",
+      Key: image.split("/")[3],
+    };
 
-    s3.deleteObject(params, function(err, data) {
-        console.log("middleware", err)
+    s3.deleteObject(params, function (err, data) {
       if (err) {
-        console.log(err, err.stack)
+        console.log(err, err.stack);
       } else {
-        console.log('이미지가 삭제되었습니다.', data)
-        return image
+        console.log("이미지가 삭제되었습니다.", data);
+        return image;
       }
-    })
-    next()}catch(err){console.log
-    return{message:err.message}}
-}
+    });
+    next();
+  } catch (err) {
+    console.log;
+    return { message: err.message };
+  }
+};
 
-module.exports = {deleteImage};
+module.exports = { deleteImage };
