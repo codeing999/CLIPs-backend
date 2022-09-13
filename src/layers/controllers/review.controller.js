@@ -10,8 +10,8 @@ module.exports = class ReviewController {
   createReview = async (req, res, next) => {
     const { promiseId } = req.params;
     const { content } = req.body;
-    const reviewImageUrl = req.files; //[{하나},{하나}] 
-    const image = reviewImageUrl.map(row=> row.location) // ['주소', '주소'] 
+    const reviewImageUrl = req.files; //[{하나},{하나}]
+    const image = reviewImageUrl.map((row) => row.location); // ['주소', '주소']
 
     // let image = '';
     // for (let i= 0; i< reviewImageUrl.length; i++) {
@@ -19,9 +19,9 @@ module.exports = class ReviewController {
     //     else{image += images[i] + ","
     //     }
     // }
-    console.log(image)
+    console.log(image);
 
-    const user_id = res.locals.userId; 
+    const user_id = res.locals.userId;
 
     try {
       await joi
@@ -47,12 +47,12 @@ module.exports = class ReviewController {
   //리뷰 조회
   getReview = async (req, res, next) => {
     const user_id = res.locals.user_id;
-    const { promiseId , reviewId} = req.params;
+    const { promiseId, reviewId } = req.params;
 
     try {
-      const getReview = await this.reviewService.getReview( promiseId , reviewId);
+      const getReview = await this.reviewService.getReview(promiseId, reviewId);
       return res.json({
-        data: getReview
+        data: getReview,
       });
     } catch (err) {
       console.log(err);
@@ -66,9 +66,9 @@ module.exports = class ReviewController {
     const { promiseId, reviewId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files;
-    const image = reviewImageUrl.map(row=> row.location)
+    const image = reviewImageUrl.map((row) => row.location);
 
-    console.log("cont", image)
+    console.log("cont", image);
 
     try {
       await joi
