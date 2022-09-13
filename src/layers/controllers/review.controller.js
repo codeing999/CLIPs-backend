@@ -1,6 +1,6 @@
 const joi = require("joi");
 const Validation = require("../../modules/joiStorage");
-const { use } = require("../routers/review.router");
+// const { use } = require("../routers/review.router");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
@@ -12,11 +12,17 @@ module.exports = class ReviewController {
     const { promiseId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files; //[{하나},{하나}]
-    console.log(reviewImageUrl)
-    const image = reviewImageUrl.map((row) => row.location); //['주소', '주소']
-    const user_id = res.locals.userId;
+    const image = reviewImageUrl.map((row) => row.location); // ['주소', '주소']
 
-    // console.log("controller", image, user_id, content)
+    // let image = '';
+    // for (let i= 0; i< reviewImageUrl.length; i++) {
+    //   if (i === reviewImageUrl.length) {image += images[i]}
+    //     else{image += images[i] + ","
+    //     }
+    // }
+    console.log(image);
+
+    const user_id = res.locals.userId;
 
     try {
       await joi
@@ -44,12 +50,10 @@ module.exports = class ReviewController {
   getReview = async (req, res, next) => {
     const user_id = res.locals.user_id;
     const { promiseId, reviewId } = req.params;
-    console.log("user_id", user_id);
     try {
       const getReview = await this.reviewService.getReview(promiseId, reviewId);
       return res.json({
         data: getReview,
-        message: `게시글 ${promiseId}에 달린 ${user_id}의 후기 ${reviewId}`,
       });
     } catch (err) {
       console.log(err);
@@ -64,8 +68,6 @@ module.exports = class ReviewController {
     const { content } = req.body;
     const reviewImageUrl = req.files;
     const image = reviewImageUrl.map((row) => row.location);
-
-    console.log("cont", content);
 
     try {
       await joi
