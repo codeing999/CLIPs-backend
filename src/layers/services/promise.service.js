@@ -32,11 +32,37 @@ class PromiseService {
     return response;
   };
 
-    getPromiseDetail = async (promiseId) => {
+  getPromiseDetail = async (promiseId) => {
+    await this.checkPromiseExists(promiseId);
+    const response = await this.promiseRepository.getPromiseDetail(promiseId);
+    return response;
+  };
 
-        const response = await this.promiseRepository.getPromiseDetail(promiseId);
-        return response;
-    }
+  deletePromise = async (userId, promiseId) => {
+    const response = await this.checkPromiseExists(promiseId);
+    this.checkPromiseCreator(response, userId);
+
+    const isDeleted = await this.promiseRepository.deletePromise(
+      userId,
+      promiseId
+    );
+
+    return isDeleted;
+  };
+
+  findFriend = async (friendList) => {
+    let nickname = "";
+    let user = "";
+    for (let i = 0; i <= friendList.length - 1; i++) {
+      nickname = friendList[i].nickname;
+      user = await this.promiseRepository.findFriend(nickname);
+      if (user === null) {
+        const error = new Error("찾으시는 친구가 존재하지 않습니다.");
+        error.code = 404;
+        throw error;
+      }
+    } return user;
+  };
 
   generateRandomId() {
     let randomId = performance.now().toString(36) +
@@ -47,10 +73,10 @@ class PromiseService {
 
   async createParticipants(friendList, promiseId) {
     let user = "";
-    let phone = "";
+    let nickname = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
-      phone = friendList[i].phone;
-      let friend = await this.promiseRepository.findFriend(phone);
+      nickname = friendList[i].nickname;
+      let friend = await this.promiseRepository.findFriend(nickname);
       user = friend.dataValues.userId;
       await this.promiseRepository.createParticipants(promiseId, user);
     }
@@ -71,7 +97,13 @@ class PromiseService {
       error.code = 404;
       throw error;
     } else return response;
-  }
-}
+  };
+
+  countFriend = async() => {
+    let countFriend = ""
+
+
+  };
+};
 
 module.exports = PromiseService;

@@ -43,14 +43,19 @@ class PromiseRepository {
     try {
       const response = await Promise.findAll({
         order: [["date", "DESC"]],
-        attributes: { exclude: ["penalty", "done"] },
+        attributes: {
+          exclude: ["penalty"],
+        },
+        include: [{
+          model: Friend,
+          through: 'Friend',
+          as: "participants",
+        }]
       });
 
       return response;
     } catch (err) {
-      const error = new Error("FAILD_SQL");
-      error.code = 405;
-      throw error;
+      return err.message;
     }
   };
 
@@ -68,11 +73,11 @@ class PromiseRepository {
     }
   };
 
-  findFriend = async (phone) => {
+  findFriend = async (nickname) => {
     try {
       const response = await User.findOne({
-        attributes: ["phone", "nickname","name", "userId"],
-        where: { phone: phone },
+        attributes: ["userId", "nickname"],
+        where: { nickname: nickname },
       });
       return response;
     } catch (err) {

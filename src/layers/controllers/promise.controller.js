@@ -1,7 +1,7 @@
 const PromiseService = require("../services/promise.service");
 const joi = require("joi");
 const promise = require("../../sequelize/models/promise");
-const Validation = require("../../modules/joi_storage");
+const Validation = require("../../modules/joiStorage");
 
 class PromiseController {
   constructor() {
@@ -38,7 +38,7 @@ class PromiseController {
 
       return res.status(200).send("약속 생성 완료");
     } catch (err) {
-      return res.status(400).json(err.message, err.code);
+      return res.status(400).json(err.message);
     }
   };
 
@@ -55,7 +55,7 @@ class PromiseController {
       const result = await this.promiseService.findFriend(friendList);
       return res.status(200).send(result);
     } catch (err) {
-      return res.status(400).json(err.message, err.code);
+      return res.status(400).json(err.message);
     }
   };
 
@@ -90,17 +90,19 @@ class PromiseController {
     }
   };
 
-  // updatePromise = async (req,res) => {
-  //     const {date, x, y, friendList, penalty} = req.body;
-  //     const { promiseId } = req.params;
+  updatePromise = async (req,res) => {
+      const {date, x, y, friendList, penalty, done} = req.body;
+      const { promiseId } = req.params;
 
-  //     try {
-  //         const result = await this.PromiseService.updatePromise();
+      try {
+          const result = await this.PromiseService.updatePromise();
 
-  //         return res.status(200).send("약속이 수정되었습니다")
-  //     }
+          return res.status(200).send("약속이 수정되었습니다")
+      } catch (err) {
+        return res.status(400);
+      }
 
-  // };
+  };
 
   deletePromise = async (req, res) => {
     const userId = res.locals.userId;
@@ -120,7 +122,7 @@ class PromiseController {
       const result = await this.promiseService.deletePromise(userId, promiseId);
       return res.status(200).json("약속이 삭제되었습니다");
     } catch (err) {
-      return res.json(err.message, err.code);
+      return res.status(400).json(err.message);
     }
   };
 }

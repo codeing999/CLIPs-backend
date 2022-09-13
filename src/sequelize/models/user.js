@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
       constraints: false,
     });
     User.belongsToMany(models.Promise, {
-      as: "friend",
+      as: "thisTime",
       through: "Friend",
       foreignKey: "userId",
       sourceKey: "userId",

@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       date: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       x: {
@@ -61,7 +61,7 @@ module.exports = (sequelize, DataTypes) => {
       constraints: false,
     });
     Promise.belongsToMany(models.User, {
-      as: "promise",
+      as: "participants",
       through: "Friend",
       foreignKey: "promiseId",
       sourceKey: "promiseId",
