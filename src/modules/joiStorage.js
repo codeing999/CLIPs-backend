@@ -74,11 +74,33 @@ module.exports = class Validation {
       "string.base": "image URL은 문자열이어야 합니다.",
     });
   };
-  getContentJoi =()=> {
-  return joi.string().min(10).max(800).messages({
-    "string.base": "후기는 문자열이어야 합니다.",
-    "string.min": "후기는 최소 10글자여야 합니다.",
-    "string.max": "후기는 최대 800글자를 넘을 수 없습니다.",
-  });
-  }
-}
+  getTitleJoi = () => {
+    return joi.string().required().messages({
+      "any.required": "약속 이름을 입력해주세요.",
+    })
+  };
+  getDateJoi = () => {
+    const dateRegExp = /^([1-9]\d{3}.(0[1-9]|1[0-2]).(0[1-9]|[12]\d|3[01])[\ ]([01]?[0-9]|2[0-3]):[0-5][0-9])$/;
+
+    return joi.string().required().regex(dateRegExp).messages({
+      "any.required": "약속 날짜를 입력해주세요.",
+      "string.pattern.base": "날짜 형식에 맞지 않습니다.",
+      "string.base": "날짜 형식은 문자열이어야 합니다.",
+    })
+  };
+  getXJoi = () => {
+    return joi.number().required().messages({
+      "any.required": "위치를 등록해주세요.",
+    })
+  };
+  getYJoi = () => {
+    return joi.number().required().messages({
+      "any.required": "위치를 등록해주세요.",
+    })
+  };
+  getPenaltyJoi = () => {
+    return joi.string().messages({
+      "string.base": "벌칙은 문자열이어야 합니다.",
+    })
+  };
+};

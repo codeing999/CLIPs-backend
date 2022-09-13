@@ -1,6 +1,5 @@
 const joi = require("joi");
 const Validation = require("../../modules/joiStorage");
-const { use } = require("../routers/review.router");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
@@ -44,7 +43,6 @@ module.exports = class ReviewController {
   getReview = async (req, res, next) => {
     const user_id = res.locals.user_id;
     const { promiseId, reviewId } = req.params;
-    console.log("user_id", user_id);
     try {
       const getReview = await this.reviewService.getReview(promiseId, reviewId);
       return res.json({
@@ -64,8 +62,6 @@ module.exports = class ReviewController {
     const { content } = req.body;
     const reviewImageUrl = req.files;
     const image = reviewImageUrl.map((row) => row.location);
-
-    console.log("cont", content);
 
     try {
       await joi

@@ -14,17 +14,17 @@ module.exports = (sequelize, DataTypes) => {
   Promise.init(
     {
       promiseId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING, //랜덤 생성을 위해 string으로 변경
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
+        // autoIncrement: true,
       },
       title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       date: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       x: {
@@ -36,18 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       penalty: DataTypes.STRING,
+      
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
-      },
-      review: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      image: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
     },
     {
@@ -68,10 +61,11 @@ module.exports = (sequelize, DataTypes) => {
       constraints: false,
     });
     Promise.belongsToMany(models.User, {
-      as: "promise",
+      as: "participants",
       through: "Friend",
       foreignKey: "promiseId",
       sourceKey: "promiseId",
+      modelName: "Friend",
       timestamps: false,
     });
     Promise.hasMany(models.Review, {
