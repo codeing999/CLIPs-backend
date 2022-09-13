@@ -87,10 +87,8 @@ module.exports = class ReviewController {
 
   //리뷰 삭제
   deleteReview = async (req, res, next) => {
-    // const user_id = res.locals.userId;
     const { reviewId } = req.params;
-    const image = req.file;
-    console.log("controller", req.file)
+    const image = req.file
 
     try {
       const deleteReview = await this.reviewService.deleteReview(reviewId,image);
