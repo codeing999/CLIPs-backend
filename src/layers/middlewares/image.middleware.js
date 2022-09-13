@@ -7,7 +7,7 @@ const aws = require('aws-sdk');
 // aws.config.loadFromPath(__dirname + '/config/config.json');
 const multerS3 = require("multer-s3");
 const { func } = require("joi");
-const { fstat } = require("fs");
+// const { fstat } = require("fs");
 // const { extensions } = require("sequelize/types/utils/validator-extras");
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
@@ -53,7 +53,7 @@ const imageUploader = multer({
       cb(null, `${Date.now()}-${file.originalname}`);
     }, //filename 설정
     limits: { fileSize: 10 * 1024 * 1024 },//최대 10mb 까지 업로드 가능
-  }),
+  })
 }).array("image", 5)
 
 // module.exports = {upload};

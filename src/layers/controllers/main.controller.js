@@ -14,7 +14,7 @@ module.exports = class MainController {
     } 
     catch (err) {
       console.log(err);
-      return res.json({ msg: err.message });
+      return res.json({ message: err.message });
     }
   };
 
