@@ -4,6 +4,7 @@ const fs = require("fs");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { ReviewImage } = require("../../sequelize/models");
+const { createHistogram } = require("perf_hooks");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
@@ -33,24 +34,25 @@ const deleteImage = async (req, res, next) => {
       attributes: ["image"],
       raw: true,
     });
-    const params = {
-      Bucket: "clips-s3-bucket",
-      Key: image.split("/")[3],
-    };
-
-    s3.deleteObject(params, function (err, data) {
-      if (err) {
-        console.log(err, err.stack);
-      } else {
-        console.log("이미지가 삭제되었습니다.", data);
-        return image;
-      }
-    });
-    next();
-  } catch (err) {
-    console.log;
-    return { message: err.message };
+  
+  const params = {
+    Bucket: "clips-s3-bucket",
+    Key: image.split("/")[3],
   }
+
+  s3.deleteObject(params, function (err, data) {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      console.log("이미지가 삭제되었습니다.", data);
+      return image;
+    }
+  })
+}catch (err) {
+  console.log(err);
+  return { message: "콘트롤러, 삭제할 리뷰가 없습니다. " };
+}
+  next();
 };
 
 module.exports = { deleteImage };

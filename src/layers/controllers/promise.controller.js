@@ -9,7 +9,6 @@ class PromiseController {
     this.validation = new Validation();
   }
 
-<<<<<<< HEAD
     constructor() {
         this.promiseService = new PromiseService();
     }
@@ -54,11 +53,6 @@ class PromiseController {
 
 findFriend = async (req, res) => {
     const { phone } = req.body;
-=======
-  createPromise = async (req, res) => {
-    const { title, date, x, y, friendList, penalty } = req.body;
-    const userId = res.locals.userId;
->>>>>>> 736f00021dabf477029ab5ad669df538bd95d791
 
     try {
       await joi

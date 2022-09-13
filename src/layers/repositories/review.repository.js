@@ -65,9 +65,8 @@ module.exports = class ReviewRepository {
 
   deleteReviewData = async (reviewId, image) => {
     try{
-    await ReviewImage.destroy({where:{reviewId}})
-  } catch(err) {
-    console.log(err)
-    {return { message: err.message }}
-  }
+      await ReviewImage.destroy({where:{reviewId}})
+    await Review.destroy({where:{reviewId}})
+  } catch(err) {console.log(err)
+  return {message:err.message}}
 }}

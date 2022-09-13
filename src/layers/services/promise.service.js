@@ -27,17 +27,16 @@ class PromiseService {
     }
   };
 
-    createPromise = async (title, date, x, y, penalty, user_id) => {
-        await this.promiseRepository.createPromise(
-            title,
-            date,
-            x,
-            y,            
-            penalty,
-            user_id,
-        );
-        return '약속 생성';
-    };
+  getAllPromise = async () => {
+    const response = await this.promiseRepository.getAllPromise();
+    return response;
+  };
+
+  getPromiseDetail = async (promiseId) => {
+    await this.checkPromiseExists(promiseId);
+    const response = await this.promiseRepository.getPromiseDetail(promiseId);
+    return response;
+  };
 
   deletePromise = async (userId, promiseId) => {
     const response = await this.checkPromiseExists(promiseId);
