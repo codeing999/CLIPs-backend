@@ -9,10 +9,6 @@ class PromiseController {
     this.validation = new Validation();
   }
 
-    constructor() {
-        this.promiseService = new PromiseService();
-    }
-
     createPromise = async (req, res) => {
         const { title, date, x, y, friendlist, penalty } = req.body;
         const user_id = res.locals.userId;        
