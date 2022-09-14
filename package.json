@@ -5,8 +5,13 @@
   "main": "app.js",
   "scripts": {
     "db:init": "node ./src/db-init.js",
+<<<<<<< HEAD
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/app.js",
     "start": "cross-env NODE_ENV=production pm2 start ./src/app.js",
+=======
+    "start:dev": "nodemon ./src/app.js",
+    "start": "cross-env NODE_ENV=production pm2 restart ./src/app.js",
+>>>>>>> develop
     "test": "cross-env NODE_ENV=test jest",
     "test:clear": "jest --clearCache",
     "build": ""
@@ -22,6 +27,7 @@
   },
   "homepage": "https://github.com/codeing999/CLIPs-backend#readme",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "husky": "^8.0.1",
     "jest": "^29.0.1",
     "nodemon": "^2.0.19",
@@ -34,7 +40,6 @@
     "chalk": "^5.0.1",
     "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-session": "^1.17.3",

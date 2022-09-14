@@ -1,5 +1,6 @@
 const joi = require("joi");
 const Validation = require("../../modules/joiStorage");
+// const { use } = require("../routers/review.router");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
@@ -36,11 +37,12 @@ module.exports = class ReviewController {
         promiseId
       );
       return res.json({
-        msg: getReview.message,
+        data: getReview,
+        message: `게시글 ${promiseId}의 후기, 내용: ${content}, 링크 : ${image}`,
       });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
@@ -48,7 +50,6 @@ module.exports = class ReviewController {
   getReview = async (req, res, next) => {
     const user_id = res.locals.user_id;
     const { promiseId, reviewId } = req.params;
-
     try {
       const getReview = await this.reviewService.getReview(promiseId, reviewId);
       return res.json({
@@ -56,50 +57,59 @@ module.exports = class ReviewController {
       });
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
   //리뷰 수정
   updateReview = async (req, res, next) => {
-    const user_id = res.locals.userId;
-    const { promiseId, reviewId } = req.params;
-    const { content } = req.body;
-    const reviewImageUrl = req.files;
-    const image = reviewImageUrl.map((row) => row.location);
-
-    console.log("cont", image);
-
     try {
-      await joi
-        .object({
-          content: this.validation.getContentJoi(),
-        })
-        .validateAsync({ content });
+      const { promiseId, reviewId } = req.params;
+      const { content } = req.body;
+      const reviewImageUrl = req.files;
+      const image = reviewImageUrl.map((row) => row.location);
+      if (reviewImageUrl) {
+        console.log("cont", content);
 
-      await this.reviewService.updateReview(content, image, reviewId);
-      return res.json({
-        msg: "후기가 수정되었습니다",
-      });
+        await joi
+          .object({
+            content: this.validation.getContentJoi(),
+          })
+          .validateAsync({ content });
+
+        // await this.reviewService.updateReview({content, image},{where :{reviewId}});
+        await this.reviewService.updateReview(content, image, reviewId);
+        return res.json({
+          msg: "후기가 수정되었습니다",
+        });
+      } else {
+        console.log("삭제할 이미지가 없습니다. ");
+      }
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 
   //리뷰 삭제
   deleteReview = async (req, res, next) => {
-    const user_id = res.locals.userId;
-    const { promiseId, reviewId } = req.params;
-
     try {
-      const deleteReview = await this.reviewService.deleteReview(reviewId);
-      return res.json({
-        msg: "후기가 삭제되었습니다",
-      });
+      const { reviewId } = req.params;
+      const image = req.file;
+      if (image) {
+        const deleteReview = await this.reviewService.deleteReview(
+          reviewId,
+          image
+        );
+        return res.json({
+          msg: "후기가 삭제되었습니다",
+        });
+      } else {
+        console.log("삭제할 이미지가 없습니다. ");
+      }
     } catch (err) {
       console.log(err);
-      return { msg: err.message };
+      return { message: err.message };
     }
   };
 };
