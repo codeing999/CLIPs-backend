@@ -1,11 +1,11 @@
-const joi = require("joi");
-const Validation = require("../../modules/joiStorage");
+// const joi = require("joi");
+// const Validation = require("../../modules/joiStorage");
 // const { use } = require("../routers/review.router");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
   reviewService = new ReviewService();
-  validation = new Validation();
+  // validation = new Validation();
 
   //리뷰 작성
   createReview = async (req, res, next) => {
@@ -25,11 +25,11 @@ module.exports = class ReviewController {
     const user_id = res.locals.userId;
 
     try {
-      await joi
-        .object({
-          content: this.validation.getContentJoi(),
-        })
-        .validateAsync({ content });
+      // await joi
+      //   .object({
+      //     content: this.validation.getContentJoi(),
+      //   })
+      //   .validateAsync({ content });
 
       const getReview = await this.reviewService.createReview(
         content,
@@ -71,11 +71,11 @@ module.exports = class ReviewController {
       if (reviewImageUrl) {
         console.log("cont", content);
 
-        await joi
-          .object({
-            content: this.validation.getContentJoi(),
-          })
-          .validateAsync({ content });
+        // await joi
+        //   .object({
+        //     content: this.validation.getContentJoi(),
+        //   })
+        //   .validateAsync({ content });
 
         // await this.reviewService.updateReview({content, image},{where :{reviewId}});
         await this.reviewService.updateReview(content, image, reviewId);
