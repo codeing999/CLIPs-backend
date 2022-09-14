@@ -1,11 +1,11 @@
-// const joi = require("joi");
-// const Validation = require("../../modules/joiStorage");
-// const { use } = require("../routers/review.router");
+const joi = require("joi");
+const Validation = require("../../modules/joiStorage");
+const { use } = require("../routers/review.router");
 const ReviewService = require("../services/review.service");
 
 module.exports = class ReviewController {
   reviewService = new ReviewService();
-  // validation = new Validation();
+  validation = new Validation();
 
   //리뷰 작성
   createReview = async (req, res, next) => {
@@ -13,23 +13,14 @@ module.exports = class ReviewController {
     const { content } = req.body;
     const reviewImageUrl = req.files; //[{하나},{하나}]
     const image = reviewImageUrl.map((row) => row.location); // ['주소', '주소']
-
-    // let image = '';
-    // for (let i= 0; i< reviewImageUrl.length; i++) {
-    //   if (i === reviewImageUrl.length) {image += images[i]}
-    //     else{image += images[i] + ","
-    //     }
-    // }
-    console.log(image);
-
     const user_id = res.locals.userId;
 
     try {
-      // await joi
-      //   .object({
-      //     content: this.validation.getContentJoi(),
-      //   })
-      //   .validateAsync({ content });
+      await joi
+        .object({
+          content: this.validation.getContentJoi(),
+        })
+        .validateAsync({ content });
 
       const getReview = await this.reviewService.createReview(
         content,
@@ -48,13 +39,12 @@ module.exports = class ReviewController {
 
   //리뷰 조회
   getReview = async (req, res, next) => {
-    const user_id = res.locals.user_id;
+    // const user_id = res.locals.user_id;
     const { promiseId, reviewId } = req.params;
+
     try {
       const getReview = await this.reviewService.getReview(promiseId, reviewId);
-      return res.json({
-        data: getReview,
-      });
+      return res.json (getReview);
     } catch (err) {
       console.log(err);
       return { message: err.message };
@@ -95,18 +85,17 @@ module.exports = class ReviewController {
   deleteReview = async (req, res, next) => {
     try {
       const { reviewId } = req.params;
-      const image = req.file;
-      if (image) {
+      // const image = req.file;
+      // if (image) {
         const deleteReview = await this.reviewService.deleteReview(
-          reviewId,
-          image
+          reviewId
         );
         return res.json({
           msg: "후기가 삭제되었습니다",
         });
-      } else {
-        console.log("삭제할 이미지가 없습니다. ");
-      }
+      // } else {
+      //   console.log("삭제할 이미지가 없습니다. ");
+      // }
     } catch (err) {
       console.log(err);
       return { message: err.message };
