@@ -29,7 +29,18 @@ class PromiseService {
 
   getAllPromise = async () => {
     const response = await this.promiseRepository.getAllPromise();
-    return response;
+    
+    return response.map((Promise) => {
+      Promise.dataValues.countFriend = Promise.participants.length;
+      Promise.dataValues.friendList = Promise.participants;
+
+      delete Promise.dataValues.participants;
+      for (let i = 0; i <= Promise.dataValues.friendList.length-1; i++)  {
+        delete Promise.dataValues.friendList[i].dataValues.Friend
+      };
+
+      return Promise;
+  });
   };
 
   getPromiseDetail = async (promiseId) => {
@@ -97,12 +108,6 @@ class PromiseService {
       error.code = 404;
       throw error;
     } else return response;
-  };
-
-  countFriend = async() => {
-    let countFriend = ""
-
-
   };
 };
 

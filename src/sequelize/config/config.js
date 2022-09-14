@@ -2,11 +2,11 @@ require("dotenv").config();
 const env = process.env;
 
 const development = {
-  username: env.DB_PROD_USERNAME,
-  password: env.DB_PROD_PASSWORD,
-  database: env.DB_PROD_DATABASE,
-  host: env.DB_PROD_HOST,
-  dialect: env.DB_PROD_DIALECT,
+  username: env.DB_DEV_USERNAME,
+  password: env.DB_DEV_PASSWORD,
+  database: env.DB_DEV_DATABASE,
+  host: env.DB_DEV_HOST,
+  dialect: env.DB_DEV_DIALECT,
   //port: env.DB_PORT
 };
 
