@@ -35,18 +35,12 @@ class PromiseService {
       Promise.dataValues.friendList = Promise.participants;
 
       delete Promise.dataValues.participants;
-      // for (let i = 0; i <= Promise.participants.length; i++)  {
-        delete Promise.dataValues.friendList[0].dataValues.Friend
-      // }
-
-      console.log(Promise.dataValues.friendList[0])
+      for (let i = 0; i <= Promise.dataValues.friendList.length-1; i++)  {
+        delete Promise.dataValues.friendList[i].dataValues.Friend
+      };
 
       return Promise;
   });
-
-    console.log(response[0].dataValues.participants.count)
-    
-    return response;
   };
 
   getPromiseDetail = async (promiseId) => {
