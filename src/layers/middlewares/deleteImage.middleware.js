@@ -4,7 +4,7 @@ const fs = require("fs");
 const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const { ReviewImage } = require("../../sequelize/models");
-const { createHistogram } = require("perf_hooks");
+// const { createHistogram } = require("perf_hooks");
 
 const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
@@ -48,11 +48,11 @@ const deleteImage = async (req, res, next) => {
       return image;
     }
   })
+  next();
 }catch (err) {
   console.log(err);
-  return { message: "콘트롤러, 삭제할 리뷰가 없습니다. " };
+  return { message: err.message};
 }
-  next();
 };
 
 module.exports = { deleteImage };
