@@ -59,15 +59,15 @@ module.exports = class ReviewController {
 
   //리뷰 수정
   updateReview = async (req, res, next) => {
-    // const user_id = res.locals.userId;
+    try {
     const { promiseId, reviewId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files;
     const image = reviewImageUrl.map((row) => row.location);
-
+if(reviewImageUrl) {
     console.log("cont", content);
 
-    try {
+
       await joi
         .object({
           content: this.validation.getContentJoi(),
@@ -79,7 +79,9 @@ module.exports = class ReviewController {
       return res.json({
         msg: "후기가 수정되었습니다",
       });
-    } catch (err) {
+    } 
+    else {console.log("삭제할 이미지가 없습니다. ")
+    } }catch (err) {
       console.log(err);
       return { message: err.message };
     }
@@ -87,14 +89,17 @@ module.exports = class ReviewController {
 
   //리뷰 삭제
   deleteReview = async (req, res, next) => {
+    try {
     const { reviewId } = req.params;
     const image = req.file
-
-    try {
+    if(image) {
       const deleteReview = await this.reviewService.deleteReview(reviewId,image);
       return res.json({
         msg: "후기가 삭제되었습니다",
       });
+    } else {
+      console.log("삭제할 이미지가 없습니다. ")
+    }
     } catch (err) {
       console.log(err);
       return { message: err.message };
