@@ -4,56 +4,60 @@ const promise = require("../../sequelize/models/promise");
 const Validation = require("../../modules/joiStorage");
 
 class PromiseController {
-  constructor() {
-    this.promiseService = new PromiseService();
-    this.validation = new Validation();
-  }
+  promiseService = new PromiseService();
+  validation = new Validation();
 
-    createPromise = async (req, res) => {
-        const { title, date, x, y, friendlist, penalty } = req.body;
-        const user_id = res.locals.userId;        
+  createPromise = async (req, res) => {
+    const { title, date, x, y, friendlist, penalty } = req.body;
+    const user_id = res.locals.userId;
 
-        try {
-            await joi.object({
-                title: joi.string().required(),
-                date: joi.date().required(),
-                x: joi.number().required(), // 어떻게 넘겨주는지 다시 체크 필요
-                y: joi.number().required(),
-                penalty: joi.string(),
-                user_id: joi.number().required()
-            })
-                .validateAsync({ title, date, x, y, penalty, user_id })
-            await this.promiseService.createPromise(title, date, x, y, penalty, user_id);
+    try {
+      await joi
+        .object({
+          title: joi.string().required(),
+          date: joi.date().required(),
+          x: joi.number().required(), // 어떻게 넘겨주는지 다시 체크 필요
+          y: joi.number().required(),
+          penalty: joi.string(),
+          user_id: joi.number().required(),
+        })
+        .validateAsync({ title, date, x, y, penalty, user_id });
+      await this.promiseService.createPromise(
+        title,
+        date,
+        x,
+        y,
+        penalty,
+        user_id
+      );
 
-            return res.status(200).send("약속 생성 완료")
-        } catch (err) {
-            // console.log(err)
-            return res.status(400).send(err);
-        }
+      return res.status(200).send("약속 생성 완료");
+    } catch (err) {
+      // console.log(err)
+      return res.status(400).send(err);
+    }
 
-        // try {
-        //     await joi.object({
-        //         friendlist: joi.array(),
-        //     })
-        //         .validateAsync({ friendlist })
+    // try {
+    //     await joi.object({
+    //         friendlist: joi.array(),
+    //     })
+    //         .validateAsync({ friendlist })
 
-        //     await this.promiseService.createParticipants(friendlist)
+    //     await this.promiseService.createParticipants(friendlist)
 
-        //     return res.status(200).send("약속이 등록되었습니다");
-        // } catch (err) {
-        //     return res.status(400).send(err);
-        // }
+    //     return res.status(200).send("약속이 등록되었습니다");
+    // } catch (err) {
+    //     return res.status(400).send(err);
+    // }
+  };
 
-    };
-
-
-findFriend = async (req, res) => {
+  findFriend = async (req, res) => {
     const { phone } = req.body;
 
     try {
       await joi
         .object({
-          title:this.validation.getTitleJoi(),
+          title: this.validation.getTitleJoi(),
           date: this.validation.getDateJoi(),
           x: this.validation.getXJoi(), // 어떻게 넘겨주는지 다시 체크 필요
           y: this.validation.getYJoi(),
@@ -127,18 +131,17 @@ findFriend = async (req, res) => {
     }
   };
 
-  updatePromise = async (req,res) => {
-      const {date, x, y, friendList, penalty, done} = req.body;
-      const { promiseId } = req.params;
+  updatePromise = async (req, res) => {
+    const { date, x, y, friendList, penalty, done } = req.body;
+    const { promiseId } = req.params;
 
-      try {
-          const result = await this.PromiseService.updatePromise();
+    try {
+      const result = await this.PromiseService.updatePromise();
 
-          return res.status(200).send("약속이 수정되었습니다")
-      } catch (err) {
-        return res.status(400);
-      }
-
+      return res.status(200).send("약속이 수정되었습니다");
+    } catch (err) {
+      return res.status(400);
+    }
   };
 
   deletePromise = async (req, res) => {
