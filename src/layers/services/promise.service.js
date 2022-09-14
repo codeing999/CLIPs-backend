@@ -29,13 +29,42 @@ class PromiseService {
 
   getAllPromise = async () => {
     const response = await this.promiseRepository.getAllPromise();
-    return response;
+
+    return response.map((Promise) => {
+      Promise.dataValues.countFriend = Promise.participants.length;
+      Promise.dataValues.friendList = Promise.participants;
+
+      delete Promise.dataValues.participants;
+      for (let i = 0; i <= Promise.dataValues.friendList.length - 1; i++) {
+        delete Promise.dataValues.friendList[i].dataValues.Friend
+      };
+
+      return Promise;
+    });
   };
 
   getPromiseDetail = async (promiseId) => {
     await this.checkPromiseExists(promiseId);
     const response = await this.promiseRepository.getPromiseDetail(promiseId);
-    return response;
+
+    for (let i = 0; i <= response.participants.length - 1; i++) {
+      delete response.participants[i].dataValues.Friend
+    };
+
+    const result = {
+      title: response.title,
+      date: response.date,
+      x: response.x,
+      y: response.y,
+      friendList: response.participants,
+      countFriend: response.participants.length,
+      penalty: response.penalty,
+      done: response.done,
+    }
+
+    console.log(response)
+    return result;
+
   };
 
   deletePromise = async (userId, promiseId) => {
@@ -97,12 +126,6 @@ class PromiseService {
       error.code = 404;
       throw error;
     } else return response;
-  };
-
-  countFriend = async() => {
-    let countFriend = ""
-
-
   };
 };
 

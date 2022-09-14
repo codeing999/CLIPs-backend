@@ -47,9 +47,10 @@ class PromiseRepository {
           exclude: ["penalty"],
         },
         include: [{
-          model: Friend,
+          model: User,
           through: 'Friend',
           as: "participants",
+          attributes: ['name']
         }]
       });
 
@@ -63,6 +64,12 @@ class PromiseRepository {
     try {
       const response = await Promise.findOne({
         where: { promiseId: promiseId },
+        include: [{
+          model: User,
+          through: 'Friend',
+          as: "participants",
+          attributes: ['name', 'phone']
+        }]
       });
 
       return response.dataValues;
