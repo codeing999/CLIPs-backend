@@ -47,9 +47,10 @@ class PromiseRepository {
           exclude: ["penalty"],
         },
         include: [{
-          model: Friend,
+          model: User,
           through: 'Friend',
           as: "participants",
+          attributes: ['name']
         }]
       });
 
