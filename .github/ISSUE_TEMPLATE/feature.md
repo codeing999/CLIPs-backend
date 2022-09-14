@@ -1,6 +1,6 @@
 ---
-name: 'new feature '
-about: 구현 중인 기능에 대한 변경 사항 등에 관한 이슈
+name: 'feature '
+about: 새 기능이나 구현 중인 기능에 대한 변경 사항 등에 관한 이슈
 title: ''
 labels: feature
 assignees: ''
