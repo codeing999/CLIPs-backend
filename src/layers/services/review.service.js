@@ -11,7 +11,6 @@ module.exports = class ReviewService {
         image,
         promiseId
       );
-      console.log("service", createreviews)
       return createreviews
     } catch (err) {
       console.log(err);
@@ -19,12 +18,11 @@ module.exports = class ReviewService {
     }
   };
 
-  getReview = async (promiseId , reviewId) => {
+  getReview = async (promiseId, reviewId) => {
     try {
-      const getreviews = await this.reviewRepository.getReviewData( promiseId , reviewId);
+      const getreviews = await this.reviewRepository.getReviewData(promiseId, reviewId);
       console.log("service", getreviews)
       return getreviews;
-    
     } catch (err) {
       console.log(err);
       return { message: err.message };
@@ -41,9 +39,9 @@ module.exports = class ReviewService {
     }
   };
 
-  deleteReview = async (reviewId, image) => {
+  deleteReview = async (reviewId) => {
     try {
-      await this.reviewRepository.deleteReviewData(reviewId,image);
+      await this.reviewRepository.deleteReviewData(reviewId);
       return true;
     }catch (err) {
       console.log(err);
