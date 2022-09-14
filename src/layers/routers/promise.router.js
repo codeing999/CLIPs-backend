@@ -10,5 +10,7 @@ promiseRouter.get("/", promiseController.getAllPromise); //약속 조회
 promiseRouter.get("/:promiseId", promiseController.getPromiseDetail); //약속 상세 조회
 promiseRouter.post("/user/check", promiseController.findFriend); //친구찾기
 promiseRouter.delete("/:promiseId",authMiddlewares, promiseController.deletePromise); //약속 삭제
+promiseRouter.put("/:promiseId",authMiddlewares, promiseController.updatePromise); //약속 수정
+
 
 module.exports = promiseRouter;
