@@ -1,9 +1,9 @@
 const PromiseRepository = require("../repositories/promise.repository");
 
 class PromiseService {
-  constructor() {
-    this.promiseRepository = new PromiseRepository();
-  }
+
+  promiseRepository = new PromiseRepository();
+
 
   createPromise = async (title, date, x, y, penalty, userId, friendList) => {
     try {

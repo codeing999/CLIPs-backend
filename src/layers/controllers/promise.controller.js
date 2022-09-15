@@ -4,10 +4,9 @@ const promise = require("../../sequelize/models/promise");
 const Validation = require("../../modules/joiStorage");
 
 class PromiseController {
-  constructor() {
-    this.promiseService = new PromiseService();
-    this.validation = new Validation();
-  }
+    promiseService = new PromiseService();
+    validation = new Validation();
+  
 
   createPromise = async (req, res) => {
     const { title, date, x, y, friendList, penalty } = req.body;
