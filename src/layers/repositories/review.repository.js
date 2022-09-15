@@ -16,7 +16,7 @@ module.exports = class ReviewRepository {
         let bulkImagesUrl = { image: image[i], reviewId: reviewId };
         bulkImages.push(bulkImagesUrl);
       }
-      console.log(bulkImages);
+      // console.log(bulkImages);
 
       const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
 
@@ -41,7 +41,7 @@ module.exports = class ReviewRepository {
         attributes :['image'],
         raw:true
       });
-      console.log("repo의 getReview", getReviewData[0], getReviewImageData);
+      // console.log("repo의 getReview", getReviewData[0], getReviewImageData);
       const getRepoAll = {getReviewData, getReviewImageData};
       return getRepoAll
 
