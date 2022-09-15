@@ -74,6 +74,11 @@ module.exports = class Validation {
       "string.base": "image URL은 문자열이어야 합니다.",
     });
   };
+  getContentJoi = () => {
+    return joi.string().min(5).messages({
+      "string.base": "후기는 최소 5글자 이상이어야 합니다.",
+    });
+  };
   getTitleJoi = () => {
     return joi.string().required().messages({
       "any.required": "약속 이름을 입력해주세요.",

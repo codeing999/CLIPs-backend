@@ -3,7 +3,7 @@ REPOSITORY=/home/ubuntu/clips-backend
 
 cd $REPOSITORY
 
-sudo npm install
+sudo npm install    #sudo npm ci
 
+sudo pm2 kill
 sudo npm start
-#sudo pm2 restart ./src/app.js
