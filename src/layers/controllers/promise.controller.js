@@ -59,7 +59,7 @@ class PromiseController {
         .object({
           title: this.validation.getTitleJoi(),
           date: this.validation.getDateJoi(),
-          x: this.validation.getXJoi(), // 어떻게 넘겨주는지 다시 체크 필요
+          x: this.validation.getXJoi(),
           y: this.validation.getYJoi(),
           penalty: this.validation.getPenaltyJoi(),
           userId: joi.number().required(),
@@ -101,8 +101,9 @@ class PromiseController {
   };
 
   getAllPromise = async (req, res) => {
+    const userId = res.locals.userId;
     try {
-      const result = await this.promiseService.getAllPromise();
+      const result = await this.promiseService.getAllPromise(userId);
 
       return res.status(200).json(result);
     } catch (err) {
@@ -132,15 +133,37 @@ class PromiseController {
   };
 
   updatePromise = async (req, res) => {
-    const { date, x, y, friendList, penalty, done } = req.body;
+    const { title, date, x, y, friendList, penalty } = req.body;
     const { promiseId } = req.params;
+    const userId = res.locals.userId;
 
     try {
-      const result = await this.PromiseService.updatePromise();
+      await joi
+        .object({
+          title: this.validation.getTitleJoi(),
+          date: this.validation.getDateJoi(),
+          x: this.validation.getXJoi(),
+          y: this.validation.getYJoi(),
+          penalty: this.validation.getPenaltyJoi(),
+          userId: joi.number().required(),
+          friendList: joi.array(),
+        })
+        .validateAsync({ title, date, x, y, penalty, userId, friendList });
 
-      return res.status(200).send("약속이 수정되었습니다");
+      const result = await this.PromiseService.updatePromise(
+        title,
+        date,
+        x,
+        y,
+        penalty,
+        userId,
+        friendList,
+        promiseId
+      );
+
+      return res.status(200).send("약속이 수정되었습니다")
     } catch (err) {
-      return res.status(400);
+      return res.status(400).json(err.message);
     }
   };
 

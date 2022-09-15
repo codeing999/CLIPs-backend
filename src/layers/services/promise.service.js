@@ -27,8 +27,9 @@ class PromiseService {
     }
   };
 
-  getAllPromise = async () => {
-    const response = await this.promiseRepository.getAllPromise();
+  getAllPromise = async (userId) => {
+    const response = await this.promiseRepository.getAllPromise(userId);
+    console.log(response)
 
     return response.map((Promise) => {
       Promise.dataValues.countFriend = Promise.participants.length;
@@ -62,8 +63,31 @@ class PromiseService {
       done: response.done,
     }
 
-    console.log(response)
     return result;
+
+  };
+
+  updatePromise = async (title, date, x, y, penalty, userId, friendList, promiseId) => {
+    try {
+      const response = await this.checkPromiseExists(promiseId);
+      this.checkPromiseCreator(response, userId);
+
+      await this.findFriend(friendList);
+
+      const changePromise = await this.quizRepository.updatePromise(
+        promiseId,
+        title,
+        date,
+        x,
+        y,
+        penalty,
+      );
+
+      await this.createParticipants(friendList, promiseId);
+      return result;
+    } catch (err) {
+      throw err
+    }
 
   };
 
