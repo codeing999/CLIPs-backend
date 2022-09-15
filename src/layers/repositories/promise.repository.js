@@ -39,9 +39,10 @@ class PromiseRepository {
     }
   };
 
-  getAllPromise = async () => {
+  getAllPromise = async (userId) => {
     try {
       const response = await Promise.findAll({
+        where: {userId : userId},
         order: [["date", "DESC"]],
         attributes: {
           exclude: ["penalty"],
