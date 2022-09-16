@@ -35,9 +35,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE,
         allowNull: false,
       },
-      penalty: DataTypes.STRING,
-      allowNull: true,
-
+      penalty: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
