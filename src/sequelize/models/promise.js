@@ -55,13 +55,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   Promise.associate = function (models) {
-    // Promise.belongsTo(models.User, {
-    //   foreignKey: "userId",
-    //   targetKey: "userId",
-    //   onUpdate: "cascade",
-    //   onDelete: "cascade",
-    //   constraints: false,
-    // });
+    Promise.belongsTo(models.User, {
+      foreignKey: "userId",
+      targetKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+      constraints: false,
+    });
     Promise.belongsToMany(models.User, {
       as: "participants",
       through: "Friend",
