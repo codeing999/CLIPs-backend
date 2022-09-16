@@ -59,7 +59,7 @@ module.exports = class ReviewController {
       const reviewImageUrl = req.files;
       const image = reviewImageUrl.map((row) => row.location);
       if (reviewImageUrl) {
-        console.log("cont", content);
+        // console.log("cont", content);
 
         // await joi
         //   .object({

@@ -21,7 +21,7 @@ module.exports = class ReviewService {
   getReview = async (promiseId, reviewId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData(promiseId, reviewId);
-      console.log("service", getreviews)
+      // console.log("service", getreviews)
       return getreviews;
     } catch (err) {
       console.log(err);
