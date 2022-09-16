@@ -110,6 +110,8 @@ module.exports = class MainService {
     try {
       const browser = await puppeteer.launch({
         headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        // args: ['--use-gl=egl'], Chrome/Chromium requires --use-gl=egl to enable GPU acceleration in headless mode.
       });
       // const placeLength =
       //   responseImageData.length > 5 ? 5 : responseImageData.length;
