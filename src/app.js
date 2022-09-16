@@ -30,11 +30,16 @@ const port = 3000;
 //   },
 // };
 
-if (process.env.NODE_ENV === "production") {
-  app.use(morgan("combined"));
-} else {
-  app.use(morgan("dev"));
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(morgan("combined"));
+// } else {
+//   app.use(morgan("dev"));
+// }
+app.use(
+  morgan(
+    ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"  - :response-time ms'
+  )
+);
 
 //app.use(cors(corsOptions));
 app.use(cors());
