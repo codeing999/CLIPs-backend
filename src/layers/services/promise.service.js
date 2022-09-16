@@ -29,7 +29,6 @@ class PromiseService {
 
   getAllPromise = async (userId) => {
     const response = await this.promiseRepository.getAllPromise(userId);
-    console.log(response)
 
     return response.map((Promise) => {
       Promise.dataValues.countFriend = Promise.participants.length;
@@ -38,7 +37,7 @@ class PromiseService {
       delete Promise.dataValues.participants;
       for (let i = 0; i <= Promise.dataValues.friendList.length - 1; i++) {
         delete Promise.dataValues.friendList[i].dataValues.Friend
-      };
+      }; // Friend 객체 지우기 (레포에서 직접 제외시키지 못해 수동으로 지움)
 
       return Promise;
     });
