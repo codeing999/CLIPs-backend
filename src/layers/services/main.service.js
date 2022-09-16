@@ -111,22 +111,17 @@ module.exports = class MainService {
       const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
-        // args: ['--use-gl=egl'], Chrome/Chromium requires --use-gl=egl to enable GPU acceleration in headless mode.
       });
-      // const placeLength =
-      //   responseImageData.length > 5 ? 5 : responseImageData.length;
-      // for (let i = 0; i < placeLength; i++) {
-      //   let crawlingData = responseImageData[i].placeUrl;
 
       //영업 시간 크롤링
       const Page = await browser.newPage();
-      await Page.goto(placeUrl);
-      await Page
-        .waitForSelector(".list_operation", { timeout: 1000 })
+      // await Page.goto(placeUrl);
+      // await Page
+      //   .waitForSelector(".list_operation", { timeout: 1000 })
         // .catch(() => console.log("Wait for my-selector timed out"));
-      const timeContent = await Page.content();
-      let $ = cheerio.load(timeContent);
-      const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; 
+      // const timeContent = await Page.content();
+      // let $ = cheerio.load(timeContent);
+      // const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; 
 
       //imageUrl 크롤링
       let crawlingUrllist = [];
@@ -137,9 +132,9 @@ module.exports = class MainService {
         .catch(() => console.log("Wait for my-selector timed out"));
 
       const content = await Page.content();
-      // let $ = cheerio.load(Page);
+      let $ = cheerio.load(content);
       const rawArrImageUrl = $(".link_photo");
-
+      
       const arrImageUrl = rawArrImageUrl.filter((v) => {
         return rawArrImageUrl[v].attribs.style;
       });
@@ -158,6 +153,7 @@ module.exports = class MainService {
         // console.log(`${placeUrl} 의 ${j + 1}번째 이미지 :`, crawlingImageUrl);
         crawlingUrllist.push(crawlingImageUrl);
         }
+        const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; 
       browser.close();
       return {crawlingUrllist, rawArrDateUrl};
 
