@@ -104,7 +104,7 @@ module.exports = class Validation {
     })
   };
   getPenaltyJoi = () => {
-    return joi.string().messages({
+    return joi.string().allow('').messages({
       "string.base": "벌칙은 문자열이어야 합니다.",
     })
   };

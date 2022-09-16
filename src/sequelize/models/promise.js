@@ -28,15 +28,17 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       x: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.DOUBLE,
         allowNull: false,
       },
       y: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.DOUBLE,
         allowNull: false,
       },
-      penalty: DataTypes.STRING,
-      
+      penalty: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },      
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
