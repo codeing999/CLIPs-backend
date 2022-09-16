@@ -113,19 +113,8 @@ module.exports = class MainService {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
 
-      //영업 시간 크롤링
       const Page = await browser.newPage();
-      // await Page.goto(placeUrl);
-      // await Page
-      //   .waitForSelector(".list_operation", { timeout: 1000 })
-        // .catch(() => console.log("Wait for my-selector timed out"));
-      // const timeContent = await Page.content();
-      // let $ = cheerio.load(timeContent);
-      // const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; 
-
-      //imageUrl 크롤링
       let crawlingUrllist = [];
-      // const page = await browser.newPage();
       await Page.goto(placeUrl);
       await Page
         .waitForSelector(".link_photo", { timeout: 1000 })
@@ -149,8 +138,6 @@ module.exports = class MainService {
         } else {
           break;
         }
-        // console.log(`${placeUrl} 의 영업시간 :`, rawArrDateUrl);
-        // console.log(`${placeUrl} 의 ${j + 1}번째 이미지 :`, crawlingImageUrl);
         crawlingUrllist.push(crawlingImageUrl);
         }
         const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; 
