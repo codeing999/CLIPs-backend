@@ -16,7 +16,6 @@ class PromiseRepository {
         userId: userId,
       });
     } catch (err) {
-      console.log(err);
       return err.message;
       //   const error = new Error("FAILD_SQL");
       //   error.code = 405;
@@ -31,7 +30,6 @@ class PromiseRepository {
         userId: user,
       });
     } catch (err) {
-      console.log(err);
       return err.message;
       //   const error = new Error("FAILD_SQL");
       //   error.code = 405;
