@@ -4,9 +4,8 @@ const promise = require("../../sequelize/models/promise");
 const Validation = require("../../modules/joiStorage");
 
 class PromiseController {
-    promiseService = new PromiseService();
-    validation = new Validation();
-  
+  promiseService = new PromiseService();
+  validation = new Validation();
 
   createPromise = async (req, res) => {
     const { title, date, x, y, friendList, penalty } = req.body;
@@ -119,7 +118,7 @@ class PromiseController {
         promiseId
       );
 
-      return res.status(200).send("약속이 수정되었습니다")
+      return res.status(200).send("약속이 수정되었습니다");
     } catch (err) {
       return res.status(400).json(err.message);
     }
