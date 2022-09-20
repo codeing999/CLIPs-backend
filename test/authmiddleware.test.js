@@ -1,5 +1,6 @@
 const { isLoggedIn } = require('../src/layers/middlewares/auth.middleware');
 jest.mock('jsonwebtoken');
+import { invalid } from 'joi';
 import jwt from 'jsonwebtoken';
 
 describe('isLoggedIn', () => {
@@ -9,12 +10,12 @@ describe('isLoggedIn', () => {
     };
     const next = jest.fn();
     const token = 
-    jwt.sign({user_id : '1',
-    nickname : 'mun',
-    email:'num@gmail.com',
-    namw:'이름',
-    phone:'01234567'
-}, process.env.ACCESS_SECRET, {expiresIn : '1h'});
+        jwt.sign({user_id : '1',
+        nickname : 'mun',
+        email:'num@gmail.com',
+        namw:'이름',
+        phone:'01234567'
+    }, process.env.ACCESS_SECRET, {expiresIn : '1h'});
 
     test('로그인되어 있으면 isLoggedIn이 next를 호출해야 함', () => {
         const req = {
@@ -44,9 +45,7 @@ describe('isLoggedIn', () => {
     test('토큰이 유효하지 않다면 에러를 응답해야 함', () => {
         const req = {
             headers : {
-                authorization : 
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY2MzU4OTc2NSwiZXhwIjoxNjYzNTkzMzY1fQ.N4ZKgOZkNFURzd0k3h_uB1pOpbT68la5XG-8ek8ptm4"
-
+                authorization : token
             }
         };
         const error = {name : 'TokenInvalid'};
