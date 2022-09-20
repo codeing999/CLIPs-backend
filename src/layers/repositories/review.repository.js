@@ -3,7 +3,7 @@ const sequelize = require("sequelize");
 
 module.exports = class ReviewRepository {
   //새로운 리뷰를 Review와 ReviewImage table에 저장
-  createReviewData = async (content, image, promiseId) => {
+createReviewData = async (content, image, promiseId) => {
     try {
       const createReviewData = await Review.create({
         content,
@@ -28,7 +28,7 @@ module.exports = class ReviewRepository {
     }
   };
 
-  getReviewData = async (promiseId, reviewId, content, image) => {
+getReviewData = async (promiseId, reviewId, content, image) => {
     try {
       const getReviewData = await Review.findAll({
         where: {reviewId},
@@ -51,7 +51,7 @@ module.exports = class ReviewRepository {
     }
   };
 
-  updateReviewData = async (content, image, reviewId) => {
+updateReviewData = async (content, image, reviewId) => {
     
     //이미지url을 DB에서 삭제
     try {
@@ -81,7 +81,7 @@ module.exports = class ReviewRepository {
     }
   };
 
-  deleteReviewData = async (reviewId) => {
+deleteReviewData = async (reviewId) => {
     
     //후기와 이미지 각각의 DB에서 삭제
     try {

@@ -13,11 +13,11 @@ const s3 = new aws.S3({
   accessKeyId: process.env.AWS_KEY,
   secretAccessKey: process.env.AWS_PRIVATE_KEY,
   region:process.env.AWS_REGION,
-  // endpoint: "https://s3.amazonaws.com" //UnknownEndpoint: Inaccessible host 에러라서 추가함
 })
 
 //확장자 필터
-fileFilter = (req, file, cb) => {
+exports.fileFilter = (req, file, cb) => {
+// fileFilter =(req, file, cb) => {
   if (
     file.mimetype === "image/jpg" ||
     file.mimetype === "image/jpeg" ||

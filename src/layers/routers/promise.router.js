@@ -5,7 +5,6 @@ const authMiddlewares = require('../middlewares/auth.middleware')
 const PromiseController = require("../controllers/promise.controller");
 const promiseController = new PromiseController();
 
-promiseRouter.post("/", authMiddlewares, promiseController.createPromise); //약속 만들기
 promiseRouter.get("/", authMiddlewares, promiseController.getAllPromise); //약속 조회
 promiseRouter.get("/:promiseId", authMiddlewares, promiseController.getPromiseDetail); //약속 상세 조회
 promiseRouter.post("/user/check", promiseController.findFriend); //친구찾기

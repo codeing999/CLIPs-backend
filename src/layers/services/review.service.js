@@ -4,7 +4,7 @@ const authmiddleware = require("../middlewares/auth.middleware");
 module.exports = class ReviewService {
   reviewRepository = new ReviewRepository();
 
-  createReview = async ( content, image, promiseId ) => {
+createReview = async ( content, image, promiseId ) => {
     try {
       const createreviews = await this.reviewRepository.createReviewData(
         content,
@@ -18,7 +18,7 @@ module.exports = class ReviewService {
     }
   };
 
-  getReview = async (promiseId, reviewId) => {
+getReview = async (promiseId, reviewId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData(promiseId, reviewId);
       // console.log("service", getreviews)
@@ -29,7 +29,7 @@ module.exports = class ReviewService {
     }
   };
 
-  updateReview = async (content, image,reviewId) => {
+updateReview = async (content, image,reviewId) => {
     try {
       const updatereviews = await this.reviewRepository.updateReviewData(content, image,reviewId);
       return true;
@@ -39,7 +39,7 @@ module.exports = class ReviewService {
     }
   };
 
-  deleteReview = async (reviewId) => {
+deleteReview = async (reviewId) => {
     try {
       await this.reviewRepository.deleteReviewData(reviewId);
       return true;
