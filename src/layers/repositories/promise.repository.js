@@ -10,6 +10,7 @@ class PromiseRepository {
         promiseId: promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,
@@ -67,7 +68,7 @@ class PromiseRepository {
         }]
       });
 
-      return madePromise, includedPromise;
+      return [...madePromise, ...includedPromise];
     } catch (err) {
       return err.message;
     }
