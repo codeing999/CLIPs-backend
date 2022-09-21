@@ -178,12 +178,16 @@ module.exports = class AuthController {
 
   reIssue = async (req, res, next) => {
     const { token, userId } = res.locals;
+    try {
+      const response = await this.authService.reIssue(token, userId);
 
-    const response = await this.authService.reIssue(token, userId);
-
-    res.status(response.status).json({
-      accessToken: response.accessToken,
-      message: response.message,
-    });
+      return res.status(response.status).json({
+        accessToken: response.accessToken,
+        message: response.message,
+      });
+    } catch {
+      cosole.log(err);
+      return res.status(400).json({ message: err.message });
+    }
   };
 };
