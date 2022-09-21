@@ -14,6 +14,7 @@ class PromiseService {
         promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,

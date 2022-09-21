@@ -4,12 +4,13 @@ const Friend = db.sequelize.models.Friend;
 const sequelize = require("sequelize");
 
 class PromiseRepository {
-  createPromise = async (promiseId, title, date, x, y, penalty, userId) => {
+  createPromise = async (promiseId, title, date, location, x, y, penalty, userId) => {
     try {
       await Promise.create({
         promiseId: promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,
@@ -40,7 +41,6 @@ class PromiseRepository {
   getAllPromise = async (userId) => {
     try {
       const response = await Promise.findAll({
-        where: {userId : userId},
         order: [["date", "DESC"]],
         attributes: {
           exclude: ["penalty"],

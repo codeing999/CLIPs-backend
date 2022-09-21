@@ -26,6 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       date: {
         type: DataTypes.STRING,
         allowNull: false,
+      }, 
+      location: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       x: {
         type: DataTypes.DOUBLE,

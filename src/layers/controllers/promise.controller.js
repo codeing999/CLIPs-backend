@@ -9,7 +9,7 @@ class PromiseController {
   
 
   createPromise = async (req, res) => {
-    const { title, date, x, y, friendList, penalty } = req.body;
+    const { title, date, location, x, y, friendList, penalty } = req.body;
     const userId = res.locals.userId;
 
     try {
@@ -17,17 +17,19 @@ class PromiseController {
         .object({
           title: this.validation.getTitleJoi(),
           date: this.validation.getDateJoi(),
+          location: this.validation.getLocationJoi(),
           x: this.validation.getXJoi(),
           y: this.validation.getYJoi(),
           penalty: this.validation.getPenaltyJoi(),
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, x, y, penalty, userId, friendList });
+        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
 
       const result = await this.promiseService.createPromise(
         title,
         date,
+        location,
         x,
         y,
         penalty,
@@ -43,6 +45,7 @@ class PromiseController {
 
   findFriend = async (req, res) => {
     const { friendList } = req.body;
+    const userId = res.locals.userId; 
 
     try {
       await joi
