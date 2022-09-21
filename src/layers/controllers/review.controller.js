@@ -25,7 +25,8 @@ module.exports = class ReviewController {
       const getReview = await this.reviewService.createReview(
         content,
         image,
-        promiseId
+        promiseId,
+        user_id
       );
       return res.json({
         // data: getReview,
