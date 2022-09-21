@@ -90,7 +90,7 @@ module.exports = class ReviewController {
           reviewId
         );
         return res.json({
-          msg: "후기가 삭제되었습니다",
+          message: "후기가 삭제되었습니다",
         });
       // } else {
       //   console.log("삭제할 이미지가 없습니다. ");
