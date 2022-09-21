@@ -39,7 +39,7 @@ class PromiseRepository {
 
   getAllPromise = async (userId) => {
     try {
-      const response = await Promise.findAll({
+      const madePromise = await Promise.findAll({
         where: {userId : userId},
         order: [["date", "DESC"]],
         attributes: {
@@ -49,11 +49,25 @@ class PromiseRepository {
           model: User,
           through: 'Friend',
           as: "participants",
-          attributes: ['name']
+          attributes: ['name'],
         }]
       });
 
-      return response;
+      const includedPromise = await Promise.findAll({
+        order: [["date", "DESC"]],
+        attributes: {
+          exclude: ["penalty"],
+        },
+        include: [{
+          model: User,
+          through: 'Friend',
+          as: "participants",
+          where: {userId : userId},
+          attributes: ['name'],
+        }]
+      });
+
+      return madePromise, includedPromise;
     } catch (err) {
       return err.message;
     }

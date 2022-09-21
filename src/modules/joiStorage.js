@@ -93,6 +93,12 @@ module.exports = class Validation {
       "string.base": "날짜 형식은 문자열이어야 합니다.",
     })
   };
+  getLocationJoi = () => {
+    return joi.string().required().messages({
+      "any.required": "위치를 등록해주세요.",
+      "string.base": "위치 형식은 문자열이어야 합니다.",      
+    })
+  };
   getXJoi = () => {
     return joi.number().required().messages({
       "any.required": "위치를 등록해주세요.",
