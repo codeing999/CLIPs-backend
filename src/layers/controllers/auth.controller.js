@@ -12,6 +12,7 @@ module.exports = class AuthController {
     const userId = res.locals.userId;
     try {
       const userInfo = await this.authService.getMyPage(userId);
+      console.log(userInfo.data.userId, userId);
       if (userInfo.data.userId === userId) {
         return res
           .status(userInfo.status)
@@ -25,6 +26,8 @@ module.exports = class AuthController {
     }
   };
   updateMyPage = async (req, res, next) => {
+    const userId = res.locals.userId;
+    const { email, nickname, password, confirm, name, phone, image } = req.body;
     try {
     } catch (err) {
       console.log(err);

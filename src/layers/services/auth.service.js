@@ -11,11 +11,11 @@ module.exports = class AuthService {
 
   getMyPage = async (userId) => {
     try {
-      const userInfo = this.authRepository.findUserById(userId);
+      const userInfo = await this.authRepository.findUserById(userId);
       return {
         data: userInfo,
-        status: 201,
-        message: "회원가입에 성공하였습니다.",
+        status: 200,
+        message: "마이페이지 조회에 성공하였습니다.",
       };
     } catch (err) {
       console.log(err);
