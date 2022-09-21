@@ -41,7 +41,6 @@ module.exports = class ReviewController {
   //리뷰 조회
   getReview = async (req, res, next) => {
     const userId = res.locals.userId;
-    console.log("userid", userId)
     try {
       const getReview = await this.reviewService.getReview(userId);
       return res.json (getReview);

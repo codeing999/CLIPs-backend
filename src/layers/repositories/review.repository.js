@@ -36,7 +36,7 @@ module.exports = class ReviewRepository {
   //userId로 Promise 테이블에서 promise_id랑 date, x,y 가져오기
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
   getReviewData = async (userId) => {
-    const promiseData = [];
+    // const promiseData = [];
     let reviews = [];
     let images = [];
 
@@ -45,13 +45,15 @@ module.exports = class ReviewRepository {
       const promiseData = await Promise.findAll({
         where: { userId },
         attributes: ["date", "x", "y", "promiseId", "userId"],
-        raw: true, //include를 쓰면  'Reviews.reviewId': 4 날라옴
+        raw: true, 
         include: {
           model: Review,
           where:{userId},
-          attributes: ['reviewId','content']
-        },    
+          attributes: ['reviewId','content'],
+        },
+        required:false,
       });
+      console.log(promiseData)
       const reviewData = promiseData[0]['Reviews.reviewId'] 
 
       //위에서 가져온 reviewId로 ReviewImage 테이블에서 image 가져오기
