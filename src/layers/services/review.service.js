@@ -4,12 +4,13 @@ const authmiddleware = require("../middlewares/auth.middleware");
 module.exports = class ReviewService {
   reviewRepository = new ReviewRepository();
 
-  createReview = async ( content, image, promiseId ) => {
+  createReview = async ( content, image, promiseId, userId) => {
     try {
       const createreviews = await this.reviewRepository.createReviewData(
         content,
         image,
-        promiseId
+        promiseId,
+        userId
       );
       return createreviews
     } catch (err) {
@@ -18,10 +19,9 @@ module.exports = class ReviewService {
     }
   };
 
-  getReview = async (promiseId, reviewId) => {
+  getReview = async (userId) => {
     try {
-      const getreviews = await this.reviewRepository.getReviewData(promiseId, reviewId);
-      // console.log("service", getreviews)
+      const getreviews = await this.reviewRepository.getReviewData(userId);
       return getreviews;
     } catch (err) {
       console.log(err);
