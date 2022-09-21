@@ -70,6 +70,12 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "userId",
       modelName: "Friend",
     });
+    User.hasMany(models.Review, {
+      foreignKey: "userId",
+      sourceKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+    });
     User.hasOne(models.Session, {
       foreignKey: "userId",
       sourceKey: "userId",
