@@ -30,7 +30,6 @@ class PromiseService {
 
   getAllPromise = async (userId) => {
     const response = await this.promiseRepository.getAllPromise(userId);
-    
 
     return response.map((Promise) => {
       Promise.dataValues.countFriend = Promise.participants.length;
@@ -48,6 +47,7 @@ class PromiseService {
   getPromiseDetail = async (promiseId) => {
     await this.checkPromiseExists(promiseId);
     const response = await this.promiseRepository.getPromiseDetail(promiseId);
+    console.log(response)
 
     for (let i = 0; i <= response.participants.length - 1; i++) {
       delete response.participants[i].dataValues.Friend
@@ -55,7 +55,9 @@ class PromiseService {
 
     const result = {
       title: response.title,
+      userId: response.userId,
       date: response.date,
+      location: response.location,
       x: response.x,
       y: response.y,
       friendList: response.participants,
