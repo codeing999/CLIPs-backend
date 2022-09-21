@@ -9,6 +9,19 @@ module.exports = class AuthService {
   authRepository = new AuthRepository();
   bcrypt = new Bcrypt();
 
+  getMyPage = async (userId) => {
+    try {
+      const userInfo = await this.authRepository.findUserById(userId);
+      return {
+        data: userInfo,
+        status: 200,
+        message: "마이페이지 조회에 성공하였습니다.",
+      };
+    } catch (err) {
+      console.log(err);
+      return { status: 400, message: err.message };
+    }
+  };
   createUser = async (email, nickname, password, name, phone, image) => {
     try {
       const isExistUser = await this.authRepository.findUserByEmail(email);
@@ -141,23 +154,28 @@ module.exports = class AuthService {
   };
 
   reIssue = async (token, userId) => {
-    const session = await this.authRepository.findSession(userId, token);
-    if (!session) {
-      return {
-        status: 401,
-        message: "로그아웃 된 토큰입니다.",
-      };
+    try {
+      const session = await this.authRepository.findSession(userId, token);
+      if (!session) {
+        return {
+          status: 401,
+          message: "로그아웃 된 토큰입니다.",
+        };
+      }
+
+      const user = await this.authRepository.findUserById(session.userId);
+      const accessToken = jwt.sign(
+        {
+          userId: user.userId,
+        },
+        process.env.ACCESS_SECRET,
+        { expiresIn: process.env.ACCESS_OPTION_EXPIRESIN }
+      );
+
+      return { status: 200, accessToken: accessToken };
+    } catch (err) {
+      console.log(err);
+      return { status: 400, message: "토큰 재발행에 실패하였습니다." };
     }
-
-    const user = await this.authRepository.findUserById(session.userId);
-    const accessToken = jwt.sign(
-      {
-        userId: user.userId,
-      },
-      process.env.ACCESS_SECRET,
-      { expiresIn: process.env.ACCESS_OPTION_EXPIRESIN }
-    );
-
-    return { status: 200, accessToken: accessToken };
   };
 };
