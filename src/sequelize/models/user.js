@@ -56,19 +56,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   User.associate = function (models) {
-    // User.hasMany(models.Promise, {
-    //   foreignKey: "userId",
-    //   sourceKey: "userId",
-    //   onUpdate: "cascade",
-    //   onDelete: "cascade",
-    //   constraints: false,
-    // });
+    User.hasMany(models.Promise, {
+      foreignKey: "userId",
+      sourceKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+      constraints: false,
+    });
     User.belongsToMany(models.Promise, {
       as: "thisTime",
       through: "Friend",
       foreignKey: "userId",
       sourceKey: "userId",
       modelName: "Friend",
+    });
+    User.hasMany(models.Review, {
+      foreignKey: "userId",
+      sourceKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
     });
     User.hasOne(models.Session, {
       foreignKey: "userId",

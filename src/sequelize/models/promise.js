@@ -42,11 +42,11 @@ module.exports = (sequelize, DataTypes) => {
       penalty: {
         type: DataTypes.STRING,
         allowNull: true,
-      },      
+      },
       done: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
       },
     },
     {
