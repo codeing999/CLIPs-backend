@@ -41,7 +41,6 @@ module.exports = class ReviewController {
   //리뷰 조회
   getReview = async (req, res, next) => {
     const userId = res.locals.userId;
-    console.log("userid", userId)
     try {
       const getReview = await this.reviewService.getReview(userId);
       return res.json (getReview);
@@ -91,7 +90,7 @@ module.exports = class ReviewController {
           reviewId
         );
         return res.json({
-          msg: "후기가 삭제되었습니다",
+          message: "후기가 삭제되었습니다",
         });
       // } else {
       //   console.log("삭제할 이미지가 없습니다. ");
