@@ -46,6 +46,12 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: "cascade",
       onDelete: "cascade",
     });
+    Review.belongsTo(models.User, {
+      foreignKey: "userId",
+      targetKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+    });
   };
   return Review;
 };
