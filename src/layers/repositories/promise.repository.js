@@ -16,6 +16,7 @@ class PromiseRepository {
         userId: userId,
       });
     } catch (err) {
+      console.log(err);
       return err.message;
       //   const error = new Error("FAILD_SQL");
       //   error.code = 405;
@@ -40,17 +41,19 @@ class PromiseRepository {
   getAllPromise = async (userId) => {
     try {
       const madePromise = await Promise.findAll({
-        where: {userId : userId},
+        where: { userId: userId },
         order: [["date", "DESC"]],
         attributes: {
           exclude: ["penalty"],
         },
-        include: [{
-          model: User,
-          through: 'Friend',
-          as: "participants",
-          attributes: ['name'],
-        }]
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            attributes: ["name"],
+          },
+        ],
       });
 
       const includedPromise = await Promise.findAll({
@@ -58,13 +61,15 @@ class PromiseRepository {
         attributes: {
           exclude: ["penalty"],
         },
-        include: [{
-          model: User,
-          through: 'Friend',
-          as: "participants",
-          where: {userId : userId},
-          attributes: ['name'],
-        }]
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            where: { userId: userId },
+            attributes: ["name"],
+          },
+        ],
       });
 
       return madePromise, includedPromise;
@@ -77,12 +82,14 @@ class PromiseRepository {
     try {
       const response = await Promise.findOne({
         where: { promiseId: promiseId },
-        include: [{
-          model: User,
-          through: 'Friend',
-          as: "participants",
-          attributes: ['name', 'phone']
-        }]
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            attributes: ["name", "phone"],
+          },
+        ],
       });
 
       return response.dataValues;

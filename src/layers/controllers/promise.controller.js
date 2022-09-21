@@ -23,7 +23,16 @@ class PromiseController {
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
+        .validateAsync({
+          title,
+          date,
+          location,
+          x,
+          y,
+          penalty,
+          userId,
+          friendList,
+        });
 
       const result = await this.promiseService.createPromise(
         title,
@@ -38,13 +47,14 @@ class PromiseController {
 
       return res.status(200).send("약속 생성 완료");
     } catch (err) {
+      console.log(err);
       return res.status(400).json(err.message);
     }
   };
 
   findFriend = async (req, res) => {
     const { friendList } = req.body;
-    const userId = res.locals.userId; 
+    const userId = res.locals.userId;
 
     try {
       await joi
