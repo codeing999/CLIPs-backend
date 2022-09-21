@@ -9,6 +9,19 @@ module.exports = class AuthService {
   authRepository = new AuthRepository();
   bcrypt = new Bcrypt();
 
+  getMyPage = async (userId) => {
+    try {
+      const userInfo = this.authRepository.findUserById(userId);
+      return {
+        data: userInfo,
+        status: 201,
+        message: "회원가입에 성공하였습니다.",
+      };
+    } catch (err) {
+      console.log(err);
+      return { status: 400, message: err.message };
+    }
+  };
   createUser = async (email, nickname, password, name, phone, image) => {
     try {
       const isExistUser = await this.authRepository.findUserByEmail(email);

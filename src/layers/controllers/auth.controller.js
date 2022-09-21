@@ -7,6 +7,32 @@ const AuthService = require("../services/auth.service");
 module.exports = class AuthController {
   authService = new AuthService();
   validation = new Validation();
+
+  getMyPage = async (req, res, next) => {
+    const userId = res.locals.userId;
+    try {
+      const userInfo = await this.authService.getMyPage(userId);
+      if (userInfo.data.userId === userId) {
+        return res
+          .status(userInfo.status)
+          .json({ data: userInfo.data, message: userInfo.message });
+      } else throw new Error();
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(400)
+        .json({ message: "마이페이지 조회에 실패했습니다." });
+    }
+  };
+  updateMyPage = async (req, res, next) => {
+    try {
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(400)
+        .json({ message: "마이페이지 수정에 실패했습니다." });
+    }
+  };
   signUp = async (req, res, next) => {
     const { email, nickname, password, confirm, name, phone, image } = req.body;
     try {
