@@ -11,7 +11,7 @@ const fs = require("fs");
 
 module.exports = class MainService {
    //카테고리 랜덤으로 반환하여 place_url(추후에 imageUrl 크롤링 위한) 추출
-  getList = async (location) => {
+  getList = async (location, category) => {
     //구까지 받은 location을 x,y 좌표로 변환하기
     try {
       const keywordlist = ["음식점", "카페", "운동장", "헬스장", "술집"];
@@ -24,17 +24,15 @@ module.exports = class MainService {
             randomIndexArray.push(randomWhile);} else {
               i--;
           }}
-
             for (let j = 0; j < randomIndexArray.length; j++) {
             newArr[j] = keywordlist[randomIndexArray[j]];
           } 
-        console.log(newArr); //새로운 랜덤 추천 카테고리 
 
         //입력받은 동네의 주소를 가져오기
         const addressResponse = await axios({
           method: "get",
           url: "https://dapi.kakao.com/v2/local/search/address.json",
-          params: { query: `${location}`, radius: 1500 }, //body값
+          params: { query: `${location}`,radius: 1500 }, //body값
           headers: {
             Authorization: process.env.secretKey,
           },
@@ -68,7 +66,7 @@ module.exports = class MainService {
           params: {
             radius: 1500,
             // query: `${keywordlist[randomIndexArray[j]]}`,
-            query: `${newArr[k]}`,
+            query: `${newArr[k]}` ||  `${category}`,
             y: `${responseAdressData[0].y}`,
             x: `${responseAdressData[0].x}`,
           },
@@ -107,29 +105,23 @@ module.exports = class MainService {
 
   //crawling starts here
   crawlData = async (placeUrl) => {
-    let crawlingUrllist = [];
     try {
       const browser = await puppeteer.launch({
         headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
-      // const placeLength =
-      //   responseImageData.length > 5 ? 5 : responseImageData.length;
-      // for (let i = 0; i < placeLength; i++) {
-      //   let crawlingData = responseImageData[i].placeUrl;
-      const page = await browser.newPage();
-      await page.setViewport({
-        width: 1366,
-        height: 768,
-      });
-      await page.goto(placeUrl);
-      await page
+
+      const Page = await browser.newPage();
+      let crawlingUrllist = [];
+      await Page.goto(placeUrl);
+      await Page
         .waitForSelector(".link_photo", { timeout: 1000 })
         .catch(() => console.log("Wait for my-selector timed out"));
 
-      const content = await page.content();
-      const $ = cheerio.load(content);
+      const content = await Page.content();
+      let $ = cheerio.load(content);
       const rawArrImageUrl = $(".link_photo");
-
+      
       const arrImageUrl = rawArrImageUrl.filter((v) => {
         return rawArrImageUrl[v].attribs.style;
       });
@@ -144,47 +136,42 @@ module.exports = class MainService {
         } else {
           break;
         }
-
-        // console.log(`${placeUrl} 의 ${j + 1}번째 이미지 :`, crawlingImageUrl);
         crawlingUrllist.push(crawlingImageUrl);
         }
-
+        const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; 
       browser.close();
-      // return crawlingUrllist;
+      return {crawlingUrllist, rawArrDateUrl};
+
     } catch (err) {
       console.log(err);
       return { message: err.message };
     }
 
     //opening hour crawling starts here
-    const rawArrDateUrl = [];
-    try {
-      const browser = await puppeteer.launch({
-        headless: true,
-      });
+    // const rawArrDateUrl = [];
+    // try {
+    //   const browser = await puppeteer.launch({
+    //     headless: true,
+    //   });
 
-      const page = await browser.newPage();
-      await page.setViewport({
-        width: 1366,
-        height: 768,
-      });
-      await page.goto(placeUrl);
-      await page
-        .waitForSelector(".list_operation", { timeout: 1000 })
-        .catch(() => console.log("Wait for my-selector timed out"));
-      const content = await page.content();
-      const $ = cheerio.load(content);
-      const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; //".txt_operation"
-      // const rawArrTimeUrl = $(".time_operation").text().split("\n")[0];
-      console.log(`${placeUrl} 의 영업시간 :`, rawArrDateUrl);
-      browser.close();
+    //   const page = await browser.newPage();
+    //   await page.goto(placeUrl);
+    //   await page
+    //     .waitForSelector(".list_operation", { timeout: 1000 })
+    //     .catch(() => console.log("Wait for my-selector timed out"));
+    //   const content = await page.content();
+    //   const $ = cheerio.load(content);
+    //   const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; //".txt_operation"
+    //   // const rawArrTimeUrl = $(".time_operation").text().split("\n")[0];
+    //   console.log(`${placeUrl} 의 영업시간 :`, rawArrDateUrl);
+    //   browser.close();
 
-      const crawlTimeData = { rawArrDateUrl  }; //rawArrTimeUrl
-      const allCrawlData = { crawlingUrllist, crawlTimeData };
-      return allCrawlData;
-    } catch (err) {
-      console.log(err);
-      return { message: err.message };
-    }
+    //   const crawlTimeData = { rawArrDateUrl  }; //rawArrTimeUrl
+    //   const allCrawlData = { crawlingUrllist, crawlTimeData };
+    //   return allCrawlData;
+    // } catch (err) {
+    //   console.log(err);
+    //   return { message: err.message };
+    // }
   }
 }
