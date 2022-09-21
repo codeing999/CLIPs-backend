@@ -83,6 +83,7 @@ class PromiseController {
 
   getPromiseDetail = async (req, res) => {
     const { promiseId } = req.params;
+    const userId = res.locals.userId;
 
     try {
       await joi
@@ -95,7 +96,7 @@ class PromiseController {
     }
 
     try {
-      const result = await this.promiseService.getPromiseDetail(promiseId);
+      const result = await this.promiseService.getPromiseDetail(promiseId, userId);
       return res.status(200).json(result);
     } catch (err) {
       return res.status(400).json(err.message);

@@ -10,6 +10,7 @@ class PromiseRepository {
         promiseId: promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,
@@ -72,7 +73,7 @@ class PromiseRepository {
         ],
       });
 
-      return madePromise, includedPromise;
+      return [...madePromise, ...includedPromise];
     } catch (err) {
       return err.message;
     }
@@ -121,6 +122,18 @@ class PromiseRepository {
       });
     } catch (err) {
       const error = new Error("FAILD_SQL_DEL");
+      error.code = 405;
+      throw error;
+    }
+  };
+  findUser = async (userId) => {
+    try {
+      return await User.findOne({
+        where: { userId: userId },
+        attributes: ["name"],
+      });
+    } catch (err) {
+      const error = new Error("유저가 존재하지 않습니다");
       error.code = 405;
       throw error;
     }
