@@ -25,11 +25,12 @@ module.exports = class ReviewController {
       const getReview = await this.reviewService.createReview(
         content,
         image,
-        promiseId
+        promiseId,
+        user_id
       );
       return res.json({
-        data: getReview,
-        message: `게시글 ${promiseId}의 후기, 내용: ${content}, 링크 : ${image}`,
+        // data: getReview,
+        message: `후기가 등록되었습니다.  내용: ${content}, 링크 : ${image}`
       });
     } catch (err) {
       console.log(err);
@@ -39,11 +40,10 @@ module.exports = class ReviewController {
 
   //리뷰 조회
   getReview = async (req, res, next) => {
-    // const user_id = res.locals.user_id;
-    const { promiseId, reviewId } = req.params;
-
+    const userId = res.locals.userId;
+    console.log("userid", userId)
     try {
-      const getReview = await this.reviewService.getReview(promiseId, reviewId);
+      const getReview = await this.reviewService.getReview(userId);
       return res.json (getReview);
     } catch (err) {
       console.log(err);
