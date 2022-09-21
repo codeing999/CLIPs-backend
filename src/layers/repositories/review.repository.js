@@ -20,8 +20,12 @@ module.exports = class ReviewRepository {
       }
       const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
 
-      // await Promise.update({done}, where:{}) //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
-
+      //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
+      const promiseIdfromReview = await Review.findAll({where:{reviewId}}, {attributes:['promiseId']})
+      console.log(promiseIdfromReview[0].dataValues.promiseId)
+      for (let k=0; k<promiseIdfromReview.length; k++ ){
+      await Promise.update({done:'true'}, {where:{promiseId:promiseIdfromReview[k].dataValues.promiseId}}) }
+      
       return createReviewData, createReviewImageData;
     } catch (err) {
       console.log(err);
@@ -48,28 +52,13 @@ module.exports = class ReviewRepository {
           attributes: ['reviewId','content']
         },    
       });
-// console.log(promiseData[0]['Reviews.reviewId'])
+      const reviewData = promiseData[0]['Reviews.reviewId'] 
 
-      //가져온 promiseId로 Review/ReviewImage 테이블에서 content, image 링크 가져오기
-      // for (let i = 0; i < promiseData.length; i++) {
-      //   const review = await Review.findAll({
-      //     where: {
-      //       userId: promiseData[i].userId,
-      //       // promiseId: promiseData[i].promiseId,
-      //       // promiseId: { [Op.not]: null },
-      //     },
-      //     attributes: ["reviewId", "content"],
-      //     raw: true,
-      //   });
-      //   reviews.push(review);
-      // }
-      // const reviewData = reviews[0];
-      // console.log(reviewData[0].reviewId, reviewData[1].reviewId) //4,5
-
+      //위에서 가져온 reviewId로 ReviewImage 테이블에서 image 가져오기
       for (let j = 0; j < reviews.length; j++) {
         const reviewImage = await ReviewImage.findAll({
           where: {
-            reviewId: reviewData[j].reviewId,
+            reviewId: reviewData,
           },
           attributes: ["reviewId", "image"],
           raw: true,
@@ -78,7 +67,7 @@ module.exports = class ReviewRepository {
       }
       const reviewImageData = images;
 
-      return { promiseData, reviewData, reviewImageData };
+      return { promiseData, reviewImageData };
     } catch (err) {
       console.log(err);
       return { message: err.message };
