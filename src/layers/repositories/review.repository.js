@@ -18,9 +18,10 @@ module.exports = class ReviewRepository {
         let bulkImagesUrl = { image: image[i], reviewId: reviewId };
         bulkImages.push(bulkImagesUrl);
       }
-      // console.log(bulkImages)
       const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
-      // console.log("repo", createReviewData,createReviewImageData );
+
+      // await Promise.update({done}, where:{}) //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
+
       return createReviewData, createReviewImageData;
     } catch (err) {
       console.log(err);
@@ -45,24 +46,24 @@ module.exports = class ReviewRepository {
           model: Review,
           where:{userId},
           attributes: ['reviewId','content']
-        }        
+        },    
       });
-console.log(promiseData[0]['Reviews.reviewId'])
+// console.log(promiseData[0]['Reviews.reviewId'])
 
       //가져온 promiseId로 Review/ReviewImage 테이블에서 content, image 링크 가져오기
-      for (let i = 0; i < promiseData.length; i++) {
-        const review = await Review.findAll({
-          where: {
-            userId: promiseData[i].userId,
-            // promiseId: promiseData[i].promiseId,
-            // promiseId: { [Op.not]: null },
-          },
-          attributes: ["reviewId", "content"],
-          raw: true,
-        });
-        reviews.push(review);
-      }
-      const reviewData = reviews[0];
+      // for (let i = 0; i < promiseData.length; i++) {
+      //   const review = await Review.findAll({
+      //     where: {
+      //       userId: promiseData[i].userId,
+      //       // promiseId: promiseData[i].promiseId,
+      //       // promiseId: { [Op.not]: null },
+      //     },
+      //     attributes: ["reviewId", "content"],
+      //     raw: true,
+      //   });
+      //   reviews.push(review);
+      // }
+      // const reviewData = reviews[0];
       // console.log(reviewData[0].reviewId, reviewData[1].reviewId) //4,5
 
       for (let j = 0; j < reviews.length; j++) {

@@ -11,7 +11,7 @@ const fs = require("fs");
 
 module.exports = class MainService {
    //카테고리 랜덤으로 반환하여 place_url(추후에 imageUrl 크롤링 위한) 추출
-  getList = async (location) => {
+  getList = async (location, category) => {
     //구까지 받은 location을 x,y 좌표로 변환하기
     try {
       const keywordlist = ["음식점", "카페", "운동장", "헬스장", "술집"];
@@ -24,17 +24,15 @@ module.exports = class MainService {
             randomIndexArray.push(randomWhile);} else {
               i--;
           }}
-
             for (let j = 0; j < randomIndexArray.length; j++) {
             newArr[j] = keywordlist[randomIndexArray[j]];
           } 
-        // console.log(newArr); //새로운 랜덤 추천 카테고리 
 
         //입력받은 동네의 주소를 가져오기
         const addressResponse = await axios({
           method: "get",
           url: "https://dapi.kakao.com/v2/local/search/address.json",
-          params: { query: `${location}`, radius: 1500 }, //body값
+          params: { query: `${location}`,radius: 1500 }, //body값
           headers: {
             Authorization: process.env.secretKey,
           },
@@ -68,7 +66,7 @@ module.exports = class MainService {
           params: {
             radius: 1500,
             // query: `${keywordlist[randomIndexArray[j]]}`,
-            query: `${newArr[k]}`,
+            query: `${newArr[k]}` ||  `${category}`,
             y: `${responseAdressData[0].y}`,
             x: `${responseAdressData[0].x}`,
           },
