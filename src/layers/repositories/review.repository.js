@@ -36,7 +36,7 @@ module.exports = class ReviewRepository {
   //userId로 Promise 테이블에서 promise_id랑 date, x,y 가져오기
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
   getReviewData = async (userId) => {
-    const promiseData = [];
+    // const promiseData = [];
     let reviews = [];
     let images = [];
 
@@ -45,29 +45,38 @@ module.exports = class ReviewRepository {
       const promiseData = await Promise.findAll({
         where: { userId },
         attributes: ["date", "x", "y", "promiseId", "userId"],
-        raw: true, //include를 쓰면  'Reviews.reviewId': 4 날라옴
-        include: {
-          model: Review,
-          where:{userId},
-          attributes: ['reviewId','content']
-        },    
+        raw: true, 
+        // include: {
+        //   model: Review,
+        //   where:{userId},
+        //   attributes: ['reviewId','content'],
+        // },
       });
-      const reviewData = promiseData[0]['Reviews.reviewId'] 
+      console.log(promiseData[0].promiseId)
+      // console.log("reviewId", promiseData[0]['Reviews.reviewId'],promiseData[1]['Reviews.reviewId'])
 
       //위에서 가져온 reviewId로 ReviewImage 테이블에서 image 가져오기
-      for (let j = 0; j < reviews.length; j++) {
-        const reviewImage = await ReviewImage.findAll({
-          where: {
-            reviewId: reviewData,
+      for (let i = 0; i < promiseData.length; i++) {
+        const reviewImage = await Review.findAll({
+          where: { 
+            promiseId: promiseData[i].promiseId,
+            // reviewId: promiseData[i]['Reviews.reviewId'],
           },
-          attributes: ["reviewId", "image"],
+          attributes: ["reviewId", "content"],
           raw: true,
+          include:{
+            model: ReviewImage,
+            // where:sequelize.where(sequelize.col('reviewId')),
+            // required:false,
+            attributes:['image']
+          }
         });
         images.push(reviewImage);
       }
+      console.log(images)
       const reviewImageData = images;
-
       return { promiseData, reviewImageData };
+
     } catch (err) {
       console.log(err);
       return { message: err.message };
