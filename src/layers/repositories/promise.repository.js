@@ -4,7 +4,7 @@ const Friend = db.sequelize.models.Friend;
 const sequelize = require("sequelize");
 
 class PromiseRepository {
-  createPromise = async (promiseId, title, date, x, y, penalty, userId) => {
+  createPromise = async (promiseId, title, location, date, x, y, penalty, userId) => {
     try {
       await Promise.create({
         promiseId: promiseId,
@@ -17,10 +17,10 @@ class PromiseRepository {
         userId: userId,
       });
     } catch (err) {
-      return err.message;
-      //   const error = new Error("FAILD_SQL");
-      //   error.code = 405;
-      //   throw error;
+      console.log(err)
+      const error = new Error(err);
+      error.code = 405;
+      throw error;
     }
   };
 
@@ -31,17 +31,16 @@ class PromiseRepository {
         userId: user,
       });
     } catch (err) {
-      return err.message;
-      //   const error = new Error("FAILD_SQL");
-      //   error.code = 405;
-      //   throw error;
+      const error = new Error(err);
+      error.code = 405;
+      throw error;
     }
   };
 
   getAllPromise = async (userId) => {
     try {
       const madePromise = await Promise.findAll({
-        where: {userId : userId},
+        where: { userId: userId },
         order: [["date", "DESC"]],
         attributes: {
           exclude: ["penalty"],
@@ -63,26 +62,28 @@ class PromiseRepository {
           model: User,
           through: 'Friend',
           as: "participants",
-          where: {userId : userId},
+          where: { userId: userId },
           attributes: ['name'],
         }]
       });
 
       return [...madePromise, ...includedPromise];
     } catch (err) {
-      return err.message;
+      const error = new Error(err);
+      error.code = 405;
+      throw error;
     }
   };
 
   getPromiseDetail = async (promiseId) => {
     try {
       const response = await Promise.findOne({
-        where: { promiseId: promiseId },        
+        where: { promiseId: promiseId },
         include: [{
           model: User,
           through: 'Friend',
           as: "participants",
-          attributes: ['name', 'phone'],          
+          attributes: ['name', 'phone'],
         }]
       });
 
@@ -114,7 +115,7 @@ class PromiseRepository {
         where: { promise_id: promiseId },
       });
     } catch (err) {
-      const error = new Error("FAILD_SQL_DEL");
+      const error = new Error(err);
       error.code = 405;
       throw error;
     }
@@ -122,7 +123,7 @@ class PromiseRepository {
   findUser = async (userId) => {
     try {
       return await User.findOne({
-        where: {userId : userId},
+        where: { userId: userId },
         attributes: ['name']
       });
     } catch (err) {

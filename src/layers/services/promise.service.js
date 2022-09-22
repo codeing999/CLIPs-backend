@@ -7,7 +7,7 @@ class PromiseService {
 
   createPromise = async (title, date, location, x, y, penalty, userId, friendList) => {
     try {
-      await this.findFriend(friendList);
+      await this.findFriend(friendList, userId);
       const promiseId = this.generateRandomId();
 
       const result = await this.promiseRepository.createPromise(
@@ -24,7 +24,7 @@ class PromiseService {
       await this.createParticipants(friendList, promiseId);
       return result;
     } catch (err) {
-      throw err
+      throw err;
     }
   };
 
@@ -106,7 +106,7 @@ class PromiseService {
     return isDeleted;
   };
 
-  findFriend = async (friendList) => {
+  findFriend = async (friendList, userId) => {
     let nickname = "";
     let user = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
@@ -114,6 +114,12 @@ class PromiseService {
       user = await this.promiseRepository.findFriend(nickname);
       if (user === null) {
         const error = new Error("찾으시는 친구가 존재하지 않습니다.");
+        error.code = 404;
+        throw error;
+      }
+      console.log(user.dataValues.userId)
+      if (user.dataValues.userId === userId) {
+        const error = new Error("자기 자신을 참여자로 추가할 수 없습니다");
         error.code = 404;
         throw error;
       }
