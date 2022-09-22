@@ -4,7 +4,7 @@ const authmiddleware = require("../middlewares/auth.middleware");
 module.exports = class ReviewService {
   reviewRepository = new ReviewRepository();
 
-  createReview = async ( content, image, promiseId, userId) => {
+  createReview = async (content, image, promiseId, userId) => {
     try {
       const createreviews = await this.reviewRepository.createReviewData(
         content,
@@ -12,7 +12,7 @@ module.exports = class ReviewService {
         promiseId,
         userId
       );
-      return createreviews
+      return createreviews;
     } catch (err) {
       console.log(err);
       return { message: err.message };
@@ -22,16 +22,50 @@ module.exports = class ReviewService {
   getReview = async (userId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData(userId);
-      return getreviews;
+
+      const promiseandReviews = getreviews.promiseData.map((post, idx) => {
+        console.log(getreviews.promiseData)
+        
+        let withImage = null;
+        if (getreviews.reviewImageData[idx]) {
+          withImage = getreviews.reviewImageData[idx].image;
+        }
+
+        return {
+          reviewId: getreviews.reviews[idx].reviewId,
+          image: withImage,
+          content: getreviews.reviews[idx].content,
+          promiseUserId: post.promiseId,
+          date: post.date,
+          location: post.location,
+  
+        };
+      });
+
+      //게시글 내림 차순으로 정렬
+      promiseandReviews.sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      });
+
+      if (promiseandReviews) {
+        return { promiseandReviews };
+      } else return { success: false };
+
+      // return getreviews;
     } catch (err) {
       console.log(err);
       return { message: err.message };
     }
   };
 
-  updateReview = async (content, image,reviewId) => {
+  updateReview = async (content, image, reviewId, userId) => {
     try {
-      const updatereviews = await this.reviewRepository.updateReviewData(content, image,reviewId);
+      await this.reviewRepository.updateReviewData(
+        content,
+        image,
+        reviewId,
+        userId
+      );
       return true;
     } catch (err) {
       console.log(err);
@@ -39,11 +73,11 @@ module.exports = class ReviewService {
     }
   };
 
-  deleteReview = async (reviewId) => {
+  deleteReview = async (reviewId, userId) => {
     try {
-      await this.reviewRepository.deleteReviewData(reviewId);
+      await this.reviewRepository.deleteReviewData(reviewId, userId);
       return true;
-    }catch (err) {
+    } catch (err) {
       console.log(err);
       return { message: err.message };
     }

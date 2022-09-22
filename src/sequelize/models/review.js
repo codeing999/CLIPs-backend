@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Review",
       tableName: "Review",
-      timestamps: false,
+      timestamps: true,
       pranoid: false,
       underscored: true,
     }
