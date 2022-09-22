@@ -35,6 +35,7 @@ module.exports = class ReviewRepository {
 
   //userId로 Promise 테이블에서 promise_id랑 date, x,y 가져오기
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
+  //friend 테이블에 있는 사람들도 볼 수 있게 하기 (?)
   getReviewData = async (userId) => {
     // const promiseData = [];
     let reviews = [];
@@ -44,7 +45,7 @@ module.exports = class ReviewRepository {
       //Promise 테이블에서 내가 쓴 약속 찾아서 date, x, y 값 가져오기
       const promiseData = await Promise.findAll({
         where: { userId },
-        attributes: ["date", "x", "y", "promiseId", "userId"],
+        attributes: ["date", "location", "promiseId", "userId"],
         raw: true, 
         // include: {
         //   model: Review,
@@ -67,7 +68,7 @@ module.exports = class ReviewRepository {
           include:{
             model: ReviewImage,
             // where:sequelize.where(sequelize.col('reviewId')),
-            // required:false,
+            required:false,
             attributes:['image']
           }
         });
