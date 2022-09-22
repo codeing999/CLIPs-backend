@@ -4,7 +4,7 @@ const Friend = db.sequelize.models.Friend;
 const sequelize = require("sequelize");
 
 class PromiseRepository {
-  createPromise = async (promiseId, title, location, date, x, y, penalty, userId) => {
+  createPromise = async (promiseId, title, date, location, x, y, penalty, userId) => {
     try {
       await Promise.create({
         promiseId: promiseId,

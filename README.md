@@ -22,7 +22,15 @@
 
 ## API 명세
 
+## 시스템 아키텍처 (백엔드)
+
+<img width="577" alt="스크린샷 2022-09-16 12 35 53" src="https://user-images.githubusercontent.com/92393851/190620485-5135948f-cc70-4fca-8125-faf46e8848e3.png">
+
+
 ## ERD 설계
+
+![image](https://user-images.githubusercontent.com/92393851/190625568-d45138a4-2cf4-45e6-ae15-ad1ed70bb385.png)
+
 
 ## 디렉토리 구조
 
@@ -32,23 +40,36 @@
 
 ```json
 "devDependencies": {
-    "husky": "^8.0.1",
-    "jest": "^29.0.1",
+    "artillery": "^2.0.0-23",  //스트레스 테스트
+    "cross-env": "^7.0.3",
+    "husky": "^8.0.1", //프리티어 적용 2중 장치로 커밋 시에도 프리티어 적용
+    "jest": "^29.0.1", //테스트 코드
     "nodemon": "^2.0.19",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1" //시퀄라이즈 명령어 사용
   },
   "dependencies": {
-    "aws-sdk": "^2.1204.0",
-    "axios": "^0.27.2",
-    "bcrypt": "^5.0.1",
+    "aws-sdk": "^2.1212.0", //AWS S3 이용을 위한 sdk
+    "axios": "^0.27.2", //API 에 사용할 http 요청 생성 
+    "bcrypt": "^5.0.1", //패스워드 암호화
+    "chalk": "^5.0.1", //콘솔로그에 색을 칠해주는 기능
+    "cheerio": "^1.0.0-rc.12", //정적 크롤링
     "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "joi": "^17.6.0",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0",
+    "dotenv": "^16.0.2", //환경변수 사용
+    "express": "^4.18.1", //웹 서버 구축
+    "express-session": "^1.17.3", //소셜로그인 패스포트에 사용
+    "fs": "^0.0.1-security", //file system으로 이미지 파일 입출력 관리
+    "joi": "^17.6.0", //유효성 검사
+    "jsonwebtoken": "^8.5.1", //사용자 인증
+    "morgan": "^1.10.0", //로그 확인 
+    "multer": "^1.4.5-lts.1", //amazon S3에 이미지 파일 업로드
+    "multer-s3": "^2.10.0", //amazon S3에 이미지 파일 업로드
     "mysql2": "^2.3.3",
-    "request": "^2.88.2",
-    "sequelize": "^6.21.4"
+    "nth-check": "^2.1.1",
+    "passport": "^0.6.0", //소셜 로그인 구현 시에 사용
+    "passport-kakao": "^1.0.1",
+    "passport-local": "^1.0.0",
+    "puppeteer": "^17.0.0", //동적 크롤링
+    "request": "^2.88.2", //url에 요청을 보내고 response를 받는 모듈로 동적 크롤링에서 사용
+    "sequelize": "^6.21.4" //ORM
   },
 ```

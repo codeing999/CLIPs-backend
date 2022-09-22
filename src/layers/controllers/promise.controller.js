@@ -38,6 +38,7 @@ class PromiseController {
 
       return res.status(200).send("약속 생성 완료");
     } catch (err) {
+      console.log(err)
       return res.status(400).json(err.message);
     }
   };

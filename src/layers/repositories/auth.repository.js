@@ -39,7 +39,10 @@ module.exports = class AuthRepository {
   };
 
   findUserById = async (userId) => {
-    const user = await User.findOne({ where: { userId } });
+    const user = await User.findOne({
+      attributes: ["userId", "email", "nickname", "name", "phone", "image"],
+      where: { userId },
+    });
 
     return user;
   };

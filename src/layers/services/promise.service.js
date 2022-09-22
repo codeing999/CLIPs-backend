@@ -24,7 +24,8 @@ class PromiseService {
       await this.createParticipants(friendList, promiseId);
       return result;
     } catch (err) {
-      throw err;
+      console.log(err)
+      throw err
     }
   };
 
