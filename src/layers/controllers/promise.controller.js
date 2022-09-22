@@ -83,7 +83,7 @@ class PromiseController {
         })
         .validateAsync({ promiseId });
     } catch (err) {
-      return res.status(400).json("일단 실패");
+      return res.status(400).json(err.message);
     }
 
     try {
