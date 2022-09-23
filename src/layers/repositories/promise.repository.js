@@ -1,7 +1,7 @@
 const db = require("../../sequelize/models");
 const { User, Promise } = require("../../sequelize/models");
 const Friend = db.sequelize.models.Friend;
-const sequelize = require("sequelize");
+const { sequelize, Op } = require("sequelize");
 
 class PromiseRepository {
   createPromise = async (promiseId, title, date, location, x, y, penalty, userId) => {
@@ -31,6 +31,7 @@ class PromiseRepository {
         userId: user,
       });
     } catch (err) {
+      console.log(err)
       const error = new Error(err);
       error.code = 405;
       throw error;
@@ -69,6 +70,7 @@ class PromiseRepository {
 
       return [...madePromise, ...includedPromise];
     } catch (err) {
+      console.log(err)
       const error = new Error(err);
       error.code = 405;
       throw error;
@@ -89,20 +91,48 @@ class PromiseRepository {
 
       return response.dataValues;
     } catch (err) {
+      console.log(err)
       const error = new Error("약속이 존재하지 않습니다");
       error.code = 405;
       throw error;
     }
   };
 
-  findFriend = async (nickname) => {
+  updatePromise = async (title, date, location, x, y, penalty, userId, friendList) => {
+    try{
+      await Promise.update(
+        title,
+        date,
+        location,
+        x,
+        y,
+        penalty,
+      );
+
+    } catch (err) {
+      console.log(err)
+      const error = new Error(err);
+      error.code = 405;
+      throw error;
+    }
+  };
+
+  findFriend = async (nickname, userId) => {
     try {
-      const response = await User.findOne({
+      const response = await User.findAll({
         attributes: ["userId", "nickname"],
-        where: { nickname: nickname },
+        where: { 
+          nickname: {
+            [Op.substring] : `${nickname}`,
+          },
+          userId: {
+            [Op.ne] : userId,
+          }              
+        },
       });
       return response;
     } catch (err) {
+      console.log(err)
       const error = new Error("친구가 존재하지 않습니다");
       error.code = 405;
       throw error;

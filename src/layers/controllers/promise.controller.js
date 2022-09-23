@@ -54,9 +54,10 @@ class PromiseController {
         })
         .validateAsync({ friendList });
 
-      const result = await this.promiseService.findFriend(friendList);
+      const result = await this.promiseService.findFriend(friendList, userId);
       return res.status(200).send(result);
     } catch (err) {
+      console.log(err)
       return res.status(400).json(err.message);
     }
   };
@@ -95,7 +96,7 @@ class PromiseController {
   };
 
   updatePromise = async (req, res) => {
-    const { title, date, x, y, friendList, penalty } = req.body;
+    const { title, date, location, x, y, friendList, penalty } = req.body;
     const { promiseId } = req.params;
     const userId = res.locals.userId;
 
@@ -104,17 +105,19 @@ class PromiseController {
         .object({
           title: this.validation.getTitleJoi(),
           date: this.validation.getDateJoi(),
+          location: this.validation.getLocationJoi(),
           x: this.validation.getXJoi(),
           y: this.validation.getYJoi(),
           penalty: this.validation.getPenaltyJoi(),
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, x, y, penalty, userId, friendList });
+        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
 
       const result = await this.PromiseService.updatePromise(
         title,
         date,
+        location,
         x,
         y,
         penalty,
