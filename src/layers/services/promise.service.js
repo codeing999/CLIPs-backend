@@ -72,25 +72,26 @@ class PromiseService {
 
   };
 
-  updatePromise = async (title, date, x, y, penalty, userId, friendList, promiseId) => {
+  updatePromise = async (title, date, location, x, y, penalty, userId, friendList, promiseId) => {
     try {
       const response = await this.checkPromiseExists(promiseId);
       this.checkPromiseCreator(response, userId);
 
       await this.findFriend(friendList);
 
-      const changePromise = await this.quizRepository.updatePromise(
+      const updatePromise = await this.quizRepository.updatePromise(
         promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,
       );
-
       await this.createParticipants(friendList, promiseId);
-      return result;
+      return updatePromise;
     } catch (err) {
+      console.log(err)
       throw err
     }
   };
@@ -112,15 +113,10 @@ class PromiseService {
     let user = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
-      user = await this.promiseRepository.findFriend(nickname);
+      user = await this.promiseRepository.findFriend(nickname, userId);
       if (user === null) {
+        console.log(err)
         const error = new Error("찾으시는 친구가 존재하지 않습니다.");
-        error.code = 404;
-        throw error;
-      }
-      console.log(user.dataValues.userId)
-      if (user.dataValues.userId === userId) {
-        const error = new Error("자기 자신을 참여자로 추가할 수 없습니다");
         error.code = 404;
         throw error;
       }
@@ -147,7 +143,7 @@ class PromiseService {
 
   checkPromiseCreator(response, userId) {
     if (response.userId !== userId) {
-      const error = new Error("약속 생성자만 약속을 지울 수 있습니다");
+      const error = new Error("약속 생성자가 아닙니다");
       error.code = 401;
       throw error;
     }
