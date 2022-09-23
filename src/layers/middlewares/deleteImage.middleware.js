@@ -45,9 +45,9 @@ const deleteImage = async (req, res, next) => {
       raw: true,
       attributes: ["image"],
     });
-      if (!image || image === null) {
-        return res.json({ message: "삭제할 이미지가 없습니다." });
-      } else {
+      // if (!image || image === null) {
+      //   return res.json({ message: "삭제할 이미지가 없습니다." });
+      // } else {
         const params = {
           Bucket: "clips-s3-bucket",
           Key: image.split("/")[3],
@@ -61,10 +61,10 @@ const deleteImage = async (req, res, next) => {
             return image;
           }
         });
-    } 
-  }catch (err) {
+    // } 
+  } catch (err) {
       console.log(err);
-      return res.status(404).json({ message:"삭제할 이미지가 없습니다." });
+      // return res.status(404).json({ message:"삭제할 이미지가 없습니다." });
     }
   next();
   }

@@ -100,27 +100,35 @@ module.exports = class ReviewRepository {
             as: "participants",
             where: { userId },
             attributes: ["name"],
-          }],
+          },
+        ],
         raw: true,
       });
 
-      for (let j=0; j<extendedFriend.length; j++){
-      const extendedReview = await Review.findAll({
-        where:{promiseId: extendedFriend[j].promiseId},
-        attributes: ["content", "reviewId"],
-        include: [
-          {
-            model: ReviewImage,
-            attributes: ["image"],
-          }],
-        raw: true,
-      });
-      extendedReviews.push(extendedReview)
-    }
-    
-    console.log(extendedReviews);
+      for (let j = 0; j < extendedFriend.length; j++) {
+        const extendedReview = await Review.findAll({
+          where: { promiseId: extendedFriend[j].promiseId },
+          attributes: ["content", "reviewId"],
+          include: [
+            {
+              model: ReviewImage,
+              attributes: ["image"],
+            },
+          ],
+          raw: true,
+        });
+        extendedReviews.push(extendedReview);
+      }
 
-      return {promiseData, reviews, reviewImageData,extendedFriend,extendedReviews}
+      // console.log(extendedReviews);
+
+      return {
+        promiseData,
+        reviews,
+        reviewImageData,
+        extendedFriend,
+        extendedReviews,
+      };
     } catch (err) {
       console.log(err);
       return { message: err.message };

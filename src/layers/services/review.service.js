@@ -43,13 +43,13 @@ module.exports = class ReviewService {
 
       let extendedFriendData = [];
       getreviews.extendedFriend.forEach((p, i) => {
-        // console.log(getreviews.extendedReviews)
+        console.log(getreviews.extendedReviews)
 
-        if (p.length !== 0 || getreviews.extendedReviews[i] !== 0) {
+        if (p.length !== 0 && getreviews.extendedReviews[i].length !== 0) {
           let tmp = {};
-          tmp.reviewId = getreviews.extendedReviews[i].reviewId;
-          tmp.image = getreviews.extendedReviews[i]["ReviewImages.image"];
-          tmp.content = getreviews.extendedReviews[i].content;
+          tmp.reviewId = getreviews.extendedReviews[i][0].reviewId;
+          tmp.image = getreviews.extendedReviews[i][0]["ReviewImages.image"];
+          tmp.content = getreviews.extendedReviews[i][0].content;
 
           tmp.promiseUserId = p.userId;
           tmp.date = p.date;
@@ -61,8 +61,6 @@ module.exports = class ReviewService {
         }
       });
     
-      console.log(extendedFriendData)
-
       promiseandReviews.sort((a, b) => {
         return b.createdAt - a.createdAt;
       });
