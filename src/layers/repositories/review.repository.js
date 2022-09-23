@@ -4,125 +4,172 @@ const { Op } = require("sequelize");
 
 module.exports = class ReviewRepository {
   //새로운 리뷰를 Review와 ReviewImage table에 저장
-  createReviewData = async (content, image, promiseId, userId) => {
-    try {
-      const createReviewData = await Review.create({
-        content,
-        promiseId,
-        userId,
-      });
-      let reviewId = createReviewData.dataValues.reviewId;
+  //약속 작성자만 후기 작성 가능
+  createReviewData = async ( content, image, promiseId, userId) => {
 
-      let bulkImages = [];
-      for (let i = 0; i < image.length; i++) {
-        let bulkImagesUrl = { image: image[i], reviewId: reviewId };
-        bulkImages.push(bulkImagesUrl);
+    const writer = await Promise.findAll({
+      where: { promiseId },
+      raw: true,
+      attributes: ["userId"],
+    });
+
+    if (writer[0].userId !== userId) {
+      return {
+        message: '약속 생성자만 후기 작성할 수 있습니다.'
+      };
+    } else {
+        const createReviewData = await Review.create({
+          content,
+          promiseId,
+          userId,
+        });
+        let reviewId = createReviewData.dataValues.reviewId;
+
+        let bulkImages = [];
+        for (let i = 0; i < image.length; i++) {
+          let bulkImagesUrl = { image: image[i], reviewId: reviewId };
+          bulkImages.push(bulkImagesUrl);
+        }
+        const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
+
+        //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
+        const promiseIdfromReview = await Review.findAll(
+          { where: { reviewId } },
+          { attributes: ["promiseId"] }
+        );
+        for (let k = 0; k < promiseIdfromReview.length; k++) {
+          await Promise.update(
+            { done: "true" },
+            {
+              where: { promiseId: promiseIdfromReview[k].dataValues.promiseId },
+            }
+          );
+        }
+        return {createReviewData, createReviewImageData}
       }
-      const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
-
-      //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
-      const promiseIdfromReview = await Review.findAll({where:{reviewId}}, {attributes:['promiseId']})
-      console.log(promiseIdfromReview[0].dataValues.promiseId)
-      for (let k=0; k<promiseIdfromReview.length; k++ ){
-      await Promise.update({done:'true'}, {where:{promiseId:promiseIdfromReview[k].dataValues.promiseId}}) }
-      
-      return createReviewData, createReviewImageData;
-    } catch (err) {
-      console.log(err);
-      return { message: err.message };
     }
-  };
+
 
   //userId로 Promise 테이블에서 promise_id랑 date, x,y 가져오기
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
+  //friend 테이블에 있는 사람들도 볼 수 있게 하기 (?)
   getReviewData = async (userId) => {
-    // const promiseData = [];
-    let reviews = [];
-    let images = [];
-
+    let promiseData = [];
+    let reviewImageData = [];
     try {
-      //Promise 테이블에서 내가 쓴 약속 찾아서 date, x, y 값 가져오기
-      const promiseData = await Promise.findAll({
-        where: { userId },
-        attributes: ["date", "x", "y", "promiseId", "userId"],
-        raw: true, 
-        // include: {
-        //   model: Review,
-        //   where:{userId},
-        //   attributes: ['reviewId','content'],
-        // },
-      });
-      console.log(promiseData[0].promiseId)
-      // console.log("reviewId", promiseData[0]['Reviews.reviewId'],promiseData[1]['Reviews.reviewId'])
-
-      //위에서 가져온 reviewId로 ReviewImage 테이블에서 image 가져오기
-      for (let i = 0; i < promiseData.length; i++) {
-        const reviewImage = await Review.findAll({
-          where: { 
-            promiseId: promiseData[i].promiseId,
-            // reviewId: promiseData[i]['Reviews.reviewId'],
-          },
-          attributes: ["reviewId", "content"],
+        const reviews = await Review.findAll({
+          where: { userId },
+          attributes: ["content", "reviewId", "promiseId"],
           raw: true,
-          include:{
-            model: ReviewImage,
-            // where:sequelize.where(sequelize.col('reviewId')),
-            // required:false,
-            attributes:['image']
-          }
-        });
-        images.push(reviewImage);
-      }
-      console.log(images)
-      const reviewImageData = images;
-      return { promiseData, reviewImageData };
+          });
 
-    } catch (err) {
-      console.log(err);
-      return { message: err.message };
-    }
-  };
-
-  updateReviewData = async (content, image, reviewId) => {
-    //이미지url을 DB에서 삭제
-    try {
-      const updateREviewImageData = await ReviewImage.destroy({
-        where: { reviewId },
+      //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
+      for (let i = 0; i < reviews.length; i++) {
+      const promiseDataReview = await Promise.findAll({
+        where: { promiseId: reviews[i].promiseId },
+        attributes: ["date", "location", "promiseId", "userId"],
+        raw: true,
       });
 
-      //새로운 후기를 업데이트
-      const updateReviewData = await Review.update(
-        { content },
-        { where: { reviewId } }
-      );
+      const images = await ReviewImage.findAll({
+        where:{
+          reviewId: reviews[i].reviewId,
+        image : {[Op.ne]: null}}, 
+        attributes:['image', 'reviewId'],
+        raw:true,
 
-      //새로운 이미지 여러 장 올리기
-      let bulkUpateImages = [];
-      for (let i = 0; i < image.length; i++) {
-        let bulkUpdateImagesUrl = { image: image[i], reviewId: reviewId };
-        bulkUpateImages.push(bulkUpdateImagesUrl);
-      }
-      const createReviewImageData = await ReviewImage.bulkCreate(
-        bulkUpateImages
-      );
-      return updateReviewData, createReviewImageData;
-    } catch (err) {
+      });
+
+      reviewImageData.push(images[0])
+      promiseData.push(promiseDataReview[0])}
+
+      // let list = [];
+      // images.forEach((review, idx)=> {
+      //   if (review.length !== 0) {
+      //     let tmp = {};
+      //     tmp.reviewId = images[0].reviewId;
+      //     tmp.image = images[0]["ReviewImages.image"];
+      //     tmp.content = images[0].content;
+
+      //     tmp.promiseUserId = promiseData[idx].userId;
+      //     tmp.date = promiseData[idx].date;
+      //     tmp.location = promiseData[idx].location;
+          
+      //     list.push(tmp);
+      //   }}
+      // );
+
+      return {promiseData, reviews , reviewImageData};
+    
+  } catch (err) {
       console.log(err);
       return { message: err.message };
     }
   };
 
-  deleteReviewData = async (reviewId) => {
+  updateReviewData = async (content, image, reviewId, userId) => {
+    //이미지url을 DB에서 삭제
+    const updateUser = await Review.findAll(
+      { where: { reviewId } },
+      { attributes: ["userId"] }
+    );
+
+    if (updateUser[0].dataValues.userId === userId) {
+      try {
+        // const updateREviewImageData =
+        await ReviewImage.destroy({
+          where: { reviewId },
+        });
+
+        //새로운 후기를 업데이트
+        const updateReviewData = await Review.update(
+          { content },
+          { where: { reviewId } }
+        );
+
+        //새로운 이미지 여러 장 올리기
+        let bulkUpateImages = [];
+        for (let i = 0; i < image.length; i++) {
+          let bulkUpdateImagesUrl = { image: image[i], reviewId: reviewId };
+          bulkUpateImages.push(bulkUpdateImagesUrl);
+        }
+        const createReviewImageData = await ReviewImage.bulkCreate(
+          bulkUpateImages
+        );
+        return updateReviewData, createReviewImageData;
+      } catch (err) {
+        console.log(err);
+        return { message: err.message };
+      }
+    }
+  };
+
+  deleteReviewData = async (reviewId, userId) => {
     //후기와 이미지 각각의 DB에서 삭제
     try {
-      const deleteReviewImage = await ReviewImage.destroy({
+      await Review.destroy({ where: { reviewId, userId } });
+      await ReviewImage.destroy({
         where: { reviewId },
       });
-      const deleteContent = await Review.destroy({ where: { reviewId } });
-      return deleteReviewImage, deleteContent;
+
+      //reviewId를 삭제하면 promse table의 done을 false로 바꿔주기
+      const promiseFalse = await Review.findAll(
+        { where: { reviewId, userId } },
+        { attributes: ["promiseId"] }
+      );
+
+      for (let k = 0; k < promiseFalse.length; k++) {
+        await Promise.update(
+          { done: "false" },
+          { where: { promiseId: promiseFalse[k].dataValues.promiseId } }
+        );
+      }
+
+      return;
+      // deleteReviewImage, deleteContent;
     } catch (err) {
       console.log(err);
       return { message: err.message };
     }
   };
-};
+}
