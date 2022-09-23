@@ -24,8 +24,6 @@ module.exports = class ReviewService {
       const getreviews = await this.reviewRepository.getReviewData(userId);
 
       const promiseandReviews = getreviews.promiseData.map((post, idx) => {
-        console.log(getreviews.promiseData)
-        
         let withImage = null;
         if (getreviews.reviewImageData[idx]) {
           withImage = getreviews.reviewImageData[idx].image;
@@ -35,20 +33,44 @@ module.exports = class ReviewService {
           reviewId: getreviews.reviews[idx].reviewId,
           image: withImage,
           content: getreviews.reviews[idx].content,
-          promiseUserId: post.promiseId,
-          date: post.date,
-          location: post.location,
-  
+          promise: {
+            promiseUserId: post.promiseId,
+            date: post.date,
+            location: post.location          
+          },
         };
       });
 
-      //게시글 내림 차순으로 정렬
+      let extendedFriendData = [];
+      getreviews.extendedFriend.forEach((p, i) => {
+        console.log(getreviews.extendedReviews)
+
+        if (p.length !== 0 && getreviews.extendedReviews[i].length !== 0) {
+          let tmp = {};
+          tmp.reviewId = getreviews.extendedReviews[i][0].reviewId;
+          tmp.image = getreviews.extendedReviews[i][0]["ReviewImages.image"];
+          tmp.content = getreviews.extendedReviews[i][0].content;
+
+          tmp.promiseUserId = p.userId;
+          tmp.date = p.date;
+          tmp.location = p.location;
+
+          tmp.FriendPromiseId = p['participants.Friend.promiseId'];
+          tmp.FriendId = p['participants.Friend.userId'];
+          extendedFriendData.push(tmp);
+        }
+      });
+    
       promiseandReviews.sort((a, b) => {
         return b.createdAt - a.createdAt;
       });
 
-      if (promiseandReviews) {
-        return { promiseandReviews };
+      extendedFriendData.sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      });
+
+      if (promiseandReviews, extendedFriendData) {
+        return {promiseandReviews, extendedFriendData};
       } else return { success: false };
 
       // return getreviews;
