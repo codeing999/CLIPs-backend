@@ -1,12 +1,17 @@
-const { Review, ReviewImage, Promise } = require("../../sequelize/models");
+const {
+  Review,
+  ReviewImage,
+  Promise,
+  User,
+  Friend,
+} = require("../../sequelize/models");
 const sequelize = require("sequelize");
 const { Op } = require("sequelize");
 
 module.exports = class ReviewRepository {
   //새로운 리뷰를 Review와 ReviewImage table에 저장
   //약속 작성자만 후기 작성 가능
-  createReviewData = async ( content, image, promiseId, userId) => {
-
+  createReviewData = async (content, image, promiseId, userId) => {
     const writer = await Promise.findAll({
       where: { promiseId },
       raw: true,
@@ -15,40 +20,39 @@ module.exports = class ReviewRepository {
 
     if (writer[0].userId !== userId) {
       return {
-        message: '약속 생성자만 후기 작성할 수 있습니다.'
+        message: "약속 생성자만 후기 작성할 수 있습니다.",
       };
     } else {
-        const createReviewData = await Review.create({
-          content,
-          promiseId,
-          userId,
-        });
-        let reviewId = createReviewData.dataValues.reviewId;
+      const createReviewData = await Review.create({
+        content,
+        promiseId,
+        userId,
+      });
+      let reviewId = createReviewData.dataValues.reviewId;
 
-        let bulkImages = [];
-        for (let i = 0; i < image.length; i++) {
-          let bulkImagesUrl = { image: image[i], reviewId: reviewId };
-          bulkImages.push(bulkImagesUrl);
-        }
-        const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
-
-        //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
-        const promiseIdfromReview = await Review.findAll(
-          { where: { reviewId } },
-          { attributes: ["promiseId"] }
-        );
-        for (let k = 0; k < promiseIdfromReview.length; k++) {
-          await Promise.update(
-            { done: "true" },
-            {
-              where: { promiseId: promiseIdfromReview[k].dataValues.promiseId },
-            }
-          );
-        }
-        return {createReviewData, createReviewImageData}
+      let bulkImages = [];
+      for (let i = 0; i < image.length; i++) {
+        let bulkImagesUrl = { image: image[i], reviewId: reviewId };
+        bulkImages.push(bulkImagesUrl);
       }
-    }
+      const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
 
+      //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
+      const promiseIdfromReview = await Review.findAll(
+        { where: { reviewId } },
+        { attributes: ["promiseId"] }
+      );
+      for (let k = 0; k < promiseIdfromReview.length; k++) {
+        await Promise.update(
+          { done: "true" },
+          {
+            where: { promiseId: promiseIdfromReview[k].dataValues.promiseId },
+          }
+        );
+      }
+      return { createReviewData, createReviewImageData };
+    }
+  };
 
   //userId로 Promise 테이블에서 promise_id랑 date, x,y 가져오기
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
@@ -56,52 +60,76 @@ module.exports = class ReviewRepository {
   getReviewData = async (userId) => {
     let promiseData = [];
     let reviewImageData = [];
-    try {
-        const reviews = await Review.findAll({
-          where: { userId },
-          attributes: ["content", "reviewId", "promiseId"],
-          raw: true,
-          });
+    let extendedReviews = [];
 
-      //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
-      for (let i = 0; i < reviews.length; i++) {
-      const promiseDataReview = await Promise.findAll({
-        where: { promiseId: reviews[i].promiseId },
-        attributes: ["date", "location", "promiseId", "userId"],
+    try {
+      const reviews = await Review.findAll({
+        where: { userId },
+        attributes: ["content", "reviewId", "promiseId"],
+        order: [["createdAt", "DESC"]],
         raw: true,
       });
 
-      const images = await ReviewImage.findAll({
-        where:{
-          reviewId: reviews[i].reviewId,
-        image : {[Op.ne]: null}}, 
-        attributes:['image', 'reviewId'],
-        raw:true,
+      //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
+      for (let i = 0; i < reviews.length; i++) {
+        const promiseDataReview = await Promise.findAll({
+          where: { userId },
+          attributes: ["date", "location", "promiseId", "userId"],
+          raw: true,
+        });
 
+        const images = await ReviewImage.findAll({
+          where: {
+            reviewId: reviews[i].reviewId,
+            image: { [Op.ne]: null },
+          },
+          attributes: ["image", "reviewId"],
+          raw: true,
+        });
+
+        reviewImageData.push(images[0]);
+        promiseData.push(promiseDataReview[0]);
+      }
+
+      const extendedFriend = await Promise.findAll({
+        attributes: ["date", "location", "promiseId", "userId"],
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            where: { userId },
+            attributes: ["name"],
+          },
+        ],
+        raw: true,
       });
 
-      reviewImageData.push(images[0])
-      promiseData.push(promiseDataReview[0])}
+      for (let j = 0; j < extendedFriend.length; j++) {
+        const extendedReview = await Review.findAll({
+          where: { promiseId: extendedFriend[j].promiseId },
+          attributes: ["content", "reviewId"],
+          include: [
+            {
+              model: ReviewImage,
+              attributes: ["image"],
+            },
+          ],
+          raw: true,
+        });
+        extendedReviews.push(extendedReview);
+      }
 
-      // let list = [];
-      // images.forEach((review, idx)=> {
-      //   if (review.length !== 0) {
-      //     let tmp = {};
-      //     tmp.reviewId = images[0].reviewId;
-      //     tmp.image = images[0]["ReviewImages.image"];
-      //     tmp.content = images[0].content;
+      // console.log(extendedReviews);
 
-      //     tmp.promiseUserId = promiseData[idx].userId;
-      //     tmp.date = promiseData[idx].date;
-      //     tmp.location = promiseData[idx].location;
-          
-      //     list.push(tmp);
-      //   }}
-      // );
-
-      return {promiseData, reviews , reviewImageData};
-    
-  } catch (err) {
+      return {
+        promiseData,
+        reviews,
+        reviewImageData,
+        extendedFriend,
+        extendedReviews,
+      };
+    } catch (err) {
       console.log(err);
       return { message: err.message };
     }
@@ -172,4 +200,4 @@ module.exports = class ReviewRepository {
       return { message: err.message };
     }
   };
-}
+};
