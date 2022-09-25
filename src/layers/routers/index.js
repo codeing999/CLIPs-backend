@@ -11,4 +11,9 @@ router.use("/promise", promiseRouter);
 router.use("/main", mainRouter);
 router.use("/review", reviewRouter);
 
+/**
+ * @swagger
+ *   description: CLIPs API
+ */
+
 module.exports = router;

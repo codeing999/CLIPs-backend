@@ -3,6 +3,9 @@ const cors = require("cors");
 const morgan = require("morgan");
 const passport = require("passport");
 const session = require("express-session");
+const swaggerUi = require("swagger-ui-express");
+const swaggerFile = require("../src/swagger/swagger-output.json");
+
 require("dotenv/config");
 
 const indexRouter = require("./layers/routers");
@@ -74,6 +77,7 @@ app.use(passport.session()); // req.session 객체에 passport정보를 추가 �
 
 app.use("/api", indexRouter);
 app.use(express.static(__dirname));
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile)); // 스웨거 파일
 
 app.listen(port, () => {
   console.log(port, "진행해주세요.");
