@@ -123,7 +123,7 @@ class PromiseRepository {
         attributes: ["userId", "nickname"],
         where: { 
           nickname: {
-            [Op.substring] : `${nickname}`,
+            [Op.startsWith] : `${nickname}`,
           },
           userId: {
             [Op.ne] : userId,
