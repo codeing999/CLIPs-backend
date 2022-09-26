@@ -22,14 +22,42 @@
         "description": "회원가입",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
+            "name": "email",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "confirm",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "nickname",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "in": "body",
             "type": "string"
           }
         ],
         "responses": {
           "400": {
             "description": "Bad Request"
+          },
+          "200": {
+            "description": " 회원가입에 성공하였습니다."
           }
         }
       }
@@ -51,17 +79,25 @@
     "/api/auth/signin": {
       "post": {
         "summary" : "로그인",
-        "description": "",
+        "description": "로그인",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
+            "name": "email",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "body",
             "type": "string"
           }
         ],
         "responses": {
           "400": {
             "description": "Bad Request"
+          },
+          "200": {
+            "description": " 로그인에 성공하였습니다."
           }
         }
       }
@@ -154,14 +190,53 @@
         "description": "",
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
+            "name": "promiseId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "x",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "y",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "friendlist",
+            "in": "body",
+            "type": "array"
+          },
+          {
+            "name": "penalty",
+            "in": "body",
             "type": "string"
           }
         ],
         "responses": {
           "400": {
             "description": "Bad Request"
+          },
+          "200": {
+            "description": "약속 생성 완료"
           }
         }
       },
@@ -248,22 +323,55 @@
     "/api/main/": {
       "post": {
         "summary" : "메인 페이지",
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "description": "지도 보여주는 페이지",
+        "parameters": [
+          {
+          "name": "placeUrl",
+          "required": true,
+          "in": "body",
+          "type": "string"
+        }
+      ],
+        "responses": { 
+          "400": {
+          "description": "Bad Request"
+        },
+        "200": {
+          "description": "장소에 따른 결과"
+        }}
       }
     },
     "/api/main/crawlAll": {
       "post": {
         "summary" : "장소 이미지/영업 시간 크롤링",
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "location",
+            "in": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "body",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { 
+          "400": {
+          "description": "Bad Request"
+        },
+        "200": {
+          "description": "장소에 따른 결과"
+        }}
       }
     },
     "/api/review/{promiseId}": {
       "post": {
-        "description": "",
+        "summary" : "후기 작성",
+        "description": "게시글에 대한 후기 작성",
         "parameters": [
           {
             "name": "promiseId",
@@ -272,14 +380,47 @@
             "type": "string"
           },
           {
-            "name": "authorization",
-            "in": "header",
+            "name": "title",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "x",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "y",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "body",
+            "type": "string"
+          },
+          {
+            "name": "friendlist",
+            "in": "body",
+            "type": "array"
+          },
+          {
+            "name": "penalty",
+            "in": "body",
             "type": "string"
           }
         ],
         "responses": {
           "400": {
             "description": "Bad Request"
+          },
+          "200": {
+            "description": "약속 생성 완료"
           }
         }
       }
@@ -290,7 +431,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "authorization",
+            "placeUrl": "placeUrl",
             "in": "header",
             "type": "string"
           }
@@ -298,6 +439,9 @@
         "responses": {
           "400": {
             "description": "Bad Request"
+          },
+          "200" : {
+            "description": ""
           }
         }
       }
