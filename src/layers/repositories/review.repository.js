@@ -51,7 +51,7 @@ module.exports = class ReviewRepository {
           }
         );
       }
-      return { createReviewData, createReviewImageData };
+      return;
     }
   };
 
@@ -113,6 +113,7 @@ module.exports = class ReviewRepository {
         });
         extendedFriend[j].image = _.map(extendedReview, 'ReviewImages.image')
       }
+      console.log(promiseDataReview,"1", extendedFriend)
 
       return [...promiseDataReview, ...extendedFriend];
 
@@ -162,26 +163,25 @@ module.exports = class ReviewRepository {
   deleteReviewData = async (reviewId, userId) => {
     //후기와 이미지 각각의 DB에서 삭제
     try {
-      await Review.destroy({ where: { reviewId, userId } });
+      const promiseFalse = await Review.findAll(
+        { where: { reviewId: reviewId } ,
+         attributes: ["promiseId"]
+  })
+
+    for (let q = 0; q < promiseFalse.length; q++) {
+      await Promise.update(
+        { done: "false" },
+        { where: { promiseId: promiseFalse[q].dataValues.promiseId } }
+      );
+    }
+
+      await Review.destroy({ where: { reviewId } });
       await ReviewImage.destroy({
         where: { reviewId },
       });
-
-      //reviewId를 삭제하면 promse table의 done을 false로 바꿔주기
-      const promiseFalse = await Review.findAll(
-        { where: { reviewId, userId } },
-        { attributes: ["promiseId"] }
-      );
-
-      for (let k = 0; k < promiseFalse.length; k++) {
-        await Promise.update(
-          { done: "false" },
-          { where: { promiseId: promiseFalse[k].dataValues.promiseId } }
-        );
-      }
-
+        
       return;
-      // deleteReviewImage, deleteContent;
+
     } catch (err) {
       console.log(err);
       return { message: err.message };
