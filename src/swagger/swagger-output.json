@@ -430,7 +430,11 @@
         "summary" : "후기 전체 조회",
         "description": "",
         "parameters": [
-          {}
+          {
+            "placeUrl": "placeUrl",
+            "in": "header",
+            "type": "string"
+          }
         ],
         "responses": {
           "400": {
