@@ -179,8 +179,6 @@ module.exports = class ReviewRepository {
       await ReviewImage.destroy({
         where: { reviewId },
       });
-
-      //reviewId를 삭제하면 promse table의 done을 false로 바꿔주기
         
       return;
 
