@@ -430,11 +430,7 @@
         "summary" : "후기 전체 조회",
         "description": "",
         "parameters": [
-          {
-            "placeUrl": "placeUrl",
-            "in": "header",
-            "type": "string"
-          }
+          {}
         ],
         "responses": {
           "400": {
@@ -458,14 +454,14 @@
             "type": "string"
           },
           {
-            "name": "authorization",
-            "in": "header",
+            "name": "content",
+            "in": "body",
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "후기가 수정되었습니다. "
           },
           "400": {
             "description": "Bad Request"
