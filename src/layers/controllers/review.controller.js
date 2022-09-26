@@ -28,7 +28,7 @@ module.exports = class ReviewController {
         promiseId,
         userId
       );
-      return res.send(getReview);
+      return res.json({message: "후기가 생성되었습니다. "});
     } catch (err) {
       console.log(err);
       return { message: "작성자만 후기 작성 가능합니다." };

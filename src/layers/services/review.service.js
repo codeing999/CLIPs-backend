@@ -27,7 +27,6 @@ module.exports = class ReviewService {
       // console.log(getreviews)
       
       const promiseAndReviews = getreviews.map((post) => {
-        console.log("1",post)
  
         return {
           reviewId: post['Reviews.reviewId'],
@@ -35,11 +34,12 @@ module.exports = class ReviewService {
           content: post['Reviews.content'],
           promiseUserId: post.promiseId,
           location: post.location,
-          date: post.date
+          date: post.date, 
+          name: post['participants.name'],
         };
       });
 
-      console.log("2", promiseAndReviews)
+      // console.log("2", promiseAndReviews)
 
       // let extendedFriendData = [];
       // getreviews.extendedFriend.forEach((p, i) => {
