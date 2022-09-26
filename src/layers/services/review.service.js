@@ -1,5 +1,6 @@
 const ReviewRepository = require("../repositories/review.repository");
 const authmiddleware = require("../middlewares/auth.middleware");
+const _ = require("lodash")
 
 module.exports = class ReviewService {
   reviewRepository = new ReviewRepository();
@@ -22,58 +23,50 @@ module.exports = class ReviewService {
   getReview = async (userId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData(userId);
-
-      const promiseandReviews = getreviews.promiseData.map((post, idx) => {
-        let withImage = null;
-        if (getreviews.reviewImageData[idx]) {
-          withImage = getreviews.reviewImageData[idx].image;
-        }
-
+      // const getReviewsData = _.map(getreviews, 'ReviewImages.image')
+      // console.log(getreviews)
+      
+      const promiseAndReviews = getreviews.map((post) => {
+        console.log("1",post)
+ 
         return {
-          reviewId: getreviews.reviews[idx].reviewId,
-          image: withImage,
-          content: getreviews.reviews[idx].content,
-          promise: {
-            promiseUserId: post.promiseId,
-            date: post.date,
-            location: post.location          
-          },
+          reviewId: post['Reviews.reviewId'],
+          image: post.image,
+          content: post['Reviews.content'],
+          promiseUserId: post.promiseId,
+          location: post.location,
+          date: post.date
         };
       });
 
-      let extendedFriendData = [];
-      getreviews.extendedFriend.forEach((p, i) => {
-        console.log(getreviews.extendedReviews)
+      console.log("2", promiseAndReviews)
 
-        if (p.length !== 0 && getreviews.extendedReviews[i].length !== 0) {
-          let tmp = {};
-          tmp.reviewId = getreviews.extendedReviews[i][0].reviewId;
-          tmp.image = getreviews.extendedReviews[i][0]["ReviewImages.image"];
-          tmp.content = getreviews.extendedReviews[i][0].content;
+      // let extendedFriendData = [];
+      // getreviews.extendedFriend.forEach((p, i) => {
+      //   if (p.length !== 0 && getreviews.extendedReviews[i].length !== 0) {
+      //     let tmp = {};
+      //     tmp.reviewId = getreviews.extendedReviews[i][0].reviewId;
+      //     tmp.image = getreviews.extendedReviews[i][0]["ReviewImages.image"];
+      //     tmp.content = getreviews.extendedReviews[i][0].content;
 
-          tmp.promiseUserId = p.userId;
-          tmp.date = p.date;
-          tmp.location = p.location;
+      //     tmp.promiseUserId = p.userId;
+      //     tmp.date = p.date;
+      //     tmp.location = p.location;
 
-          tmp.FriendPromiseId = p['participants.Friend.promiseId'];
-          tmp.FriendId = p['participants.Friend.userId'];
-          extendedFriendData.push(tmp);
-        }
-      });
+      //     tmp.FriendPromiseId = p['participants.Friend.promiseId'];
+      //     tmp.FriendId = p['participants.Friend.userId'];
+      //     extendedFriendData.push(tmp);
+      //   }
+      // });
     
-      promiseandReviews.sort((a, b) => {
-        return b.createdAt - a.createdAt;
-      });
+      // promiseandReviews.sort((a, b) => {
+      //   return b.createdAt - a.createdAt;
+      // });
 
-      extendedFriendData.sort((a, b) => {
-        return b.createdAt - a.createdAt;
-      });
-
-      if (promiseandReviews, extendedFriendData) {
-        return {promiseandReviews, extendedFriendData};
+      if (promiseAndReviews) {
+        return promiseAndReviews
       } else return { success: false };
 
-      // return getreviews;
     } catch (err) {
       console.log(err);
       return { message: err.message };

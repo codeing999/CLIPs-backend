@@ -7,6 +7,7 @@ const {
 } = require("../../sequelize/models");
 const sequelize = require("sequelize");
 const { Op } = require("sequelize");
+const _ = require("lodash")
 
 module.exports = class ReviewRepository {
   //새로운 리뷰를 Review와 ReviewImage table에 저장
@@ -58,37 +59,28 @@ module.exports = class ReviewRepository {
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
   //friend 테이블에 있는 사람들도 볼 수 있게 하기 (?)
   getReviewData = async (userId) => {
-    let promiseData = [];
-    let reviewImageData = [];
-    let extendedReviews = [];
 
     try {
-      const reviews = await Review.findAll({
-        where: { userId },
-        attributes: ["content", "reviewId", "promiseId"],
-        order: [["createdAt", "DESC"]],
-        raw: true,
-      });
-
       //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
-      for (let i = 0; i < reviews.length; i++) {
         const promiseDataReview = await Promise.findAll({
           where: { userId },
           attributes: ["date", "location", "promiseId", "userId"],
           raw: true,
+          include: {
+            model: Review,
+            attributes: ['content', 'reviewId']
+          }
         });
 
+        for (let i = 0; i < promiseDataReview.length; i++) {
         const images = await ReviewImage.findAll({
           where: {
-            reviewId: reviews[i].reviewId,
-            image: { [Op.ne]: null },
+            reviewId: promiseDataReview[i]['Reviews.reviewId'],
           },
-          attributes: ["image", "reviewId"],
+          attributes: ["image"],
           raw: true,
         });
-
-        reviewImageData.push(images[0]);
-        promiseData.push(promiseDataReview[0]);
+        promiseDataReview[i].image =_.map(images, "image")
       }
 
       const extendedFriend = await Promise.findAll({
@@ -109,26 +101,21 @@ module.exports = class ReviewRepository {
         const extendedReview = await Review.findAll({
           where: { promiseId: extendedFriend[j].promiseId },
           attributes: ["content", "reviewId"],
+          order: [["updatedAt", "DESC"]],
           include: [
             {
               model: ReviewImage,
-              attributes: ["image"],
+              // where:{},
+              attributes: ['image'],
             },
           ],
           raw: true,
         });
-        extendedReviews.push(extendedReview);
+        extendedFriend[j].image = _.map(extendedReview, 'ReviewImages.image')
       }
 
-      // console.log(extendedReviews);
+      return [...promiseDataReview, ...extendedFriend];
 
-      return {
-        promiseData,
-        reviews,
-        reviewImageData,
-        extendedFriend,
-        extendedReviews,
-      };
     } catch (err) {
       console.log(err);
       return { message: err.message };
