@@ -40,7 +40,7 @@ module.exports = class ReviewController {
     const userId = res.locals.userId;
     try {
       const getReview = await this.reviewService.getReview(userId);
-      return res.json (getReview);
+      return res.json(getReview);
     } catch (err) {
       console.log(err);
       return { message: err.message };
