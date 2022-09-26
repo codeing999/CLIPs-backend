@@ -21,7 +21,7 @@ class PromiseService {
         userId
       );
 
-      await this.createParticipants(friendList, promiseId);
+      await this.createParticipants(friendList, promiseId, userId);
       return result;
     } catch (err) {
       console.log(err)
@@ -130,13 +130,14 @@ class PromiseService {
     return promiseId;
   }
 
-  async createParticipants(friendList, promiseId) {
+  async createParticipants(friendList, promiseId, userId) {
     let user = "";
     let nickname = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
-      let friend = await this.promiseRepository.findFriend(nickname);
-      user = friend.dataValues.userId;
+      let friend = await this.promiseRepository.findFriend(nickname, userId);
+      console.log(friend)
+      user = friend[0].dataValues.userId;
       await this.promiseRepository.createParticipants(promiseId, user);
     }
   }
