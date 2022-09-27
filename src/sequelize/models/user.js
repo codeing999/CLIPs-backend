@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false,
+        allowNull: true,
       },
       nickname: {
         type: DataTypes.STRING,
@@ -31,19 +31,27 @@ module.exports = (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       image: {
         type: DataTypes.STRING,
         allowNull: true,
+      },
+      snsId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      provider: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {
