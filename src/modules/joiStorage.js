@@ -75,8 +75,8 @@ module.exports = class Validation {
     });
   };
   getContentJoi = () => {
-    return joi.string().min(5).messages({
-      "string.base": "후기는 최소 5글자 이상이어야 합니다.",
+    return joi.string().min(1).messages({
+      "string.base": "후기는 최소 1글자 이상이어야 합니다.",
     });
   };
   getTitleJoi = () => {
