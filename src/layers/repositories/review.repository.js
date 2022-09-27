@@ -13,45 +13,50 @@ module.exports = class ReviewRepository {
   //새로운 리뷰를 Review와 ReviewImage table에 저장
   //약속 작성자만 후기 작성 가능
   createReviewData = async (content, image, promiseId, userId) => {
-    const writer = await Promise.findAll({
-      where: { promiseId },
-      raw: true,
-      attributes: ["userId"],
-    });
-
-    if (writer[0].userId !== userId) {
-      return {
-        message: "약속 생성자만 후기 작성할 수 있습니다.",
-      };
-    } else {
-      const createReviewData = await Review.create({
-        content,
-        promiseId,
-        userId,
+    try {
+      const writer = await Promise.findAll({
+        where: { promiseId },
+        raw: true,
+        attributes: ["userId"],
       });
-      let reviewId = createReviewData.dataValues.reviewId;
 
-      let bulkImages = [];
-      for (let i = 0; i < image.length; i++) {
-        let bulkImagesUrl = { image: image[i], reviewId: reviewId };
-        bulkImages.push(bulkImagesUrl);
-      }
-      const createReviewImageData = await ReviewImage.bulkCreate(bulkImages);
+      if (Number(writer[0].userId) !== Number(userId)) {
+        return ({message: "약속 생성자만 작성할 수 있습니다. "});
+      } else {
+        const createReviewData = await Review.create({
+          content,
+          promiseId,
+          userId,
+        });
 
-      //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
-      const promiseIdfromReview = await Review.findAll(
-        { where: { reviewId } },
-        { attributes: ["promiseId"] }
-      );
-      for (let k = 0; k < promiseIdfromReview.length; k++) {
-        await Promise.update(
-          { done: "true" },
-          {
-            where: { promiseId: promiseIdfromReview[k].dataValues.promiseId },
-          }
+        let bulkImages = [];
+        for (let i = 0; i < image.length; i++) {
+          let bulkImagesUrl = {
+            image: image[i],
+            reviewId: createReviewData.dataValues.reviewId,
+          };
+          bulkImages.push(bulkImagesUrl);
+        }
+        await ReviewImage.bulkCreate(bulkImages);
+
+        //reviewId가 생성되면 그 promiseId를 갖고 promse table의 done을 바꿔주기
+        const promiseIdfromReview = await Review.findAll(
+          { where: { reviewId: createReviewData.dataValues.reviewId } },
+          { attributes: ["promiseId"] }
         );
+        for (let k = 0; k < promiseIdfromReview.length; k++) {
+          await Promise.update(
+            { done: "true" },
+            {
+              where: { promiseId: promiseIdfromReview[k].dataValues.promiseId },
+            }
+          );
+        }
+        return;
       }
-      return;
+    } catch (err) {
+      console.log(err);
+      return { message: err.message };
     }
   };
 
@@ -59,29 +64,29 @@ module.exports = class ReviewRepository {
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
   //friend 테이블에 있는 사람들도 볼 수 있게 하기 (?)
   getReviewData = async (userId) => {
-   let extendedReviews = [];
+    let extendedReviews = [];
 
     try {
       //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
-        const promiseDataReview = await Promise.findAll({
-          where: { userId },
-          attributes: ["date", "location", "promiseId", "userId"],
-          raw: true,
-          include: {
-            model: Review,
-            attributes: ['content', 'reviewId']
-          }
-        });
+      const promiseDataReview = await Promise.findAll({
+        where: { userId },
+        attributes: ["date", "location", "promiseId", "userId"],
+        raw: true,
+        include: {
+          model: Review,
+          attributes: ["content", "reviewId"],
+        },
+      });
 
-        for (let i = 0; i < promiseDataReview.length; i++) {
+      for (let i = 0; i < promiseDataReview.length; i++) {
         const images = await ReviewImage.findAll({
           where: {
-            reviewId: promiseDataReview[i]['Reviews.reviewId'],
+            reviewId: promiseDataReview[i]["Reviews.reviewId"],
           },
           attributes: ["image"],
           raw: true,
         });
-        promiseDataReview[i].image =_.map(images, "image")
+        promiseDataReview[i].image = _.map(images, "image");
       }
 
       const extendedFriend = await Promise.findAll({
@@ -162,25 +167,24 @@ module.exports = class ReviewRepository {
   deleteReviewData = async (reviewId, userId) => {
     //후기와 이미지 각각의 DB에서 삭제
     try {
-      const promiseFalse = await Review.findAll(
-        { where: { reviewId: reviewId } ,
-         attributes: ["promiseId"]
-  })
+      const promiseFalse = await Review.findAll({
+        where: { reviewId: reviewId },
+        attributes: ["promiseId"],
+      });
 
-    for (let q = 0; q < promiseFalse.length; q++) {
-      await Promise.update(
-        { done: "false" },
-        { where: { promiseId: promiseFalse[q].dataValues.promiseId } }
-      );
-    }
+      for (let q = 0; q < promiseFalse.length; q++) {
+        await Promise.update(
+          { done: "false" },
+          { where: { promiseId: promiseFalse[q].dataValues.promiseId } }
+        );
+      }
 
       await Review.destroy({ where: { reviewId } });
       await ReviewImage.destroy({
         where: { reviewId },
       });
-        
-      return;
 
+      return;
     } catch (err) {
       console.log(err);
       return { message: err.message };
