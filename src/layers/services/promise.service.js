@@ -5,24 +5,26 @@ class PromiseService {
   promiseRepository = new PromiseRepository();
 
 
-  createPromise = async (title, date, x, y, penalty, userId, friendList) => {
+  createPromise = async (title, date, location, x, y, penalty, userId, friendList) => {
     try {
-      await this.findFriend(friendList);
+      await this.findFriend(friendList, userId);
       const promiseId = this.generateRandomId();
 
       const result = await this.promiseRepository.createPromise(
         promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,
         userId
       );
 
-      await this.createParticipants(friendList, promiseId);
+      await this.createParticipants(friendList, promiseId, userId);
       return result;
     } catch (err) {
+      console.log(err)
       throw err
     }
   };
@@ -38,14 +40,15 @@ class PromiseService {
       for (let i = 0; i <= Promise.dataValues.friendList.length - 1; i++) {
         delete Promise.dataValues.friendList[i].dataValues.Friend
       }; // Friend 객체 지우기 (레포에서 직접 제외시키지 못해 수동으로 지움)
-
+    
       return Promise;
     });
   };
 
-  getPromiseDetail = async (promiseId) => {
+  getPromiseDetail = async (promiseId, userId) => {
     await this.checkPromiseExists(promiseId);
     const response = await this.promiseRepository.getPromiseDetail(promiseId);
+    const username = await this.promiseRepository.findUser(userId);
 
     for (let i = 0; i <= response.participants.length - 1; i++) {
       delete response.participants[i].dataValues.Friend
@@ -53,7 +56,10 @@ class PromiseService {
 
     const result = {
       title: response.title,
+      userId: response.userId,
+      username: username.dataValues.name,
       date: response.date,
+      location: response.location,
       x: response.x,
       y: response.y,
       friendList: response.participants,
@@ -66,28 +72,28 @@ class PromiseService {
 
   };
 
-  updatePromise = async (title, date, x, y, penalty, userId, friendList, promiseId) => {
+  updatePromise = async (title, date, location, x, y, penalty, userId, friendList, promiseId) => {
     try {
       const response = await this.checkPromiseExists(promiseId);
       this.checkPromiseCreator(response, userId);
 
       await this.findFriend(friendList);
 
-      const changePromise = await this.quizRepository.updatePromise(
+      const updatePromise = await this.quizRepository.updatePromise(
         promiseId,
         title,
         date,
+        location,
         x,
         y,
         penalty,
       );
-
       await this.createParticipants(friendList, promiseId);
-      return result;
+      return updatePromise;
     } catch (err) {
+      console.log(err)
       throw err
     }
-
   };
 
   deletePromise = async (userId, promiseId) => {
@@ -102,13 +108,14 @@ class PromiseService {
     return isDeleted;
   };
 
-  findFriend = async (friendList) => {
+  findFriend = async (friendList, userId) => {
     let nickname = "";
     let user = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
-      user = await this.promiseRepository.findFriend(nickname);
+      user = await this.promiseRepository.findFriend(nickname, userId);
       if (user === null) {
+        console.log(err)
         const error = new Error("찾으시는 친구가 존재하지 않습니다.");
         error.code = 404;
         throw error;
@@ -123,20 +130,21 @@ class PromiseService {
     return promiseId;
   }
 
-  async createParticipants(friendList, promiseId) {
+  async createParticipants(friendList, promiseId, userId) {
     let user = "";
     let nickname = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
-      let friend = await this.promiseRepository.findFriend(nickname);
-      user = friend.dataValues.userId;
+      let friend = await this.promiseRepository.findFriend(nickname, userId);
+      console.log(friend)
+      user = friend[0].dataValues.userId;
       await this.promiseRepository.createParticipants(promiseId, user);
     }
   }
 
   checkPromiseCreator(response, userId) {
     if (response.userId !== userId) {
-      const error = new Error("약속 생성자만 약속을 지울 수 있습니다");
+      const error = new Error("약속 생성자가 아닙니다");
       error.code = 401;
       throw error;
     }

@@ -9,8 +9,8 @@ const reviewController = new ReviewController();
 
 // 후기페이지
 reviewRouter.post("/:promiseId", authMiddlewares, imageUploader, reviewController.createReview);
-reviewRouter.get("/:promiseId/:reviewId", authMiddlewares, reviewController.getReview);
-reviewRouter.put("/:promiseId/:reviewId", authMiddlewares, deleteImage, imageUploader, reviewController.updateReview);
-reviewRouter.delete("/:promiseId/:reviewId",authMiddlewares, deleteImage, reviewController.deleteReview);
+reviewRouter.get("/", authMiddlewares, reviewController.getReview);
+reviewRouter.put("/:reviewId", authMiddlewares, deleteImage, imageUploader, reviewController.updateReview);
+reviewRouter.delete("/:reviewId",authMiddlewares, deleteImage, reviewController.deleteReview);
 
 module.exports = reviewRouter;

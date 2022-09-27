@@ -75,8 +75,8 @@ module.exports = class Validation {
     });
   };
   getContentJoi = () => {
-    return joi.string().min(5).messages({
-      "string.base": "후기는 최소 5글자 이상이어야 합니다.",
+    return joi.string().min(1).messages({
+      "string.base": "후기는 최소 1글자 이상이어야 합니다.",
     });
   };
   getTitleJoi = () => {
@@ -91,6 +91,12 @@ module.exports = class Validation {
       "any.required": "약속 날짜를 입력해주세요.",
       "string.pattern.base": "날짜 형식에 맞지 않습니다.",
       "string.base": "날짜 형식은 문자열이어야 합니다.",
+    })
+  };
+  getLocationJoi = () => {
+    return joi.string().required().messages({
+      "any.required": "위치를 등록해주세요.",
+      "string.base": "위치 형식은 문자열이어야 합니다.",      
     })
   };
   getXJoi = () => {

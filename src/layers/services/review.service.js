@@ -1,37 +1,85 @@
 const ReviewRepository = require("../repositories/review.repository");
 const authmiddleware = require("../middlewares/auth.middleware");
+const _ = require("lodash")
 
 module.exports = class ReviewService {
   reviewRepository = new ReviewRepository();
 
-createReview = async ( content, image, promiseId ) => {
+  createReview = async (content, image, promiseId, userId) => {
     try {
       const createreviews = await this.reviewRepository.createReviewData(
         content,
         image,
-        promiseId
+        promiseId,
+        userId
       );
-      return createreviews
+      return createreviews;
     } catch (err) {
       console.log(err);
       return { message: err.message };
     }
   };
 
-getReview = async (promiseId, reviewId) => {
+  getReview = async (userId) => {
     try {
-      const getreviews = await this.reviewRepository.getReviewData(promiseId, reviewId);
-      // console.log("service", getreviews)
-      return getreviews;
+      const getreviews = await this.reviewRepository.getReviewData(userId);
+      // console.log(getreviews)
+
+      const promiseAndReviews = getreviews.map((post) => {
+        return {
+          reviewId: post['Reviews.reviewId'],
+          image: post.image,
+          content: post['Reviews.content'],
+          promiseUserId: post.promiseId,
+          location: post.location,
+          date: post.date, 
+          // content:post.content,
+          name: post['participants.name'],
+        };
+      });
+
+      // console.log("2", promiseAndReviews)
+
+      // let extendedFriendData = [];
+      // getreviews.extendedFriend.forEach((p, i) => {
+      //   if (p.length !== 0 && getreviews.extendedReviews[i].length !== 0) {
+      //     let tmp = {};
+      //     tmp.reviewId = getreviews.extendedReviews[i][0].reviewId;
+      //     tmp.image = getreviews.extendedReviews[i][0]["ReviewImages.image"];
+      //     tmp.content = getreviews.extendedReviews[i][0].content;
+
+      //     tmp.promiseUserId = p.userId;
+      //     tmp.date = p.date;
+      //     tmp.location = p.location;
+
+      //     tmp.FriendPromiseId = p['participants.Friend.promiseId'];
+      //     tmp.FriendId = p['participants.Friend.userId'];
+      //     extendedFriendData.push(tmp);
+      //   }
+      // });
+    
+      promiseAndReviews.sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      });
+
+      if (promiseAndReviews) {
+        return promiseAndReviews
+      } else return { success: false };
+
     } catch (err) {
       console.log(err);
       return { message: err.message };
     }
   };
 
-updateReview = async (content, image,reviewId) => {
+  updateReview = async (content, image, reviewId, userId) => {
     try {
-      const updatereviews = await this.reviewRepository.updateReviewData(content, image,reviewId);
+      await this.reviewRepository.updateReviewData(
+        content,
+        image,
+        reviewId,
+        userId
+      );
       return true;
     } catch (err) {
       console.log(err);
@@ -39,11 +87,11 @@ updateReview = async (content, image,reviewId) => {
     }
   };
 
-deleteReview = async (reviewId) => {
+  deleteReview = async (reviewId, userId) => {
     try {
-      await this.reviewRepository.deleteReviewData(reviewId);
+      await this.reviewRepository.deleteReviewData(reviewId, userId);
       return true;
-    }catch (err) {
+    } catch (err) {
       console.log(err);
       return { message: err.message };
     }

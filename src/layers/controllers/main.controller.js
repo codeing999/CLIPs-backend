@@ -8,7 +8,8 @@ module.exports = class MainController {
   mainPage = async (req, res, next) => {
     try {
       const { location } = req.body; 
-      const getImageUrl = await this.mainService.getList(location);
+      const { category } = req.body; 
+      const getImageUrl = await this.mainService.getList(location, category);
 
       return res.json({ data: getImageUrl });
     } 

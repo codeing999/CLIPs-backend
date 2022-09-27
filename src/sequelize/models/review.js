@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Review",
       tableName: "Review",
-      timestamps: false,
+      timestamps: true,
       pranoid: false,
       underscored: true,
     }
@@ -43,6 +43,12 @@ module.exports = (sequelize, DataTypes) => {
     Review.hasMany(models.ReviewImage, {
       foreignKey: "reviewId",
       sourceKey: "reviewId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+    });
+    Review.belongsTo(models.User, {
+      foreignKey: "userId",
+      targetKey: "userId",
       onUpdate: "cascade",
       onDelete: "cascade",
     });

@@ -4,12 +4,11 @@ const promise = require("../../sequelize/models/promise");
 const Validation = require("../../modules/joiStorage");
 
 class PromiseController {
-    promiseService = new PromiseService();
-    validation = new Validation();
-  
+  promiseService = new PromiseService();
+  validation = new Validation();
 
   createPromise = async (req, res) => {
-    const { title, date, x, y, friendList, penalty } = req.body;
+    const { title, date, location, x, y, friendList, penalty } = req.body;
     const userId = res.locals.userId;
 
     try {
@@ -17,17 +16,19 @@ class PromiseController {
         .object({
           title: this.validation.getTitleJoi(),
           date: this.validation.getDateJoi(),
+          location: this.validation.getLocationJoi(),
           x: this.validation.getXJoi(),
           y: this.validation.getYJoi(),
           penalty: this.validation.getPenaltyJoi(),
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, x, y, penalty, userId, friendList });
+        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
 
       const result = await this.promiseService.createPromise(
         title,
         date,
+        location,
         x,
         y,
         penalty,
@@ -37,12 +38,14 @@ class PromiseController {
 
       return res.status(200).send("약속 생성 완료");
     } catch (err) {
+      console.log(err)
       return res.status(400).json(err.message);
     }
   };
 
   findFriend = async (req, res) => {
     const { friendList } = req.body;
+    const userId = res.locals.userId; 
 
     try {
       await joi
@@ -51,9 +54,10 @@ class PromiseController {
         })
         .validateAsync({ friendList });
 
-      const result = await this.promiseService.findFriend(friendList);
+      const result = await this.promiseService.findFriend(friendList, userId);
       return res.status(200).send(result);
     } catch (err) {
+      console.log(err)
       return res.status(400).json(err.message);
     }
   };
@@ -71,6 +75,7 @@ class PromiseController {
 
   getPromiseDetail = async (req, res) => {
     const { promiseId } = req.params;
+    const userId = res.locals.userId;
 
     try {
       await joi
@@ -79,11 +84,11 @@ class PromiseController {
         })
         .validateAsync({ promiseId });
     } catch (err) {
-      return res.status(400).json("일단 실패");
+      return res.status(400).json(err.message);
     }
 
     try {
-      const result = await this.promiseService.getPromiseDetail(promiseId);
+      const result = await this.promiseService.getPromiseDetail(promiseId, userId);
       return res.status(200).json(result);
     } catch (err) {
       return res.status(400).json(err.message);
@@ -91,7 +96,7 @@ class PromiseController {
   };
 
   updatePromise = async (req, res) => {
-    const { title, date, x, y, friendList, penalty } = req.body;
+    const { title, date, location, x, y, friendList, penalty } = req.body;
     const { promiseId } = req.params;
     const userId = res.locals.userId;
 
@@ -100,17 +105,19 @@ class PromiseController {
         .object({
           title: this.validation.getTitleJoi(),
           date: this.validation.getDateJoi(),
+          location: this.validation.getLocationJoi(),
           x: this.validation.getXJoi(),
           y: this.validation.getYJoi(),
           penalty: this.validation.getPenaltyJoi(),
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, x, y, penalty, userId, friendList });
+        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
 
       const result = await this.PromiseService.updatePromise(
         title,
         date,
+        location,
         x,
         y,
         penalty,
@@ -119,7 +126,7 @@ class PromiseController {
         promiseId
       );
 
-      return res.status(200).send("약속이 수정되었습니다")
+      return res.status(200).send("약속이 수정되었습니다");
     } catch (err) {
       return res.status(400).json(err.message);
     }
