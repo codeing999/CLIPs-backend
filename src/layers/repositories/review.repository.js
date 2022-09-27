@@ -59,6 +59,7 @@ module.exports = class ReviewRepository {
   //promise_id로 Review/ReviewImage 테이블에서 content/image 가져오기
   //friend 테이블에 있는 사람들도 볼 수 있게 하기 (?)
   getReviewData = async (userId) => {
+   let extendedReviews = [];
 
     try {
       //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
@@ -105,16 +106,14 @@ module.exports = class ReviewRepository {
           include: [
             {
               model: ReviewImage,
-              // where:{},
               attributes: ['image'],
             },
           ],
           raw: true,
-        });
-        extendedFriend[j].image = _.map(extendedReview, 'ReviewImages.image')
+        }); 
+        extendedFriend[j].image = _.map(extendedReview, 'ReviewImages.image');
+        extendedFriend[j]['Reviews.content'] = extendedReview[0]?.content
       }
-      console.log(promiseDataReview,"1", extendedFriend)
-
       return [...promiseDataReview, ...extendedFriend];
 
     } catch (err) {

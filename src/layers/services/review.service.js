@@ -23,11 +23,9 @@ module.exports = class ReviewService {
   getReview = async (userId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData(userId);
-      // const getReviewsData = _.map(getreviews, 'ReviewImages.image')
       // console.log(getreviews)
-      
+
       const promiseAndReviews = getreviews.map((post) => {
- 
         return {
           reviewId: post['Reviews.reviewId'],
           image: post.image,
@@ -35,6 +33,7 @@ module.exports = class ReviewService {
           promiseUserId: post.promiseId,
           location: post.location,
           date: post.date, 
+          // content:post.content,
           name: post['participants.name'],
         };
       });
@@ -59,9 +58,9 @@ module.exports = class ReviewService {
       //   }
       // });
     
-      // promiseandReviews.sort((a, b) => {
-      //   return b.createdAt - a.createdAt;
-      // });
+      promiseAndReviews.sort((a, b) => {
+        return b.createdAt - a.createdAt;
+      });
 
       if (promiseAndReviews) {
         return promiseAndReviews
