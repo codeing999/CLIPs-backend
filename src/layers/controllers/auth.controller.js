@@ -76,7 +76,7 @@ module.exports = class AuthController {
     }
   };
   signUp = async (req, res, next) => {
-    const { email, nickname, password, confirm, name, phones } = req.body;
+    const { email, nickname, password, confirm, name, phone } = req.body;
     const profileImageUrl = req.file?.location;
     try {
       await joi
