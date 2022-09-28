@@ -18,7 +18,6 @@ const s3 = new aws.S3({
 
 //확장자 필터
 fileFilter = (req, file, cb) => {
-  console.log(req.url);
   if (
     file.mimetype === "image/jpg" ||
     file.mimetype === "image/jpeg" ||

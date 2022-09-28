@@ -16,9 +16,9 @@ module.exports = class AuthController {
       );
 
       return res.redirect(
-        `https://clipspromise.com/?accesstoken=${result.accessToken}&refreshToken=${result.refreshToken}`
+        `https://clipspromise.com/kakao?accesstoken=${result.accessToken}&refreshToken=${result.refreshToken}`
       );
-      //res.redirect("https://clipspromise.com/");
+      //res.redirect("https://clipspromise.com/kakao");
     } catch (err) {
       console.log(err);
       return res
