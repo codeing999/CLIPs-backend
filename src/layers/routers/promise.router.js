@@ -21,11 +21,11 @@ promiseRouter.delete(
   authMiddlewares,
   promiseController.deletePromise
 ); //약속 삭제
-promiseRouter.post("/invite/:promiseId", promiseController.inviteFriend); //친구 초대
-promiseRouter.put(
-  "/:promiseId",
-  authMiddlewares,
-  promiseController.updatePromise
-); //약속 수정
+// promiseRouter.post("/invite/:promiseId", promiseController.inviteFriend); //친구 초대
+// promiseRouter.put(
+//   "/:promiseId",
+//   authMiddlewares,
+//   promiseController.updatePromise
+// ); //약속 수정
 
 module.exports = promiseRouter;
