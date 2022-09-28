@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const env = process.env;
 
-// module.exports = async (req, res, next) => {
-  module.exports.isLoggedIn = async(req, res, next)=> {
+module.exports = async (req, res, next) => {
+  // module.exports.isLoggedIn = async(req, res, next)=> {
   const { authorization } = req.headers;
   const [Type, token] = (authorization || "").split(" ");
 
