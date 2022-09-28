@@ -3,7 +3,7 @@ require("dotenv").config({ path: "../.env" });
 const { sequelize } = require("./sequelize/models");
 
 sequelize
-  .sync({ force: true })
+  .sync({ alter: true }) //force or alter
   .then(() => {
     console.log("db connect seccess");
   })

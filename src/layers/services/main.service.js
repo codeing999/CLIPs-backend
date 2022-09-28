@@ -209,30 +209,3 @@ module.exports = class MainService {
     }
   };
 };
-
-//opening hour crawling starts here
-// const rawArrDateUrl = [];
-// try {
-//   const browser = await puppeteer.launch({
-//     headless: true,
-//   });
-
-//   const page = await browser.newPage();
-//   await page.goto(placeUrl);
-//   await page
-//     .waitForSelector(".list_operation", { timeout: 1000 })
-//     .catch(() => console.log("Wait for my-selector timed out"));
-//   const content = await page.content();
-//   const $ = cheerio.load(content);
-//   const rawArrDateUrl = $(".txt_operation").text().split("\n")[0]; //".txt_operation"
-//   // const rawArrTimeUrl = $(".time_operation").text().split("\n")[0];
-//   console.log(`${placeUrl} 의 영업시간 :`, rawArrDateUrl);
-//   browser.close();
-
-//   const crawlTimeData = { rawArrDateUrl  }; //rawArrTimeUrl
-//   const allCrawlData = { crawlingUrllist, crawlTimeData };
-//   return allCrawlData;
-// } catch (err) {
-//   console.log(err);
-//   return { message: err.message };
-// }
