@@ -8,8 +8,8 @@ module.exports = () => {
     new KakaoStrategy(
       {
         clientID: process.env.KAKAO_ID, // 카카오 로그인에서 발급받은 REST API 키
-        callbackURL: "/api/auth/kakao/callback",
-        //callbackURL: "https://codeing999.shop/api/auth/kakao/callback", // 카카오 로그인 Redirect URI 경로
+        //callbackURL: "/api/auth/kakao/callback",
+        callbackURL: "https://codeing999.shop/api/auth/kakao/callback", // 카카오 로그인 Redirect URI 경로
       },
       /*
        * clientID에 카카오 앱 아이디 추가
