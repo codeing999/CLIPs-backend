@@ -154,7 +154,7 @@ class PromiseRepository {
     try {
       return await User.findOne({
         where: { userId: userId },
-        attributes: ['name']
+        attributes: ['nickname']
       });
     } catch (err) {
       const error = new Error("유저가 존재하지 않습니다");
