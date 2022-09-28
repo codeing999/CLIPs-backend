@@ -18,6 +18,7 @@ module.exports = class AuthService {
         process.env.ACCESS_SECRET,
         { expiresIn: process.env.ACCESS_OPTION_EXPIRESIN }
       );
+      console.log(accessToken);
       const refreshToken = jwt.sign(
         {
           userId,
@@ -70,6 +71,7 @@ module.exports = class AuthService {
   };
   createUser = async (email, nickname, password, name, phone, image) => {
     try {
+      let userId = Math.floor(Math.random() * 1000000);
       const isExistUser = await this.authRepository.findUserByEmail(email);
       if (isExistUser) {
         return { status: 400, message: "이미 가입한 Email 입니다." };
@@ -78,6 +80,7 @@ module.exports = class AuthService {
       const hashedPassword = await this.bcrypt.bcryptPassword(password);
 
       const user = await this.authRepository.createUser(
+        userId,
         email,
         nickname,
         hashedPassword,
