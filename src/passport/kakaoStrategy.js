@@ -8,7 +8,8 @@ module.exports = () => {
     new KakaoStrategy(
       {
         clientID: process.env.KAKAO_ID, // 카카오 로그인에서 발급받은 REST API 키
-        callbackURL: "https://codeing999.shop/api/auth/kakao/callback", // 카카오 로그인 Redirect URI 경로
+        callbackURL: "/api/auth/kakao/callback",
+        //callbackURL: "https://codeing999.shop/api/auth/kakao/callback", // 카카오 로그인 Redirect URI 경로
       },
       /*
        * clientID에 카카오 앱 아이디 추가
@@ -28,9 +29,12 @@ module.exports = () => {
             done(null, exUser); // 로그인 인증 완료
           } else {
             //가입되지 않는 유저면 회원가입 시키고 로그인을 시킨다
+            let userId = Math.floor(Math.random() * 1000000);
             const newUser = await User.create({
+              userId: userId,
               email: profile._json && profile._json.kakao_account_email,
               nickname: profile.displayName,
+              image: profile._json.properties.profile_image,
               snsId: profile.id,
               provider: "kakao",
             });
