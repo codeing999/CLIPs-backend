@@ -76,7 +76,8 @@ module.exports = class AuthController {
     }
   };
   signUp = async (req, res, next) => {
-    const { email, nickname, password, confirm, name, phone, image } = req.body;
+    const { email, nickname, password, confirm, name, phones } = req.body;
+    const profileImageUrl = req.file?.location;
     try {
       await joi
         .object({
@@ -86,7 +87,7 @@ module.exports = class AuthController {
           confirm: this.validation.getConfirmJoi(),
           name: this.validation.getNameJoi(),
           phone: this.validation.getPhoneJoi(),
-          image: this.validation.getImageJoi(),
+          //image: this.validation.getImageJoi(),
         })
         .validateAsync({
           email,
@@ -95,7 +96,7 @@ module.exports = class AuthController {
           confirm,
           name,
           phone,
-          image,
+          //image,
         });
 
       if (password !== confirm) {
@@ -109,7 +110,7 @@ module.exports = class AuthController {
         password,
         name,
         phone,
-        image
+        profileImageUrl
       );
 
       return res.status(result.status).json({ message: result.message });
