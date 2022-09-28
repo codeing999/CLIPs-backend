@@ -14,7 +14,7 @@ const { deleteImage } = require("../middlewares/deleteImage.middleware");
 const AuthController = require("../controllers/auth.controller");
 const authController = new AuthController();
 
-authRouter.post("/signup", inNotSignedIn, authController.signUp);
+authRouter.post("/signup", inNotSignedIn, imageUploader, authController.signUp);
 authRouter.post("/email", authController.checkEmail);
 authRouter.post("/nickname", authController.checkNickname);
 authRouter.post("/signin", inNotSignedIn, authController.signIn);
