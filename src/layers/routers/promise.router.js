@@ -10,7 +10,6 @@ promiseRouter.get("/:promiseId", authMiddlewares, promiseController.getPromiseDe
 promiseRouter.post("/user/check", authMiddlewares, promiseController.findFriend); //친구찾기
 promiseRouter.delete("/:promiseId",authMiddlewares, promiseController.deletePromise); //약속 삭제
 // promiseRouter.post("/invite/:promiseId", promiseController.inviteFriend); //친구 초대
-//promiseRouter.put("/:promiseId",authMiddlewares, promiseController.updatePromise); //약속 수정
-
+// promiseRouter.put("/:promiseId",authMiddlewares, promiseController.updatePromise); //약속 수정
 
 module.exports = promiseRouter;
