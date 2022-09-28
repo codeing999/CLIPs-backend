@@ -8,13 +8,21 @@ const authMiddlewares = require("../middlewares/auth.middleware");
 const needRefresh = require("../middlewares/refresh.middleware");
 const inNotSignedIn = require("../middlewares/isNotSignedIn.middleware");
 const inSignedIn = require("../middlewares/isSignedIn.middleware");
-const { imageUploader } = require("../middlewares/image.middleware");
+const {
+  imageUploader,
+  profileImageUploader,
+} = require("../middlewares/image.middleware");
 const { deleteImage } = require("../middlewares/deleteImage.middleware");
 
 const AuthController = require("../controllers/auth.controller");
 const authController = new AuthController();
 
-authRouter.post("/signup", inNotSignedIn, imageUploader, authController.signUp);
+authRouter.post(
+  "/signup",
+  inNotSignedIn,
+  profileImageUploader,
+  authController.signUp
+);
 authRouter.post("/email", authController.checkEmail);
 authRouter.post("/nickname", authController.checkNickname);
 authRouter.post("/signin", inNotSignedIn, authController.signIn);

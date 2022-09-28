@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       snsId: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       provider: {
         type: DataTypes.STRING,

@@ -9,6 +9,8 @@ module.exports = class AuthRepository {
       name: name,
       phone: phone,
       image: image,
+      snsId: null,
+      provider: "local",
     });
     return user;
   };
