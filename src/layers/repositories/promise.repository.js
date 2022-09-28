@@ -46,12 +46,14 @@ class PromiseRepository {
         attributes: {
           exclude: ["penalty"],
         },
-        include: [{
-          model: User,
-          through: 'Friend',
-          as: "participants",
-          attributes: ['name'],
-        }]
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            attributes: ["name"],
+          },
+        ],
       });
 
       const includedPromise = await Promise.findAll({
@@ -162,6 +164,6 @@ class PromiseRepository {
       throw error;
     }
   };
-};
+}
 
 module.exports = PromiseRepository;

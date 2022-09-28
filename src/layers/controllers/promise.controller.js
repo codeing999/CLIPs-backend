@@ -23,7 +23,16 @@ class PromiseController {
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
+        .validateAsync({
+          title,
+          date,
+          location,
+          x,
+          y,
+          penalty,
+          userId,
+          friendList,
+        });
 
       const result = await this.promiseService.createPromise(
         title,
@@ -45,7 +54,7 @@ class PromiseController {
 
   findFriend = async (req, res) => {
     const { friendList } = req.body;
-    const userId = res.locals.userId; 
+    const userId = res.locals.userId;
 
     try {
       await joi

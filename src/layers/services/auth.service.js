@@ -9,6 +9,28 @@ module.exports = class AuthService {
   authRepository = new AuthRepository();
   bcrypt = new Bcrypt();
 
+  kakaoLogin = async (userId) => {
+    try {
+      const accessToken = jwt.sign(
+        {
+          userId,
+        },
+        process.env.ACCESS_SECRET,
+        { expiresIn: process.env.ACCESS_OPTION_EXPIRESIN }
+      );
+      const refreshToken = jwt.sign(
+        {
+          userId,
+        },
+        process.env.REFRESH_SECRET_KEY,
+        { expiresIn: process.env.REFRESH_OPTION_EXPIRESIN }
+      );
+      return { accessToken, refreshToken };
+    } catch (err) {
+      console.log(err);
+      return { status: 400, message: err.message };
+    }
+  };
   getMyPage = async (userId) => {
     try {
       const userInfo = await this.authRepository.findUserById(userId);
@@ -17,6 +39,30 @@ module.exports = class AuthService {
         status: 200,
         message: "마이페이지 조회에 성공하였습니다.",
       };
+    } catch (err) {
+      console.log(err);
+      return { status: 400, message: err.message };
+    }
+  };
+  updateMyPage = async (
+    userId,
+    email,
+    nickname,
+    password,
+    name,
+    phone,
+    image
+  ) => {
+    try {
+      const result = await this.authRepository.updateMyPage(
+        email,
+        nickname,
+        password,
+        confirm,
+        name,
+        phone,
+        image
+      );
     } catch (err) {
       console.log(err);
       return { status: 400, message: err.message };
