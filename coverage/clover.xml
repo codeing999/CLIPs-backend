@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1663683813195" clover="3.2.0">
+  <project timestamp="1663683813195" name="All files">
+    <metrics statements="28" coveredstatements="19" conditionals="11" coveredconditionals="4" methods="3" coveredmethods="1" elements="42" coveredelements="24" complexity="0" loc="28" ncloc="28" packages="1" files="2" classes="2"/>
+    <file name="auth.middleware.js" path="/Users/minsun/Desktop/항해 99/실전 프로젝트/CLIPs-backend/src/layers/middlewares/auth.middleware.js">
+      <metrics statements="13" coveredstatements="9" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="3" type="stmt"/>
+      <line num="8" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="10" count="3" type="stmt"/>
+      <line num="11" count="3" type="cond" truecount="2" falsecount="2"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="16" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+    </file>
+    <file name="image.middleware.js" path="/Users/minsun/Desktop/항해 99/실전 프로젝트/CLIPs-backend/src/layers/middlewares/image.middleware.js">
+      <metrics statements="15" coveredstatements="10" conditionals="5" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="26" count="0" type="stmt"/>
+      <line num="28" count="0" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="60" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

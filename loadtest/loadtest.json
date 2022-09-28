@@ -1,0 +1,55 @@
+{
+   "config": {
+      "target": "http://localhost:3000",
+      "phases": [
+         {
+            "duration": 60,
+            "arrivalRate": 30
+         },
+         {
+            "duration": 120,
+            "arrivalRate": 5,
+            "rampTo": 50,
+            "name": "Ramp up load"
+          }
+      ],
+      "payload" : {
+         "path" : "./reviewdata.csv",
+         "field" : ["reviewId", "promiseId"]
+      }
+   },
+   "scenarios": [
+      {
+         "flow": [
+            {
+               "post": {
+                  "url": "/api/review/{{ promiseId }}",
+                  "json": {
+                     "content": "test1",
+                     "images": "123123"
+                  }
+               }
+            },
+            {
+               "get": {
+                  "url": "/api/review"
+               }
+            },
+            {
+               "put": {
+                  "url": "/api/review/{{ reviewId }}",
+                  "json" : {
+                     "content": "test1",
+                     "images": "123123"
+                  }
+               }
+            }, 
+            {
+               "delete": {
+                  "url": "/api/review/{{ reviewId }}"
+               }
+            }
+         ]
+      }
+   ]
+}

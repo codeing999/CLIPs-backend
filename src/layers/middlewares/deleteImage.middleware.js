@@ -39,33 +39,33 @@ const deleteImage = async (req, res, next) => {
   if (!reviewData) {
     return res.json({ message: "작성자만 수정/삭제가 가능합니다. " });
   }
-  try{ 
+  try {
     const { image } = await ReviewImage.findOne({
       where: { reviewId: reviewData.reviewId },
       raw: true,
       attributes: ["image"],
     });
-      // if (!image || image === null) {
-      //   return res.json({ message: "삭제할 이미지가 없습니다." });
-      // } else {
-        const params = {
-          Bucket: "clips-s3-bucket",
-          Key: image.split("/")[3],
-        };
+    // if (!image || image === null) {
+    //   return res.json({ message: "삭제할 이미지가 없습니다." });
+    // } else {
+    const params = {
+      Bucket: process.env.REVIEW_BUCKET,
+      Key: image.split("/")[3],
+    };
 
-        s3.deleteObject(params, function (err, data) {
-          if (err) {
-            console.log(err, err.stack);
-          } else {
-            console.log("이미지가 삭제되었습니다.", data);
-            return image;
-          }
-        });
-    // } 
+    s3.deleteObject(params, function (err, data) {
+      if (err) {
+        console.log(err, err.stack);
+      } else {
+        console.log("이미지가 삭제되었습니다.", data);
+        return image;
+      }
+    });
+    // }
   } catch (err) {
-      console.log(err);
-      // return res.status(404).json({ message:"삭제할 이미지가 없습니다." });
-    }
-  next();
+    console.log(err);
+    // return res.status(404).json({ message:"삭제할 이미지가 없습니다." });
   }
+  next();
+};
 module.exports = { deleteImage };
