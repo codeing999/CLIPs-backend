@@ -85,7 +85,7 @@ class PromiseRepository {
           model: User,
           through: 'Friend',
           as: "participants",
-          attributes: ['name', 'phone'],
+          attributes: ['nickname', 'phone'],
         }]
       });
 

@@ -1,7 +1,6 @@
 {
   "name": "clips-backend",
   "version": "1.0.0",
-  "type": "module",
   "description": "- CLIPs : 약속 장소 및 주변 맛집 추천 서비스",
   "main": "app.js",
   "scripts": {
