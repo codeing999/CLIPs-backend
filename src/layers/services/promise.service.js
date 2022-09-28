@@ -1,11 +1,18 @@
 const PromiseRepository = require("../repositories/promise.repository");
 
 class PromiseService {
-
   promiseRepository = new PromiseRepository();
 
-
-  createPromise = async (title, date, location, x, y, penalty, userId, friendList) => {
+  createPromise = async (
+    title,
+    date,
+    location,
+    x,
+    y,
+    penalty,
+    userId,
+    friendList
+  ) => {
     try {
       await this.findFriend(friendList, userId);
       const promiseId = this.generateRandomId();
@@ -24,8 +31,8 @@ class PromiseService {
       await this.createParticipants(friendList, promiseId, userId);
       return result;
     } catch (err) {
-      console.log(err)
-      throw err
+      console.log(err);
+      throw err;
     }
   };
 
@@ -38,9 +45,9 @@ class PromiseService {
 
       delete Promise.dataValues.participants;
       for (let i = 0; i <= Promise.dataValues.friendList.length - 1; i++) {
-        delete Promise.dataValues.friendList[i].dataValues.Friend
-      }; // Friend 객체 지우기 (레포에서 직접 제외시키지 못해 수동으로 지움)
-    
+        delete Promise.dataValues.friendList[i].dataValues.Friend;
+      } // Friend 객체 지우기 (레포에서 직접 제외시키지 못해 수동으로 지움)
+
       return Promise;
     });
   };
@@ -51,8 +58,8 @@ class PromiseService {
     const username = await this.promiseRepository.findUser(userId);
 
     for (let i = 0; i <= response.participants.length - 1; i++) {
-      delete response.participants[i].dataValues.Friend
-    };
+      delete response.participants[i].dataValues.Friend;
+    }
 
     const result = {
       title: response.title,
@@ -66,10 +73,9 @@ class PromiseService {
       countFriend: response.participants.length,
       penalty: response.penalty,
       done: response.done,
-    }
+    };
 
     return result;
-
   };
 
   updatePromise = async (title, date, location, x, y, penalty, userId, friendList, promiseId) => {
@@ -86,13 +92,13 @@ class PromiseService {
         location,
         x,
         y,
-        penalty,
+        penalty
       );
       await this.createParticipants(friendList, promiseId);
       return updatePromise;
     } catch (err) {
-      console.log(err)
-      throw err
+      console.log(err);
+      throw err;
     }
   };
 
@@ -120,12 +126,13 @@ class PromiseService {
         error.code = 404;
         throw error;
       }
-    } return user;
+    }
+    return user;
   };
 
   generateRandomId() {
-    let randomId = performance.now().toString(36) +
-      Math.random().toString(36).substring(2);
+    let randomId =
+      performance.now().toString(36) + Math.random().toString(36).substring(2);
     const promiseId = randomId.split(".")[1];
     return promiseId;
   }
@@ -148,7 +155,7 @@ class PromiseService {
       error.code = 401;
       throw error;
     }
-  };
+  }
 
   async checkPromiseExists(promiseId) {
     const response = await this.promiseRepository.getPromiseDetail(promiseId);
@@ -157,7 +164,7 @@ class PromiseService {
       error.code = 404;
       throw error;
     } else return response;
-  };
-};
+  }
+}
 
 module.exports = PromiseService;

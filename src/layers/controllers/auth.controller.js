@@ -8,6 +8,25 @@ module.exports = class AuthController {
   authService = new AuthService();
   validation = new Validation();
 
+  kakaoLogin = async (req, res, next) => {
+    //console.log(req.session.passport.user);
+    try {
+      const result = await this.authService.kakaoLogin(
+        req.session.passport.user
+      );
+
+      return res.redirect(
+        `https://clipspromise.com/?accesstoken=${result.accessToken}&refreshToken=${result.refreshToken}`
+      );
+      //res.redirect("https://clipspromise.com/");
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(400)
+        .json({ message: "카카오 소셜 로그인에 실패했습니다." });
+    }
+  };
+
   getMyPage = async (req, res, next) => {
     const userId = res.locals.userId;
     try {
@@ -26,9 +45,29 @@ module.exports = class AuthController {
     }
   };
   updateMyPage = async (req, res, next) => {
+    /*
+    프론트에서 전달 방식에 따라서 값이 있는 것만
+    const updateInfo = req.body; 
+    이와 같이 받을지. 아니면, 변경이 없는 것도 변수가 전달되지 확인해야함. 그게 기존값인지 혹은 널값인지도.
+    또한, 조이를 적용할지.
+    */
     const userId = res.locals.userId;
     const { email, nickname, password, confirm, name, phone, image } = req.body;
     try {
+      // if (password !== confirm) {
+      //   return res
+      //     .status(400)
+      //     .json({ message: "비밀번호와 비밀번호 확인이 일치하지 않습니다" });
+      // }
+      const result = await this.authService.updateMyPage(
+        userId,
+        email,
+        nickname,
+        password,
+        name,
+        phone,
+        image
+      );
     } catch (err) {
       console.log(err);
       return res
