@@ -14,7 +14,6 @@ class PromiseService {
     friendList
   ) => {
     try {
-      await this.findFriend(friendList, userId);
       const promiseId = this.generateRandomId();
 
       const result = await this.promiseRepository.createPromise(
@@ -78,12 +77,22 @@ class PromiseService {
     return result;
   };
 
-  updatePromise = async (title, date, location, x, y, penalty, userId, friendList, promiseId) => {
+  updatePromise = async (
+    title,
+    date,
+    location,
+    x,
+    y,
+    penalty,
+    userId,
+    friendList,
+    promiseId
+  ) => {
     try {
       const response = await this.checkPromiseExists(promiseId);
       this.checkPromiseCreator(response, userId);
 
-      await this.findFriend(friendList);
+      await this.findFriend(friendList, userId);
 
       const updatePromise = await this.quizRepository.updatePromise(
         promiseId,
@@ -121,7 +130,7 @@ class PromiseService {
       nickname = friendList[i].nickname;
       user = await this.promiseRepository.findFriend(nickname, userId);
       if (user === null) {
-        console.log(err)
+        console.log(err);
         const error = new Error("찾으시는 친구가 존재하지 않습니다.");
         error.code = 404;
         throw error;
@@ -143,7 +152,7 @@ class PromiseService {
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
       let friend = await this.promiseRepository.findFriend(nickname, userId);
-      console.log(friend)
+      console.log(friend);
       user = friend[0].dataValues.userId;
       await this.promiseRepository.createParticipants(promiseId, user);
     }

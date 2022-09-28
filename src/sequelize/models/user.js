@@ -71,6 +71,13 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "cascade",
       constraints: false,
     });
+    User.hasMany(models.Participant, {
+      foreignKey: "userId",
+      sourceKey: "userId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
+      constraints: false,
+    });
     User.belongsToMany(models.Promise, {
       as: "thisTime",
       through: "Friend",

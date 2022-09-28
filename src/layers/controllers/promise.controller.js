@@ -1,6 +1,5 @@
 const PromiseService = require("../services/promise.service");
 const joi = require("joi");
-const promise = require("../../sequelize/models/promise");
 const Validation = require("../../modules/joiStorage");
 
 class PromiseController {
@@ -47,7 +46,7 @@ class PromiseController {
 
       return res.status(200).send("약속 생성 완료");
     } catch (err) {
-      console.log(err)
+      console.log(err);
       return res.status(400).json(err.message);
     }
   };
@@ -66,7 +65,7 @@ class PromiseController {
       const result = await this.promiseService.findFriend(friendList, userId);
       return res.status(200).send(result);
     } catch (err) {
-      console.log(err)
+      console.log(err);
       return res.status(400).json(err.message);
     }
   };
@@ -97,7 +96,10 @@ class PromiseController {
     }
 
     try {
-      const result = await this.promiseService.getPromiseDetail(promiseId, userId);
+      const result = await this.promiseService.getPromiseDetail(
+        promiseId,
+        userId
+      );
       return res.status(200).json(result);
     } catch (err) {
       return res.status(400).json(err.message);
@@ -121,7 +123,16 @@ class PromiseController {
           userId: joi.number().required(),
           friendList: joi.array(),
         })
-        .validateAsync({ title, date, location, x, y, penalty, userId, friendList });
+        .validateAsync({
+          title,
+          date,
+          location,
+          x,
+          y,
+          penalty,
+          userId,
+          friendList,
+        });
 
       const result = await this.PromiseService.updatePromise(
         title,
