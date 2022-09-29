@@ -15,21 +15,22 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-// const whitelist = [
-//   "http://somfist.shop",
-//   "http://somfist.shop.s3-website.ap-northeast-2.amazonaws.com",
-// ];
+const whitelist = [
+  "https://clipspromise.com",
+  "https://localhost:3000",
+  "http://localhost:3000",
+];
 
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       console.log(origin);
-//       callback(new Error("Not Allowed Origin!"));
-//     }
-//   },
-// };
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.log(origin);
+      callback(new Error("Not Allowed Origin!"));
+    }
+  },
+};
 
 // if (process.env.NODE_ENV === "production") {
 //   app.use(morgan("combined"));
@@ -42,8 +43,8 @@ app.use(
   )
 );
 
-//app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+//app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
