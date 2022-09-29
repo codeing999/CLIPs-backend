@@ -15,15 +15,11 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-const whitelist = [
-  "https://clipspromise.com",
-  "https://localhost:3000",
-  "http://localhost:3000",
-];
+const whitelist = ["https://clipspromise.com"];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       console.log(origin);
