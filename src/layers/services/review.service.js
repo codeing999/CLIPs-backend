@@ -33,6 +33,7 @@ module.exports = class ReviewService {
           location: post.location,
           date: post.date, 
           name: post['participants.name'],
+          title: post.title
         };
       });
 

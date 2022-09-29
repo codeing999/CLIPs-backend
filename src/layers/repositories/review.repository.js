@@ -70,7 +70,7 @@ module.exports = class ReviewRepository {
       //Promise 테이블에서 내가 쓴 약속 찾아서 값 가져오기
       const promiseDataReview = await Promise.findAll({
         where: { userId },
-        attributes: ["date", "location", "promiseId", "userId"],
+        attributes: ["date", "location", "promiseId", "userId", "title"],
         raw: true,
         include: {
           model: Review,
@@ -90,7 +90,7 @@ module.exports = class ReviewRepository {
       }
 
       const extendedFriend = await Promise.findAll({
-        attributes: ["date", "location", "promiseId", "userId"],
+        attributes: ["date", "location", "promiseId", "userId", "title"],
         include: [
           {
             model: User,
