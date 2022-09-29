@@ -4,7 +4,16 @@ const Friend = db.sequelize.models.Friend;
 const { sequelize, Op } = require("sequelize");
 
 class PromiseRepository {
-  createPromise = async (promiseId, title, date, location, x, y, penalty, userId) => {
+  createPromise = async (
+    promiseId,
+    title,
+    date,
+    location,
+    x,
+    y,
+    penalty,
+    userId
+  ) => {
     try {
       await Promise.create({
         promiseId: promiseId,
@@ -17,7 +26,7 @@ class PromiseRepository {
         userId: userId,
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       const error = new Error(err);
       error.code = 405;
       throw error;
@@ -31,7 +40,7 @@ class PromiseRepository {
         userId: user,
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       const error = new Error(err);
       error.code = 405;
       throw error;
@@ -61,18 +70,20 @@ class PromiseRepository {
         attributes: {
           exclude: ["penalty"],
         },
-        include: [{
-          model: User,
-          through: 'Friend',
-          as: "participants",
-          where: { userId: userId },
-          attributes: ['name'],
-        }]
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            where: { userId: userId },
+            attributes: ["name"],
+          },
+        ],
       });
 
       return [...madePromise, ...includedPromise];
     } catch (err) {
-      console.log(err)
+      console.log(err);
       const error = new Error(err);
       error.code = 405;
       throw error;
@@ -83,36 +94,39 @@ class PromiseRepository {
     try {
       const response = await Promise.findOne({
         where: { promiseId: promiseId },
-        include: [{
-          model: User,
-          through: 'Friend',
-          as: "participants",
-          attributes: ['nickname', 'phone'],
-        }]
+        include: [
+          {
+            model: User,
+            through: "Friend",
+            as: "participants",
+            attributes: ["nickname", "phone"],
+          },
+        ],
       });
 
       return response.dataValues;
     } catch (err) {
-      console.log(err)
+      console.log(err);
       const error = new Error("약속이 존재하지 않습니다");
       error.code = 405;
       throw error;
     }
   };
 
-  updatePromise = async (title, date, location, x, y, penalty, userId, friendList) => {
-    try{
-      await Promise.update(
-        title,
-        date,
-        location,
-        x,
-        y,
-        penalty,
-      );
-
+  updatePromise = async (
+    title,
+    date,
+    location,
+    x,
+    y,
+    penalty,
+    userId,
+    friendList
+  ) => {
+    try {
+      await Promise.update(title, date, location, x, y, penalty);
     } catch (err) {
-      console.log(err)
+      console.log(err);
       const error = new Error(err);
       error.code = 405;
       throw error;
@@ -122,19 +136,19 @@ class PromiseRepository {
   findFriend = async (nickname, userId) => {
     try {
       const response = await User.findAll({
-        attributes: ["userId", "nickname"],
-        where: { 
+        attributes: ["userId", "nickname", "image"],
+        where: {
           nickname: {
-            [Op.startsWith] : `${nickname}`,
+            [Op.startsWith]: `${nickname}`,
           },
           userId: {
-            [Op.ne] : userId,
-          }              
+            [Op.ne]: userId,
+          },
         },
       });
       return response;
     } catch (err) {
-      console.log(err)
+      console.log(err);
       const error = new Error("친구가 존재하지 않습니다");
       error.code = 405;
       throw error;
@@ -156,7 +170,7 @@ class PromiseRepository {
     try {
       return await User.findOne({
         where: { userId: userId },
-        attributes: ['nickname']
+        attributes: ["nickname"],
       });
     } catch (err) {
       const error = new Error("유저가 존재하지 않습니다");
