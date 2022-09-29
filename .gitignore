@@ -3,3 +3,4 @@ config.json
 .src/sequelize/config/cofig.json
 .env
 coverage/
+test/
