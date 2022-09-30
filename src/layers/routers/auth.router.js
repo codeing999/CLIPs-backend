@@ -2,7 +2,6 @@ const express = require("express");
 const authRouter = express.Router();
 
 const passport = require("passport");
-const jwt = require("jsonwebtoken");
 
 const authMiddlewares = require("../middlewares/auth.middleware");
 const needRefresh = require("../middlewares/refresh.middleware");
@@ -46,4 +45,5 @@ authRouter.get(
   //kakaoStrategy에서 성공한다면 콜백 실행
   authController.kakaoLogin
 );
+
 module.exports = authRouter;
