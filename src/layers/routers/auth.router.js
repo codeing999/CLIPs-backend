@@ -1,9 +1,6 @@
 const express = require("express");
 const authRouter = express.Router();
 
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
-
 const authMiddlewares = require("../middlewares/auth.middleware");
 const needRefresh = require("../middlewares/refresh.middleware");
 const inNotSignedIn = require("../middlewares/isNotSignedIn.middleware");
@@ -36,14 +33,5 @@ authRouter.patch(
   imageUploader,
   authController.updateMyPage
 );
-authRouter.get("/kakao", passport.authenticate("kakao")); //카카오 로그인 페이지로 가는 요청
-authRouter.get(
-  //로그인하면 성공 여부를 받는 경로
-  "/kakao/callback",
-  passport.authenticate("kakao", {
-    failureRedirect: "https://clipspromise.com", //kakaoStrategy에서 실패한다면 실행
-  }),
-  //kakaoStrategy에서 성공한다면 콜백 실행
-  authController.kakaoLogin
-);
+
 module.exports = authRouter;
