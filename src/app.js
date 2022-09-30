@@ -15,11 +15,11 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-const whitelist = ["https://clipspromise.com", "http://localhost:3000"];
+const whitelist = ["https://clipspromise.com", "localhost:3000"];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
+    if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       console.log(origin);
@@ -39,19 +39,15 @@ app.use(
   )
 );
 
+app.use(function (req, res, next) {
+  console.log(req.headers.origin, req.headers.host);
+  req.headers.origin = req.headers.origin || req.headers.host;
+  next();
+});
 app.use(cors(corsOptions));
 //app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// sequelize
-//   .sync({ force: true })
-//   .then(() => {
-//     console.log("db connect seccess");
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
 
 app.use(
   session({
