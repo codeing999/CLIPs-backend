@@ -20,6 +20,7 @@ const whitelist = [
   "localhost:3000",
   "https://codeing999.shop",
   "codeing999.shop",
+  "127.0.0.1:3000",
 ];
 
 const corsOptions = {
