@@ -15,13 +15,12 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-const whitelist = [
-  "https://clipspromise.com",
-  "localhost:3000",
-  "https://codeing999.shop",
-  "codeing999.shop",
-  "127.0.0.1:3000",
-];
+const whitelist = ["https://clipspromise.com", "https://clipspromise.com/"];
+
+app.use(function (req, res, next) {
+  req.headers.origin = req.headers.origin || req.headers.referer;
+  next();
+});
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -45,14 +44,7 @@ app.use(
   )
 );
 
-app.use(function (req, res, next) {
-  console.log("@@@@");
-  console.log(req.headers.origin);
-  console.log(req.headers.host);
-  req.headers.origin = req.headers.origin || req.headers.host;
-  next();
-});
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); //로컬에서 할 땐 다 주석처리하고 밑에꺼로 다 열고해야함.
 //app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
