@@ -9,8 +9,6 @@ require("dotenv/config");
 const indexRouter = require("./layers/routers");
 const passportConfig = require("./passport");
 
-// const { sequelize } = require("./sequelize/models"); //force 실행할때
-
 const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
