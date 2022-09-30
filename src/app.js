@@ -15,7 +15,7 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-const whitelist = ["https://clipspromise.com"];
+const whitelist = ["https://clipspromise.com", "http://localhost:3000"];
 
 const corsOptions = {
   origin: function (origin, callback) {
