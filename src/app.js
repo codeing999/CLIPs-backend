@@ -21,6 +21,7 @@ const whitelist = [
   "https://accounts.kakao.com/",
   "http://localhost:3000",
   "http://localhost:3000/",
+  undefined, //로컬 테스트용
 ];
 
 app.use(function (req, res, next) {

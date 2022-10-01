@@ -34,7 +34,7 @@ class PromiseController {
           friendList,
         });
 
-      const result = await this.promiseService.createPromise(
+      await this.promiseService.createPromise(
         title,
         date,
         location,

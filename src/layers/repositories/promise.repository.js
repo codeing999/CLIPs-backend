@@ -16,14 +16,14 @@ class PromiseRepository {
   ) => {
     try {
       await Promise.create({
-        promiseId: promiseId,
+        promiseId,
         title,
         date,
         location,
         x,
         y,
         penalty,
-        userId: userId,
+        userId,
       });
     } catch (err) {
       console.log(err);
