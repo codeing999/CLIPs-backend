@@ -99,16 +99,9 @@ class PromiseRepository {
             model: User,
             through: "Friend",
             as: "participants",
-            attributes: ["name", "phone"],
+            attributes: ["nickname", "phone"],
           },
         ],
-        // include: [
-        //   {
-        //     model: User,
-        //     as: "creator",
-        //     attributes: ["nickname"],
-        //   },
-        // ],
       });
 
       return response.dataValues;

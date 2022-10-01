@@ -65,7 +65,6 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: "cascade",
       onDelete: "cascade",
       constraints: false,
-      as: "creator",
     });
     Promise.belongsToMany(models.User, {
       as: "participants",
