@@ -13,15 +13,29 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-const whitelist = [
-  "https://clipspromise.com",
-  "https://clipspromise.com/",
-  "https://www.clipspromise.com",
-  "https://www.clipspromise.com/",
-  "https://accounts.kakao.com/",
-  "http://localhost:3000",
-  "http://localhost:3000/",
-];
+let whitelist = [];
+if (process.env.NODE_ENV === "production") {
+  whitelist = [
+    "https://clipspromise.com",
+    "https://clipspromise.com/",
+    "https://www.clipspromise.com",
+    "https://www.clipspromise.com/",
+    "https://accounts.kakao.com/",
+    //프론트 로컬 테스트용. 최종 배포시엔 지울 것
+    "http://localhost:3000",
+    "http://localhost:3000/",
+  ];
+} else {
+  whitelist = [
+    "https://clipspromise.com",
+    "https://clipspromise.com/",
+    "https://www.clipspromise.com",
+    "https://www.clipspromise.com/",
+    "https://accounts.kakao.com/",
+    //백엔드 로컬 테스트용
+    undefined,
+  ];
+}
 
 app.use(function (req, res, next) {
   console.log(req.headers.origin, req.headers.referer);
