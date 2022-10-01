@@ -16,14 +16,14 @@ class PromiseRepository {
   ) => {
     try {
       await Promise.create({
-        promiseId,
+        promiseId: promiseId,
         title,
         date,
         location,
         x,
         y,
         penalty,
-        userId,
+        userId: userId,
       });
     } catch (err) {
       console.log(err);
@@ -99,9 +99,16 @@ class PromiseRepository {
             model: User,
             through: "Friend",
             as: "participants",
-            attributes: ["nickname", "phone"],
+            attributes: ["name", "phone"],
           },
         ],
+        // include: [
+        //   {
+        //     model: User,
+        //     as: "creator",
+        //     attributes: ["nickname"],
+        //   },
+        // ],
       });
 
       return response.dataValues;
@@ -136,7 +143,7 @@ class PromiseRepository {
   findFriend = async (nickname, userId) => {
     try {
       const response = await User.findAll({
-        attributes: ["userId", "nickname", "image"],
+        attributes: ["userId", "nickname"],
         where: {
           nickname: {
             [Op.startsWith]: `${nickname}`,
@@ -171,7 +178,6 @@ class PromiseRepository {
       return await User.findOne({
         where: { userId: userId },
         attributes: ["nickname"],
-        raw: true,
       });
     } catch (err) {
       const error = new Error("유저가 존재하지 않습니다");

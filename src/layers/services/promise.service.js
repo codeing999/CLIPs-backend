@@ -56,7 +56,9 @@ class PromiseService {
     try {
       await this.checkPromiseExists(promiseId);
       const response = await this.promiseRepository.getPromiseDetail(promiseId);
-      const { nickname } = await this.promiseRepository.findUser(userId);
+      const { nickname } = await this.promiseRepository.findUser(
+        response.userId
+      );
       for (let i = 0; i <= response.participants.length - 1; i++) {
         delete response.participants[i].dataValues.Friend;
       }
@@ -64,7 +66,7 @@ class PromiseService {
       const result = {
         title: response.title,
         userId: response.userId,
-        nickname: response.nickname,
+        nickname: nickname,
         date: response.date,
         location: response.location,
         x: response.x,
