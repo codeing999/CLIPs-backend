@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       date: {
         type: DataTypes.STRING,
         allowNull: false,
-      }, 
+      },
       location: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -65,6 +65,12 @@ module.exports = (sequelize, DataTypes) => {
       onUpdate: "cascade",
       onDelete: "cascade",
       constraints: false,
+    });
+    Promise.hasMany(models.Participant, {
+      foreignKey: "promiseId",
+      sourceKey: "promiseId",
+      onUpdate: "cascade",
+      onDelete: "cascade",
     });
     Promise.belongsToMany(models.User, {
       as: "participants",

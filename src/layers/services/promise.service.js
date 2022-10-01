@@ -64,7 +64,7 @@ class PromiseService {
       const result = {
         title: response.title,
         userId: response.userId,
-        nickname: nickname,
+        nickname: response.nickname,
         date: response.date,
         location: response.location,
         x: response.x,
