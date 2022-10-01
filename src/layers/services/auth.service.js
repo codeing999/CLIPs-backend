@@ -59,7 +59,6 @@ module.exports = class AuthService {
         email,
         nickname,
         password,
-        confirm,
         name,
         phone,
         image
@@ -71,7 +70,12 @@ module.exports = class AuthService {
   };
   createUser = async (email, nickname, password, name, phone, image) => {
     try {
-      let userId = Math.floor(Math.random() * 1000000);
+      let isDuplicated = 1;
+      let userId;
+      while (isDuplicated) {
+        userId = Math.floor(Math.random() * 1000000);
+        isDuplicated = await await this.authRepository.findUserById(userId);
+      }
       const isExistUser = await this.authRepository.findUserByEmail(email);
       if (isExistUser) {
         return { status: 400, message: "이미 가입한 Email 입니다." };
