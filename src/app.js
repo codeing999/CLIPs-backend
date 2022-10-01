@@ -16,7 +16,7 @@ const port = 3000;
 const whitelist = ["https://clipspromise.com", "https://clipspromise.com/"];
 
 app.use(function (req, res, next) {
-  console.log(req.headers.origin, eq.headers.referer);
+  console.log(req.headers.origin, req.headers.referer);
   req.headers.origin = req.headers.origin || req.headers.referer;
   next();
 });
