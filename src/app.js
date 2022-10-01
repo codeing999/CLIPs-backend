@@ -13,7 +13,11 @@ const app = express();
 passportConfig(); //패스포트 설정
 const port = 3000;
 
-const whitelist = ["https://clipspromise.com", "https://clipspromise.com/"];
+const whitelist = [
+  "https://clipspromise.com",
+  "https://clipspromise.com/",
+  "https://accounts.kakao.com/",
+];
 
 app.use(function (req, res, next) {
   console.log(req.headers.origin, req.headers.referer);
