@@ -16,6 +16,8 @@ const port = 3000;
 const whitelist = [
   "https://clipspromise.com",
   "https://clipspromise.com/",
+  "https://www.clipspromise.com",
+  "https://www.clipspromise.com/",
   "https://accounts.kakao.com/",
 ];
 
