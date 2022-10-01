@@ -19,6 +19,8 @@ const whitelist = [
   "https://www.clipspromise.com",
   "https://www.clipspromise.com/",
   "https://accounts.kakao.com/",
+  "http://localhost:3000",
+  "http://localhost:3000/",
 ];
 
 app.use(function (req, res, next) {
