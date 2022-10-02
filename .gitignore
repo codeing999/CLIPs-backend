@@ -3,6 +3,7 @@ config.json
 .src/sequelize/config/cofig.json
 .env
 coverage/
+test/
 *.html
 coverage/lcov-report/src/app.js.html
 coverage/lcov-report/src/index.html

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
       },
       email: {
         type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       nickname: {
         type: DataTypes.STRING,
-        unique: true,
+        unique: false,
         allowNull: false,
       },
       password: {
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       snsId: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       provider: {
         type: DataTypes.STRING,

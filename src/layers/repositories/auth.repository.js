@@ -1,14 +1,25 @@
 const { User, Session } = require("../../sequelize/models");
 
 module.exports = class AuthRepository {
-  createUser = async (email, nickname, password, name, phone, image) => {
+  createUser = async (
+    userId,
+    email,
+    nickname,
+    password,
+    name,
+    phone,
+    image
+  ) => {
     const user = await User.create({
+      userId: userId,
       email: email,
       nickname: nickname,
       password: password,
       name: name,
       phone: phone,
       image: image,
+      snsId: null,
+      provider: "local",
     });
     return user;
   };
