@@ -1,4 +1,4 @@
-joi = require("joi");
+const joi = require("joi");
 
 module.exports = class Validation {
   getEmailJoi = () => {

@@ -12,19 +12,6 @@ const s3 = new aws.S3({
   region: process.env.AWS_REGION,
 });
 
-//확장자 필터
-fileFilter = (req, file, cb) => {
-  if (
-    file.mimetype === "image/jpg" ||
-    file.mimetype === "image/jpeg" ||
-    file.mimetype === "image/png"
-  ) {
-    cb(null, true); // 위의 jpg, jpeg, png 만 받겠다
-  } else {
-    req.fileValidationError = "jpg, jpeg, png 파일만 업로드 가능합니다. ";
-    cb(null, false);
-  }
-};
 
 const deleteImage = async (req, res, next) => {
   const { reviewId } = req.params;
@@ -45,9 +32,6 @@ const deleteImage = async (req, res, next) => {
       raw: true,
       attributes: ["image"],
     });
-    // if (!image || image === null) {
-    //   return res.json({ message: "삭제할 이미지가 없습니다." });
-    // } else {
     const params = {
       Bucket: process.env.REVIEW_BUCKET,
       Key: image.split("/")[3],
@@ -61,10 +45,8 @@ const deleteImage = async (req, res, next) => {
         return image;
       }
     });
-    // }
   } catch (err) {
     console.log(err);
-    // return res.status(404).json({ message:"삭제할 이미지가 없습니다." });
   }
   next();
 };

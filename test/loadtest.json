@@ -1,0 +1,78 @@
+{
+    "config": {
+       "target": "http://localhost:3000",
+       "phase": [
+          {
+             "duration": 300,
+             "arrivalRate": 50
+          }
+       ],
+       "payload" : {
+         "path": "./data.csv",
+         "fields": ["promiseId", "reviewId", "email", "password"]
+       }
+    },
+
+    "scenarios": [
+       {"name" : "로그인과 약속 생성 후 리뷰 작성/수정까지",
+          "flow": [
+             {
+                "post": {
+                   "url": "/api/auth/signin",
+                   "json": {
+                      "email": "{{ email }}",
+                      "password": "{{ password }}"
+                   },
+                   "capture": {
+                      "json": "accessToken",
+                      "as": "accessToken"
+                   }
+                }
+             },
+             {
+                "get": {
+                   "url": "/api/promise",
+                "headers": {
+                   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2NDM3MjEyNywiZXhwIjoxNjY0Mzc1NzI3fQ.GxvAxHlt6tByhTCDIkKUM5KteFo5ALzfjNyj422G4sE"
+                }
+               }
+             },
+             {
+                "post": {
+                   "url": "/api/review/{{ promiseId }}",
+                   "json": {
+                      "content": "이랴",
+                      "image":"sdkfadf"
+                   },
+                   "capture": {
+                      "json": "reviewId",
+                      "as": "reviewId"
+                   },
+                   "headers": {
+                      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2NDM3MjEyNywiZXhwIjoxNjY0Mzc1NzI3fQ.GxvAxHlt6tByhTCDIkKUM5KteFo5ALzfjNyj422G4sE"
+                   }
+                }
+             }, {
+               "get": {
+                  "url": "/api/review",
+               "headers": {
+                  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2NDM3MjEyNywiZXhwIjoxNjY0Mzc1NzI3fQ.GxvAxHlt6tByhTCDIkKUM5KteFo5ALzfjNyj422G4sE"
+               }
+              }
+            },
+             {
+               "put": {
+                  "url" : "/api/review/{{ reviewId }}",
+                  "json" : {
+                     "content": "(수정)이랴",
+                     "image":"(수정)sdkfadf"
+                  },
+                  "headers": {
+                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTY2NDM3MjEyNywiZXhwIjoxNjY0Mzc1NzI3fQ.GxvAxHlt6tByhTCDIkKUM5KteFo5ALzfjNyj422G4sE"
+                  }
+                  }
+               }
+          ]
+       }
+    ]
+ }

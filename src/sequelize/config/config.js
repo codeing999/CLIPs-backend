@@ -6,8 +6,8 @@ const development = {
   password: env.DB_DEV_PASSWORD,
   database: env.DB_DEV_DATABASE,
   host: env.DB_DEV_HOST,
-  dialect: env.DB_DEV_DIALECT,
-  //port: env.DB_PORT
+  dialect: 'mysql'
+  // env.DB_DEV_DIALECT,
 };
 
 const production = {
@@ -24,7 +24,8 @@ const test = {
   password: env.DB_PASSWORD,
   database: env.DB_DATABASE_TEST,
   host: env.DB_HOST,
-  dialect: env.DB_DIALECT,
+  dialect: 'mysql'
+  // env.DB_DIALECT,
   //port: env.MYSQL_PORT
 };
 

@@ -13,7 +13,7 @@ const passportConfig = require("./passport");
 
 const app = express();
 passportConfig(); //패스포트 설정
-const port = 3000;
+// const port = 3000;
 
 // const whitelist = [
 //   "http://somfist.shop",
@@ -76,6 +76,7 @@ app.use(passport.session()); // req.session 객체에 passport정보를 추가 �
 app.use("/api", indexRouter);
 app.use(express.static(__dirname));
 
-app.listen(port, () => {
-  console.log(port, "진행해주세요.");
-});
+// app.listen(port, () => {
+//   console.log(port, "진행해주세요.");
+// });
+module.exports = app
