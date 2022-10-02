@@ -136,7 +136,7 @@ class PromiseRepository {
   findFriend = async (nickname, userId) => {
     try {
       const response = await User.findAll({
-        attributes: ["userId", "nickname"],
+        attributes: ["userId", "nickname", "image"],
         where: {
           nickname: {
             [Op.startsWith]: `${nickname}`,
