@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === "production") {
     "https://www.clipspromise.com",
     "https://www.clipspromise.com/",
     "https://accounts.kakao.com/",
+    "https://kauth.kakao.com/",
     //프론트 로컬 테스트용. 최종 배포시엔 지울 것
     "http://localhost:3000",
     "http://localhost:3000/",
@@ -32,6 +33,7 @@ if (process.env.NODE_ENV === "production") {
     "https://www.clipspromise.com",
     "https://www.clipspromise.com/",
     "https://accounts.kakao.com/",
+    "https://kauth.kakao.com/",
     //백엔드 로컬 테스트용
     undefined,
   ];
