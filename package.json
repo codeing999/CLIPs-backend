@@ -26,6 +26,7 @@
     "@babel/core": "^7.19.1",
     "@babel/preset-env": "^7.19.1",
     "artillery": "^2.0.0-23",
+    "artillery-plugin-expect": "^2.1.0",
     "babel-jest": "^29.0.3",
     "cross-env": "^7.0.3",
     "husky": "^8.0.1",

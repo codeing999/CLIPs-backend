@@ -15,6 +15,7 @@ passportConfig(); //패스포트 설정
 
 let whitelist = [];
 if (process.env.NODE_ENV === "production") {
+
   whitelist = [
     "https://clipspromise.com",
     "https://clipspromise.com/",
@@ -35,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
     "https://accounts.kakao.com/",
     "https://kauth.kakao.com/",
     //백엔드 로컬 테스트용
-    undefined,
+    undefined
   ];
 }
 
@@ -79,8 +80,8 @@ app.use(
   )
 );
 
-app.use(cors(corsOptions)); //로컬에서 할 땐 다 주석처리하고 밑에꺼로 다 열고해야함.
-//app.use(cors());
+// app.use(cors(corsOptions)); //로컬에서 할 땐 다 주석처리하고 밑에꺼로 다 열고해야함.
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

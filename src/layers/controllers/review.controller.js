@@ -12,6 +12,7 @@ module.exports = class ReviewController {
     const { promiseId } = req.params;
     const { content } = req.body;
     const reviewImageUrl = req.files; 
+    console.log("테스트", reviewImageUrl)
     const image = reviewImageUrl.map((row) => row.location);
     const {userId} = res.locals;
 
