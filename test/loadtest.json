@@ -1,10 +1,17 @@
 {
    "config": {
-      "target": "https://clipspromise.com",
-      "phase": [
+      "target": "http://127.0.0.1:3000",
+      "phases": [
          {
-            "duration": 300,
-            "arrivalRate": 50
+            "duration": 20,
+            "arrivalRate": 5,
+            "name":"warm up"
+         },
+         {
+            "duration": 40,
+            "arrivalRate": 10,
+            "rampTo":25,
+            "name":"Ramp up load"
          }
       ],
       "payload": {
@@ -29,9 +36,33 @@
                      "email": "{{email}}",
                      "password": "{{password}}"
                   },
-                  "capture":{
-                    "json" : "accessToken",
-                    "as": "accessToken"
+                     "headers": {
+                        "Origin": "https://clipspromise.com"
+                     }
+                  }
+            },
+            {
+               "post": {
+                  "url": "/api/main",
+                  "json": {
+                     "location": "서울시 강남구",
+                     "category": "카페"
+                  },
+                  "headers": {
+                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY2NDc0ODA2MywiZXhwIjoxNjY0NzUxNjYzfQ.EejRKkE6SZ9gf9owBvvqIYds-zYCkie3aB5Gvii1H7Y",
+                     "Origin": "https://clipspromise.com"
+                  }
+               }
+            },
+            {
+               "post": {
+                  "url": "/api/main/crawlAll",
+                  "json": {
+                     "placeUrl": "http://place.map.kakao.com/19601351"
+                  },
+                  "headers": {
+                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY2NDc0ODA2MywiZXhwIjoxNjY0NzUxNjYzfQ.EejRKkE6SZ9gf9owBvvqIYds-zYCkie3aB5Gvii1H7Y",
+                     "Origin": "https://clipspromise.com"
                   }
                }
             },
@@ -39,21 +70,17 @@
                "get": {
                   "url": "/api/promise/{{promiseId}}",
                   "headers": {
-                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY2NDczNDIwOSwiZXhwIjoxNjY0NzM3ODA5fQ.zYib2a06qRckYuj5Ke1Uj0z08_3sxDFC1ZNn43OPB8o"
+                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY2NDc0ODA2MywiZXhwIjoxNjY0NzUxNjYzfQ.EejRKkE6SZ9gf9owBvvqIYds-zYCkie3aB5Gvii1H7Y",
+                     "Origin": "https://clipspromise.com"
                   }
                }
             },
             {
-               "post": {
-                  "url": "/api/review/{{promiseId}}",
-                  "formdata": {
-                     "content": "사진",
-                     "image": {
-                        "fromFile": "./files/{{ filename }}"
-                  }
-               },
+               "get": {
+                  "url": "/api/review{{reviewId}}",
                   "headers": {
-                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY2NDczNDIwOSwiZXhwIjoxNjY0NzM3ODA5fQ.zYib2a06qRckYuj5Ke1Uj0z08_3sxDFC1ZNn43OPB8o"
+                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUsImlhdCI6MTY2NDc0ODA2MywiZXhwIjoxNjY0NzUxNjYzfQ.EejRKkE6SZ9gf9owBvvqIYds-zYCkie3aB5Gvii1H7Y",
+                     "Origin": "https://clipspromise.com"
                   }
                }
             }
