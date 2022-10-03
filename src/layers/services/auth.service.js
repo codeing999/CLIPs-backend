@@ -13,7 +13,7 @@ module.exports = class AuthService {
     try {
       //세션 이미 있으면 제거 후 리프레쉬 토큰 발급 후 세션에 저장
       const isExistSession = await this.authRepository.findSessionByUserId(
-        user.userId
+        userId
       );
       if (isExistSession) {
         await this.authRepository.deleteSession(isExistSession.sessionId);
