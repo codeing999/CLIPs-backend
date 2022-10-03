@@ -23,7 +23,7 @@ class PromiseRepository {
         x,
         y,
         penalty,
-        userId: userId,
+        userId,
       });
     } catch (err) {
       console.log(err);
@@ -33,11 +33,11 @@ class PromiseRepository {
     }
   };
 
-  createParticipants = async (promiseId, user) => {
+  createParticipants = async (promiseId, userId) => {
     try {
       await Friend.create({
         promiseId,
-        userId: user,
+        userId,
       });
     } catch (err) {
       console.log(err);
@@ -135,11 +135,29 @@ class PromiseRepository {
 
   findFriend = async (nickname, userId) => {
     try {
+      const response = await User.findOne({
+        attributes: ["userId", "nickname", "image"],
+        where: {
+          nickname,
+          userId,
+        },
+      });
+      return response;
+    } catch (err) {
+      console.log(err);
+      const error = new Error("친구가 존재하지 않습니다");
+      error.code = 405;
+      throw error;
+    }
+  };
+
+  searchFriend = async (nickname, userId) => {
+    try {
       const response = await User.findAll({
         attributes: ["userId", "nickname", "image"],
         where: {
           nickname: {
-            [Op.startsWith]: `${nickname}`,
+            [Op.substring]: `${nickname}`,
           },
           userId: {
             [Op.ne]: userId,

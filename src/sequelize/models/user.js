@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "userId",
       onUpdate: "cascade",
       onDelete: "cascade",
-      constraints: false,
+      //constraints: false,
     });
     User.belongsToMany(models.Promise, {
       as: "thisTime",
