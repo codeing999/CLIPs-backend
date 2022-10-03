@@ -25,7 +25,7 @@ module.exports = class AuthService {
         process.env.REFRESH_SECRET_KEY,
         { expiresIn: process.env.REFRESH_OPTION_EXPIRESIN }
       );
-      await this.authRepository.createSession(user.userId, refreshToken);
+      await this.authRepository.createSession(userId, refreshToken);
 
       const accessToken = jwt.sign(
         {
