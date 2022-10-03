@@ -10,7 +10,7 @@ class PromiseController {
   createPromise = async (req, res) => {
     const { title, date, location, x, y, friendList, penalty } = req.body;
     const userId = res.locals.userId;
-
+    console.log(friendList);
     try {
       await joi
         .object({
@@ -52,7 +52,7 @@ class PromiseController {
     }
   };
 
-  findFriend = async (req, res) => {
+  searchFriend = async (req, res) => {
     const { friendList } = req.body;
     const userId = res.locals.userId;
 
@@ -63,7 +63,7 @@ class PromiseController {
         })
         .validateAsync({ friendList });
 
-      const result = await this.promiseService.findFriend(friendList, userId);
+      const result = await this.promiseService.searchFriend(friendList, userId);
       return res.status(200).send(result);
     } catch (err) {
       console.log(err);
