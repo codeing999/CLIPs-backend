@@ -15,7 +15,7 @@ promiseRouter.get(
 promiseRouter.post(
   "/user/check",
   authMiddlewares,
-  promiseController.findFriend
+  promiseController.searchFriend
 ); //친구찾기
 promiseRouter.delete(
   "/:promiseId",
