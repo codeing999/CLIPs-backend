@@ -11,14 +11,9 @@ module.exports = class AuthService {
 
   kakaoLogin = async (userId) => {
     try {
-      const accessToken = jwt.sign(
-        {
-          userId,
-        },
-        process.env.ACCESS_SECRET,
-        { expiresIn: process.env.ACCESS_OPTION_EXPIRESIN }
-      );
-      console.log(accessToken);
+      if (isExistSession) {
+        await this.authRepository.deleteSession(isExistSession.sessionId);
+      }
       const refreshToken = jwt.sign(
         {
           userId,
@@ -26,6 +21,16 @@ module.exports = class AuthService {
         process.env.REFRESH_SECRET_KEY,
         { expiresIn: process.env.REFRESH_OPTION_EXPIRESIN }
       );
+      await this.authRepository.createSession(user.userId, refreshToken);
+
+      const accessToken = jwt.sign(
+        {
+          userId,
+        },
+        process.env.ACCESS_SECRET,
+        { expiresIn: process.env.ACCESS_OPTION_EXPIRESIN }
+      );
+
       return { accessToken, refreshToken };
     } catch (err) {
       console.log(err);
