@@ -14,9 +14,9 @@ class PromiseService {
     friendList
   ) => {
     try {
-      await this.findFriend(friendList, userId);
+      await this.searchFriend(friendList, userId);
       const promiseId = this.generateRandomId();
-
+      console.log("@@@@", userId, typeof userId);
       await this.promiseRepository.createPromise(
         promiseId,
         title,
@@ -25,10 +25,10 @@ class PromiseService {
         x,
         y,
         penalty,
-        userId
+        +userId
       );
-
-      await this.createParticipants(friendList, promiseId, userId);
+      console.log("@@@@2", userId);
+      await this.createParticipants(friendList, promiseId);
       return;
     } catch (err) {
       console.log(err);
@@ -98,7 +98,7 @@ class PromiseService {
       const response = await this.checkPromiseExists(promiseId);
       this.checkPromiseCreator(response, userId);
 
-      await this.findFriend(friendList);
+      await this.searchFriend(friendList);
 
       const updatePromise = await this.quizRepository.updatePromise(
         promiseId,
@@ -129,12 +129,12 @@ class PromiseService {
     return isDeleted;
   };
 
-  findFriend = async (friendList, userId) => {
+  searchFriend = async (friendList, userId) => {
     let nickname = "";
     let user = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
-      user = await this.promiseRepository.findFriend(nickname, userId);
+      user = await this.promiseRepository.searchFriend(nickname, userId);
       if (user === null) {
         console.log(err);
         const error = new Error("찾으시는 친구가 존재하지 않습니다.");
@@ -152,14 +152,20 @@ class PromiseService {
     return promiseId;
   }
 
-  async createParticipants(friendList, promiseId, userId) {
-    let user = "";
-    let nickname = "";
+  async createParticipants(friendList, promiseId) {
+    // let user = "";
+    // let nickname = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
-      nickname = friendList[i].nickname;
-      let friend = await this.promiseRepository.findFriend(nickname, userId);
-      user = friend[0].dataValues.userId;
-      await this.promiseRepository.createParticipants(promiseId, user);
+      // let friend = await this.promiseRepository.findFriend(
+      //   friendList[i].nickname,
+      //   friendList[i].userId
+      // );
+      // user = friend[0].dataValues.userId;
+      console.log(friendList[i].userId);
+      await this.promiseRepository.createParticipants(
+        promiseId,
+        friendList[i].userId
+      );
     }
   }
 
