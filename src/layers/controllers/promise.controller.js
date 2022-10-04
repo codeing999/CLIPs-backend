@@ -10,7 +10,6 @@ class PromiseController {
   createPromise = async (req, res) => {
     const { title, date, location, x, y, friendList, penalty } = req.body;
     const userId = res.locals.userId;
-    console.log(friendList);
     try {
       await joi
         .object({

@@ -16,7 +16,6 @@ class PromiseService {
     try {
       await this.searchFriend(friendList, userId);
       const promiseId = this.generateRandomId();
-      console.log("@@@@", userId, typeof userId);
       await this.promiseRepository.createPromise(
         promiseId,
         title,
@@ -27,7 +26,6 @@ class PromiseService {
         penalty,
         +userId
       );
-      console.log("@@@@2", userId);
       await this.createParticipants(friendList, promiseId);
       return;
     } catch (err) {
@@ -153,20 +151,10 @@ class PromiseService {
   }
 
   async createParticipants(friendList, promiseId) {
-    // let user = "";
-    // let nickname = "";
-    for (let i = 0; i <= friendList.length - 1; i++) {
-      // let friend = await this.promiseRepository.findFriend(
-      //   friendList[i].nickname,
-      //   friendList[i].userId
-      // );
-      // user = friend[0].dataValues.userId;
-      console.log(friendList[i].userId);
-      await this.promiseRepository.createParticipants(
-        promiseId,
-        friendList[i].userId
-      );
-    }
+    const participantList = friendList.map((v) => {
+      return { promiseId, userId: v.userId };
+    });
+    await this.promiseRepository.createParticipants(participantList);
   }
 
   checkPromiseCreator(response, userId) {
