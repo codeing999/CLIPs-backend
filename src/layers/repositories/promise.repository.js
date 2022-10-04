@@ -33,12 +33,9 @@ class PromiseRepository {
     }
   };
 
-  createParticipants = async (promiseId, userId) => {
+  createParticipants = async (participantList) => {
     try {
-      await Friend.create({
-        promiseId,
-        userId,
-      });
+      await Friend.bulkCreate(participantList);
     } catch (err) {
       console.log(err);
       const error = new Error(err);
