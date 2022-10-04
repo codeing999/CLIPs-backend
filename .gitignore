@@ -2,9 +2,11 @@ node_modules/
 config.json
 .src/sequelize/config/cofig.json
 .env
-coverage/
+coverage/*
 test/
 *.html
+*.xml
+
 coverage/lcov-report/src/app.js.html
 coverage/lcov-report/src/index.html
 coverage/lcov-report/src/layers/controllers/auth.controller.js.html
@@ -46,3 +48,7 @@ coverage/lcov-report/src/sequelize/models/review.js.html
 coverage/lcov-report/src/sequelize/models/reviewImage.js.html
 coverage/lcov-report/src/sequelize/models/session.js.html
 coverage/lcov-report/src/sequelize/models/user.js.html
+coverage/clover.xml
+coverage/coverage-final.json
+coverage/lcov-report/index.html
+coverage/lcov.info
