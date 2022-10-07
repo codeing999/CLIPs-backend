@@ -4,9 +4,9 @@
 
 ## 팀원 정보
 
-- @codeing999
-- @Minsun91
-- @Rumaro122
+- [@codeing999](https://github.com/codeing999)
+- [@Minsun91](https://github.com/Minsun91)
+- [@Rumaro122](https://github.com/Rumaro122)
 
 ![image](https://user-images.githubusercontent.com/109027875/187682382-34d04dc6-3372-491a-be79-0e4da6318d02.png)
 
@@ -34,7 +34,7 @@
 
 ## 디렉토리 구조
 
-![image](https://user-images.githubusercontent.com/92393851/194463262-8289c092-4a03-4a6b-85ea-88263f762054.png)
+<img width="202" alt="스크린샷 2022-10-07 05 41 40" src="https://user-images.githubusercontent.com/92393851/194463262-8289c092-4a03-4a6b-85ea-88263f762054.png">
 
 ## PACKAGES
 
