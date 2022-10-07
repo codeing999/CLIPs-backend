@@ -14,10 +14,9 @@ class PromiseService {
     friendList
   ) => {
     try {
-      await this.findFriend(friendList, userId);
+      await this.searchFriend(friendList, userId);
       const promiseId = this.generateRandomId();
-
-      const result = await this.promiseRepository.createPromise(
+      await this.promiseRepository.createPromise(
         promiseId,
         title,
         date,
@@ -25,11 +24,10 @@ class PromiseService {
         x,
         y,
         penalty,
-        userId
+        +userId
       );
-
-      await this.createParticipants(friendList, promiseId, userId);
-      return result;
+      await this.createParticipants(friendList, promiseId);
+      return;
     } catch (err) {
       console.log(err);
       throw err;
@@ -53,37 +51,52 @@ class PromiseService {
   };
 
   getPromiseDetail = async (promiseId, userId) => {
-    await this.checkPromiseExists(promiseId);
-    const response = await this.promiseRepository.getPromiseDetail(promiseId);
-    const username = await this.promiseRepository.findUser(userId);
+    try {
+      await this.checkPromiseExists(promiseId);
+      const response = await this.promiseRepository.getPromiseDetail(promiseId);
+      const { nickname } = await this.promiseRepository.findUser(
+        response.userId
+      );
+      for (let i = 0; i <= response.participants.length - 1; i++) {
+        delete response.participants[i].dataValues.Friend;
+      }
 
-    for (let i = 0; i <= response.participants.length - 1; i++) {
-      delete response.participants[i].dataValues.Friend;
+      const result = {
+        title: response.title,
+        userId: response.userId,
+        nickname: nickname,
+        date: response.date,
+        location: response.location,
+        x: response.x,
+        y: response.y,
+        friendList: response.participants,
+        countFriend: response.participants.length,
+        penalty: response.penalty,
+        done: response.done,
+      };
+
+      return result;
+    } catch (err) {
+      throw err;
     }
-
-    const result = {
-      title: response.title,
-      userId: response.userId,
-      username: username.dataValues.name,
-      date: response.date,
-      location: response.location,
-      x: response.x,
-      y: response.y,
-      friendList: response.participants,
-      countFriend: response.participants.length,
-      penalty: response.penalty,
-      done: response.done,
-    };
-
-    return result;
   };
 
-  updatePromise = async (title, date, location, x, y, penalty, userId, friendList, promiseId) => {
+  updatePromise = async (
+    title,
+    date,
+    location,
+    x,
+    y,
+    penalty,
+    userId,
+    friendList,
+    promiseId
+  ) => {
     try {
       const response = await this.checkPromiseExists(promiseId);
       this.checkPromiseCreator(response, userId);
 
-      await this.findFriend(friendList);
+      await this.searchFriend(friendList);
 
       const updatePromise = await this.quizRepository.updatePromise(
         promiseId,
@@ -114,14 +127,14 @@ class PromiseService {
     return isDeleted;
   };
 
-  findFriend = async (friendList, userId) => {
+  searchFriend = async (friendList, userId) => {
     let nickname = "";
     let user = "";
     for (let i = 0; i <= friendList.length - 1; i++) {
       nickname = friendList[i].nickname;
-      user = await this.promiseRepository.findFriend(nickname, userId);
+      user = await this.promiseRepository.searchFriend(nickname, userId);
       if (user === null) {
-        console.log(err)
+        console.log(err);
         const error = new Error("찾으시는 친구가 존재하지 않습니다.");
         error.code = 404;
         throw error;
@@ -137,16 +150,11 @@ class PromiseService {
     return promiseId;
   }
 
-  async createParticipants(friendList, promiseId, userId) {
-    let user = "";
-    let nickname = "";
-    for (let i = 0; i <= friendList.length - 1; i++) {
-      nickname = friendList[i].nickname;
-      let friend = await this.promiseRepository.findFriend(nickname, userId);
-      console.log(friend)
-      user = friend[0].dataValues.userId;
-      await this.promiseRepository.createParticipants(promiseId, user);
-    }
+  async createParticipants(friendList, promiseId) {
+    const participantList = friendList.map((v) => {
+      return { promiseId, userId: v.userId };
+    });
+    await this.promiseRepository.createParticipants(participantList);
   }
 
   checkPromiseCreator(response, userId) {

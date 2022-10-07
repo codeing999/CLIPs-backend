@@ -23,7 +23,6 @@ module.exports = class ReviewService {
   getReview = async (userId) => {
     try {
       const getreviews = await this.reviewRepository.getReviewData(userId);
-      // console.log(getreviews)
 
       const promiseAndReviews = getreviews.map((post) => {
         return {
@@ -33,31 +32,11 @@ module.exports = class ReviewService {
           promiseUserId: post.promiseId,
           location: post.location,
           date: post.date, 
-          // content:post.content,
           name: post['participants.name'],
+          title: post.title
         };
       });
 
-      // console.log("2", promiseAndReviews)
-
-      // let extendedFriendData = [];
-      // getreviews.extendedFriend.forEach((p, i) => {
-      //   if (p.length !== 0 && getreviews.extendedReviews[i].length !== 0) {
-      //     let tmp = {};
-      //     tmp.reviewId = getreviews.extendedReviews[i][0].reviewId;
-      //     tmp.image = getreviews.extendedReviews[i][0]["ReviewImages.image"];
-      //     tmp.content = getreviews.extendedReviews[i][0].content;
-
-      //     tmp.promiseUserId = p.userId;
-      //     tmp.date = p.date;
-      //     tmp.location = p.location;
-
-      //     tmp.FriendPromiseId = p['participants.Friend.promiseId'];
-      //     tmp.FriendId = p['participants.Friend.userId'];
-      //     extendedFriendData.push(tmp);
-      //   }
-      // });
-    
       promiseAndReviews.sort((a, b) => {
         return b.createdAt - a.createdAt;
       });

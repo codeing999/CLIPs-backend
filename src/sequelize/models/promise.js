@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       date: {
         type: DataTypes.STRING,
         allowNull: false,
-      }, 
+      },
       location: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: "userId",
       onUpdate: "cascade",
       onDelete: "cascade",
-      constraints: false,
+      //constraints: false,
     });
     Promise.belongsToMany(models.User, {
       as: "participants",
